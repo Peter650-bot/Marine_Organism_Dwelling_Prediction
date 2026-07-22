@@ -132,7 +132,7 @@ cleanly invalidates old entries. Responses are cached in `figures/<species>/tabl
 
 ## The Google Colab vLLM server
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Peter650-bot/vLLM/blob/main/colab/vllm_server.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Peter650-bot/Marine_Organism_Dwelling_Prediction/blob/main/colab/vllm_server.ipynb)
 
 `colab/vllm_server.ipynb` boots an OpenAI-compatible vLLM server on a **free Colab T4**, exposes it
 via a **cloudflared** quick-tunnel, and prints a `https://….trycloudflare.com/v1` URL. Export that as
