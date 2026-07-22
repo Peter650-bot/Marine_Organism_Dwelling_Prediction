@@ -1,0 +1,21 @@
+# Core dependencies (required to run the pipeline).
+# Versions are intentionally unpinned to match the project's "discover by import" style;
+# any reasonably recent release works.
+numpy
+pandas
+xarray
+h5py
+matplotlib
+seaborn
+scipy
+scikit-learn
+pillow
+
+# ---- optional (scripts degrade gracefully and print an install hint if missing) ----
+# libpysal        # Moran's I spatial autocorrelation
+# esda            # Moran's I spatial autocorrelation
+# shap            # feature attribution for the gradient-boosted model
+# plotly          # optional interactive HTML map (figure 16)
+# anthropic       # paid TabLLM backend (pay-as-you-go Anthropic API)
+# openai          # free TabLLM backend (self-hosted vLLM OpenAI-compatible server)
+# copernicusmarine# download the DUACS L4 geostrophic velocity cubes (see README)

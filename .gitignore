@@ -1,0 +1,31 @@
+# ---- large data cubes (download separately — see README) ----
+Datasets/*.nc
+
+# ---- third-party copyrighted publication ----
+Modeled Particle Retention for Habitat Prediction publication.pdf
+
+# ---- in-progress paper draft (kept private) ----
+paper.tex
+
+# ---- derived retention caches (regenerated from the .nc cubes) ----
+figures/**/.retention*.npy
+.retention*.npy
+
+# ---- python / tooling ----
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+.claude/
+
+# ---- stray / environment ----
+.env
+*.sqlite-journal
+
+# ---- Colab runtime artifacts ----
+vllm.log
+tunnel.log
+cloudflared
+
+# NOTE: figures/**/tabllm_cache.sqlite is intentionally committed
+# (it is the LLM-reproducibility anchor; LLM output is not byte-deterministic).

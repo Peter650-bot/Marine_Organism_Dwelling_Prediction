@@ -1,0 +1,13 @@
+# Normalize line endings (repo is checked out on a Windows/OneDrive path)
+* text=auto eol=lf
+*.py text eol=lf
+*.md text eol=lf
+
+# Binary assets — never diff or line-ending-convert these
+*.png binary
+*.gif binary
+*.jpg binary
+*.pdf binary
+*.sqlite binary
+*.npy binary
+*.nc binary

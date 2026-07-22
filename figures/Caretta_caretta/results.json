@@ -1,0 +1,23 @@
+{
+  "species": "Caretta caretta",
+  "n_sightings": 228,
+  "sufficient": true,
+  "stats": {
+    "rho": 0.36871548487078615,
+    "p": 0.0,
+    "perm_p": 0.0,
+    "ci": [
+      0.3588765410749382,
+      0.3786021861196892
+    ],
+    "n": 27427
+  },
+  "cv": {
+    "auc_random": 0.9864267358832063,
+    "r2_random": 0.9502461507320243,
+    "auc_spatial": 0.880344411988836,
+    "r2_spatial": 0.25938217334929
+  },
+  "retention_perm_dAUC": 0.007003824562485922,
+  "fig_dir": "figures/Caretta_caretta"
+}

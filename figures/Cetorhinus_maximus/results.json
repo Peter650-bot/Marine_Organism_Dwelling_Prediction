@@ -1,0 +1,23 @@
+{
+  "species": "Cetorhinus maximus",
+  "n_sightings": 142,
+  "sufficient": true,
+  "stats": {
+    "rho": 0.017915860521914635,
+    "p": 0.0008780107646962138,
+    "perm_p": 0.001,
+    "ci": [
+      0.007005655507919309,
+      0.02874307764289958
+    ],
+    "n": 34481
+  },
+  "cv": {
+    "auc_random": 0.9759548169004496,
+    "r2_random": 0.8312265284793199,
+    "auc_spatial": 0.8651191584359228,
+    "r2_spatial": 0.3577796660806536
+  },
+  "retention_perm_dAUC": 0.031259067882940875,
+  "fig_dir": "figures/Cetorhinus_maximus"
+}

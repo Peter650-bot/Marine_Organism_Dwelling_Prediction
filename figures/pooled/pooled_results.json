@@ -1,0 +1,10 @@
+{
+  "species": [
+    "Caretta caretta",
+    "Cetorhinus maximus"
+  ],
+  "n_species": 2,
+  "auc_leave_region_out": 0.8509804213492245,
+  "auc_leave_species_out": 0.5227855599335253,
+  "pooled_retention_perm_dAUC": 0.03217866288122004
+}
