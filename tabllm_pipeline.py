@@ -616,6 +616,15 @@ def main(argv=None):
     ap.add_argument("--smoke", action="store_true",
                     help="cheap real run: full variant, random CV, shots {0,8}, "
                          "50 cells, n_vote=1 (~$0.30, HITS API)")
+    ap.add_argument("--shots",
+                    help="comma-separated shot counts to override the default "
+                         f"{SHOTS} (e.g. '4,8,16,32,64' to drop the 0-shot point)")
+    ap.add_argument("--schemes",
+                    help="comma-separated CV schemes to run, subset of "
+                         "{random,spatial} (default: both)")
+    ap.add_argument("--variants",
+                    help=f"comma-separated serialization variants, subset of "
+                         f"{list(VARIANTS)} (default: full,georegion_blind)")
     args = ap.parse_args(argv)
 
     if args.selftest:
@@ -643,9 +652,18 @@ def main(argv=None):
                   base_url=args.base_url, api_key=args.api_key,
                   max_retries=args.max_retries, error_abort=args.error_abort)
     else:
+        kw = {}
+        if args.shots:
+            kw["shots"] = [int(s) for s in args.shots.split(",") if s.strip() != ""]
+        if args.schemes:
+            kw["schemes"] = tuple(s.strip() for s in args.schemes.split(",")
+                                  if s.strip())
+        if args.variants:
+            kw["variants"] = tuple(v.strip() for v in args.variants.split(",")
+                                   if v.strip())
         run_curve(cells, model=args.model, n_test=args.n_test, n_vote=args.n_vote,
                   base_url=args.base_url, api_key=args.api_key,
-                  max_retries=args.max_retries, error_abort=args.error_abort)
+                  max_retries=args.max_retries, error_abort=args.error_abort, **kw)
     return 0
 
 

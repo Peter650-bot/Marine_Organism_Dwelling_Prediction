@@ -92,7 +92,8 @@ class TabLLMClient:
 
     def __init__(self, model=HAIKU, cache_path="figures/tabllm_cache.sqlite",
                  n_vote=1, temperature=0.0, max_tokens=128, keep_reasoning=False,
-                 max_retries=4, base_url=None, api_key=None, error_abort=25):
+                 max_retries=4, base_url=None, api_key=None, error_abort=25,
+                 request_timeout=120):
         self.model = model
         self.cache_path = cache_path
         self.n_vote = max(1, int(n_vote))
@@ -100,6 +101,12 @@ class TabLLMClient:
         self.max_tokens = int(max_tokens)
         self.keep_reasoning = bool(keep_reasoning)
         self.max_retries = int(max_retries)
+        # Per-request timeout (s). The OpenAI SDK defaults to 600s, so a socket
+        # left half-open by a server scaledown/cold-start wedges a worker thread
+        # for ten minutes before it retries. A tight timeout makes such requests
+        # fail fast and retry against the (warm) server instead of stalling the
+        # whole batch. See _client_obj / _classify_batch_openai.
+        self.request_timeout = float(request_timeout)
         # Circuit-breaker: abort a batched run once this many requests have
         # failed (server likely down), so a dead vLLM server can't quietly
         # poison the cache with neutral 0.0s. <=0 disables. See
@@ -124,7 +131,7 @@ class TabLLMClient:
                 import openai  # lazy: only needed for a real vLLM call
                 self._client = openai.OpenAI(
                     base_url=self.base_url, api_key=self.api_key,
-                    max_retries=self.max_retries,
+                    max_retries=self.max_retries, timeout=self.request_timeout,
                 )
             else:
                 import anthropic  # lazy: only needed for a real call

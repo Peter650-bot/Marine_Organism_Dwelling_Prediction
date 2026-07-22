@@ -22,6 +22,9 @@ __pycache__/
 .env
 *.sqlite-journal
 
+# ---- Lavish review artifacts (local scratch, not part of the project) ----
+.lavish/
+
 # ---- Colab runtime artifacts ----
 vllm.log
 tunnel.log
