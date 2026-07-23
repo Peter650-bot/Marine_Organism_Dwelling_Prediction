@@ -368,7 +368,8 @@ def _baseline_scores(X, y_cls, exemplar_idx, full_train_idx, kept_idx, seed=SEED
 def run_curve(cells, model=None, shots=None, variants=("full", "georegion_blind"),
               schemes=("random", "spatial"), n_test=800, n_vote=1,
               use_batch=True, cache_path=None, verbose=True,
-              base_url=None, api_key=None, max_retries=4, error_abort=25):
+              base_url=None, api_key=None, max_retries=4, error_abort=25,
+              max_tokens=128):
     """Full few-shot learning curve. Writes <out_dir>/tabllm_results.json and
     figures 21/22. Hits an LLM backend: the Anthropic API by default, or a free
     self-hosted vLLM server when base_url (or $VLLM_BASE_URL) is set."""
@@ -384,7 +385,8 @@ def run_curve(cells, model=None, shots=None, variants=("full", "georegion_blind"
     cache_path = cache_path or os.path.join(out_dir, "tabllm_cache.sqlite")
     client = at.TabLLMClient(model=model, cache_path=cache_path, n_vote=n_vote,
                              base_url=base_url, api_key=api_key,
-                             max_retries=max_retries, error_abort=error_abort)
+                             max_retries=max_retries, error_abort=error_abort,
+                             max_tokens=max_tokens)
 
     def log(*a):
         if verbose:
@@ -602,6 +604,11 @@ def main(argv=None):
                          "or 'EMPTY'; vLLM ignores it unless started with one)")
     ap.add_argument("--n-test", type=int, default=800)
     ap.add_argument("--n-vote", type=int, default=1)
+    ap.add_argument("--max-tokens", type=int, default=128,
+                    help="output token cap per call. Default 128 suits the "
+                         "non-reasoning Haiku/Qwen bulk path. Raise it (e.g. 384) "
+                         "for a REASONING model (gpt-oss, GLM) whose thinking would "
+                         "otherwise be truncated, yielding broken JSON / neutral 0.0.")
     ap.add_argument("--max-retries", type=int, default=4,
                     help="per-request retries before a call is treated as failed. "
                          "Lower it (e.g. 1) so a dead vLLM server fails fast "
@@ -663,7 +670,8 @@ def main(argv=None):
                                    if v.strip())
         run_curve(cells, model=args.model, n_test=args.n_test, n_vote=args.n_vote,
                   base_url=args.base_url, api_key=args.api_key,
-                  max_retries=args.max_retries, error_abort=args.error_abort, **kw)
+                  max_retries=args.max_retries, error_abort=args.error_abort,
+                  max_tokens=args.max_tokens, **kw)
     return 0
 
 

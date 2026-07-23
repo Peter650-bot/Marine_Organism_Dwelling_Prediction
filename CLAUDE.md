@@ -102,6 +102,41 @@ The pipeline is **OpenAI-compatible** (`--base-url` + `--model` + `--api-key`, `
 
 **Honest caveat (keep in the writeup):** bigger lifts *ranking*/AUC but prompt-only over lat/lon/retention/coast approaches — does not beat — the supervised RF ceiling (~0.99) and is already near the classical k-shot peers (0.63–0.65). The finding (geography dominates; in-context LLMs land near cheap baselines) is robust regardless of model size.
 
+### TabLLM larger-model run — execution plan & backend findings (probed 2026-07-23)
+
+**Decision:** the larger-model (`gpt-oss-120b`, reasoning) run is deferred to a **long-running lab machine that can stay open for weeks**, because *every* free frontier tier is day-capped and no free backend finishes the sweep in one sitting. Run there via **Cerebras** (cheap, free-trial rate-capped → multi-day, cache auto-resumes) or **Modal H100** (paid, no cap, ~3h). All code is staged; it's a matter of flags + wall-clock, not new work.
+
+**Backend reality (measured, supersedes Option 1's assumptions above):**
+- **Cerebras** — this account does **not** serve Qwen3-235B; the menu is `gpt-oss-120b`, `zai-glm-4.7`, `gemma-4-31b`. Inference needs billing (402 until a card is added). It is **paid**: **$0.35/M in, $0.75/M out**, with a free-trial **rate cap of ~1M tokens/day, 2,400 req/day, 5 req/min** and **$5 trial credit**. Strict `json_schema` **works**. `gpt-oss-120b` is a reasoning model (thinking on a separate `reasoning_content` channel; clean JSON in `content`).
+- **Groq** — serves `openai/gpt-oss-120b` but the free tier is *tighter* (~1,000 req/day, ~8,000 TPM) **and rejects our strict `json_schema`** (it requires every `properties` key to be in `required`) → must fall back to `response_format: json_object`. Not worth it over Cerebras.
+- **OpenRouter** — needs a $5 deposit to be useful; `:free` variants are day-capped (50/day, 1,000/day only if ≥$10 deposited).
+- **Modal H100** — the only no-rate-limit path. Full `n_test=300` sweep ≈ ~3h ≈ **$12–16**, *tight* against the ~$13 Modal free credit → size `--n-test ≤150` (~$9–10) or wait for the monthly credit reset.
+
+**Sizing (calls = `schemes(2) × variants(2) × shots(3) × folds(5) × n_test`):** `n_test=300` → 18k calls / ~24M tok / ~$9.5 on Cerebras (or ~3h on Modal); `n_test=80` → 4.8k / ~6.4M / ~$2.5 / ~6–7 days on the Cerebras free cap; `n_test=40` → 2.4k / ~3.2M / ~$1.3 / ~3 days. Cost stays well under the $5/$13 credits; **the binding constraint is the daily rate cap, not money.**
+
+**Code already staged:** `tabllm_pipeline.py --max-tokens N` (default 128, unchanged for Haiku/Qwen). **Reasoning models truncate at 128 → broken JSON → neutral 0.0**, so pass **`--max-tokens 384`** for `gpt-oss-120b`/GLM.
+
+**Output-safety (already done; never lose the 72B baseline):** the canonical 72B artifacts are snapshotted to `figures/Caretta_caretta/{tabllm_results_qwen72b.json, 21_tabllm_learning_curve_qwen72b.png, 22_tabllm_geography_ablation_qwen72b.png}`. A new run **overwrites** `tabllm_results.json` + `21_*`/`22_*` (cache is model-keyed, so no answer leakage). **After the run:** regenerate `21`/`22` with **both** curves overlaid (72B snapshot + new model), then add the new model's rows/bar to `TabLLM_model_comparison.docx`. Keep every 72B number.
+
+**Ready-to-run on the lab machine** (keys are user-supplied — **never commit them**):
+```bash
+# --- Cerebras (cheap, multi-day, resumable: just re-run daily) ---
+export VLLM_BASE_URL="https://api.cerebras.ai/v1"; export VLLM_API_KEY="$CEREBRAS_KEY"
+python tabllm_pipeline.py --species "Caretta caretta" \
+  --velocity Datasets/Oceanic_data.nc --species-csv Datasets/caretta_data.csv \
+  --base-url "$VLLM_BASE_URL" --api-key "$VLLM_API_KEY" \
+  --model gpt-oss-120b --max-tokens 384 --n-test 80     # cache skips done cells on re-run
+
+# --- Modal H100 (paid, no cap, one ~3h sitting) ---
+# edit deploy/vllm_server.py: MODEL="openai/gpt-oss-120b", GPU="H100", TENSOR_PARALLEL=1,
+#   drop `--quantization awq` (gpt-oss is MXFP4, auto-detected); then `modal deploy ...`
+python tabllm_pipeline.py --species "Caretta caretta" \
+  --velocity Datasets/Oceanic_data.nc --species-csv Datasets/caretta_data.csv \
+  --base-url "https://<user>--vllm-tabllm-serve.modal.run/v1" \
+  --model "openai/gpt-oss-120b" --max-tokens 384 --n-test 150
+```
+Credits as of 2026-07-23: **~$13 Modal free**, **$5 Cerebras trial**. Free-provider keys are user-supplied and must stay out of the repo.
+
 ## Conventions worth respecting
 
 - **All randomness is seeded.** RNGs use `np.random.default_rng(42)` (main) and `42 + run_idx` (ensemble); seasonal/sensitivity use 77 and 99; the generalised pipeline reuses `rc.SEED=42`. Don't introduce unseeded randomness — reproducibility of the reported correlations depends on it.
