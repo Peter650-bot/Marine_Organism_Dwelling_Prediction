@@ -138,11 +138,19 @@ def serialize_row(x, variant="full", land_present=True):
     return "\n".join(lines)
 
 
-def build_system(species, variant, prevalence, prior=False):
+def build_system(species, variant, prevalence, prior=False,
+                 scoring="verbalized"):
     """System prompt. The hypothesis-injecting prior is EMPTY by default
     (prior-free is the headline). `georegion_blind` strips region/place names so
     the model cannot localize from region identity — the only fair analogue of
-    RF's no-geography ablation."""
+    RF's no-geography ablation.
+
+    `scoring` changes only the ANSWER FORMAT instruction, never the evidence:
+      verbalized : model writes {label, p_high}  (JSON, guided decoding)
+      logprob    : model answers with the bare word HIGH or LOW, and the score
+                   is read from the token distribution (TabLLM's actual method).
+                   Asking for prose here would push the verbalizer away from the
+                   first token position, so the instruction is emphatic."""
     common, latin, region = SPECIES_META.get(
         species, (species, species, "this ocean region")
     )
@@ -169,6 +177,15 @@ def build_system(species, variant, prevalence, prior=False):
     feats.append("distance to the nearest coast")
     feat_list = ", ".join(feats[:-1]) + ", and " + feats[-1]
 
+    if scoring == "logprob":
+        answer = ("Answer with exactly one word — either HIGH or LOW — and "
+                  "nothing else. Do not explain, do not add punctuation, and do "
+                  "not restate the features. Your entire reply must be that one "
+                  "word.")
+    else:
+        answer = ("Reason from the ocean features, then give a probability that "
+                  "the location is HIGH.")
+
     return (
         "You are a marine spatial-ecology model that predicts megafauna habitat "
         "use from oceanographic conditions at a single ocean grid cell. "
@@ -177,8 +194,7 @@ def build_system(species, variant, prevalence, prior=False):
         "Task: decide whether this location has HIGH or LOW habitat use for this "
         "species. \"HIGH\" means the location is in the upper half of suitable "
         "habitat; \"LOW\" the lower half. The base rate of HIGH locations in this "
-        f"region is approximately {prevalence:.0%}. Reason from the ocean "
-        "features, then give a probability that the location is HIGH."
+        f"region is approximately {prevalence:.0%}. {answer}"
     )
 
 
@@ -189,16 +205,22 @@ def _user_turn(x, variant, land_present):
     return serialize_row(x, variant, land_present) + _QUERY_SUFFIX
 
 
-def build_messages(X, exemplar_idx, query_i, variant, land_present):
+def build_messages(X, exemplar_idx, query_i, variant, land_present,
+                   scoring="verbalized"):
     """Few-shot message list: label-only assistant demos (no fabricated p_high,
-    which would anchor the model's output) followed by the query cell."""
+    which would anchor the model's output) followed by the query cell.
+
+    Under logprob scoring the demos are the bare verbalizer word, so the
+    few-shot pattern the model continues is exactly the single token whose
+    distribution we read."""
     msgs = []
     for ei in exemplar_idx:
         msgs.append({"role": "user",
                      "content": _user_turn(X[ei], variant, land_present)})
         # label-only demonstration; the label is provided by the caller via y_cls
-        msgs.append({"role": "assistant",
-                     "content": json.dumps({"label": exemplar_idx[ei]})})
+        demo = (exemplar_idx[ei].upper() if scoring == "logprob"
+                else json.dumps({"label": exemplar_idx[ei]}))
+        msgs.append({"role": "assistant", "content": demo})
     msgs.append({"role": "user",
                  "content": _user_turn(X[query_i], variant, land_present)})
     return msgs
@@ -369,7 +391,7 @@ def run_curve(cells, model=None, shots=None, variants=("full", "georegion_blind"
               schemes=("random", "spatial"), n_test=800, n_vote=1,
               use_batch=True, cache_path=None, verbose=True,
               base_url=None, api_key=None, max_retries=4, error_abort=25,
-              max_tokens=128):
+              max_tokens=128, scoring="verbalized", top_logprobs=20):
     """Full few-shot learning curve. Writes <out_dir>/tabllm_results.json and
     figures 21/22. Hits an LLM backend: the Anthropic API by default, or a free
     self-hosted vLLM server when base_url (or $VLLM_BASE_URL) is set."""
@@ -383,10 +405,16 @@ def run_curve(cells, model=None, shots=None, variants=("full", "georegion_blind"
     shots = SHOTS if shots is None else shots
     model = model or at.HAIKU
     cache_path = cache_path or os.path.join(out_dir, "tabllm_cache.sqlite")
+    # logprob scoring answers with one word, so the 128-token bulk cap is far
+    # more than needed; keep it tight so a chatty model fails fast and loudly
+    # rather than burying the verbalizer past the scan window.
+    if scoring == "logprob" and max_tokens > 8:
+        max_tokens = 8
     client = at.TabLLMClient(model=model, cache_path=cache_path, n_vote=n_vote,
                              base_url=base_url, api_key=api_key,
                              max_retries=max_retries, error_abort=error_abort,
-                             max_tokens=max_tokens)
+                             max_tokens=max_tokens, scoring=scoring,
+                             top_logprobs=top_logprobs)
 
     def log(*a):
         if verbose:
@@ -402,7 +430,8 @@ def run_curve(cells, model=None, shots=None, variants=("full", "georegion_blind"
 
     results = {"species": species, "model": model, "prevalence": prevalence,
                "n_cells": cells["n_cells"], "land_present": land_present,
-               "n_vote": n_vote, "points": [], "dropped_log": []}
+               "n_vote": n_vote, "scoring": scoring, "points": [],
+               "dropped_log": []}
 
     for scheme in schemes:
         for variant in variants:
@@ -420,10 +449,12 @@ def run_curve(cells, model=None, shots=None, variants=("full", "georegion_blind"
                          "n_test_used": int(len(kept)),
                          "n_dropped": int(len(te) - len(kept))})
                     # LLM scores for kept cells
+                    sysmsg = build_system(species, variant, prevalence,
+                                          scoring=scoring)
                     jobs = [{"id": f"{scheme}:{variant}:{k}:{fold}:{i}",
-                             "system": build_system(species, variant, prevalence),
+                             "system": sysmsg,
                              "messages": build_messages(X, ex, i, variant,
-                                                        land_present)}
+                                                        land_present, scoring)}
                             for i in kept]
                     if use_batch:
                         res = client.classify_batch(jobs)
@@ -432,17 +463,31 @@ def run_curve(cells, model=None, shots=None, variants=("full", "georegion_blind"
                                                             j["messages"])
                                for j in jobs}
                     scores = np.array([res[j["id"]]["p_high"] for j in jobs])
+                    # A cell with no usable answer is MISSING, not low-dwelling.
+                    # Scoring it 0.0 fabricates a confident negative and biases
+                    # the AUC, so drop it and record how many were dropped.
+                    usable = np.array([res[j["id"]].get("ok", True)
+                                       and res[j["id"]].get("n_used", 1) > 0
+                                       for j in jobs])
                     yk = y_cls[kept]
-                    if len(np.unique(yk)) == 2:
-                        auc_runs.append(roc_auc_score(yk, scores))
-                        f1_runs.append(f1_score(yk, (scores > 0.5).astype(int),
+                    n_unusable = int((~usable).sum())
+                    if n_unusable:
+                        results["dropped_log"].append(
+                            {"scheme": scheme, "variant": variant, "k": k,
+                             "fold": fold, "n_no_answer": n_unusable})
+                    s_ok, y_ok = scores[usable], yk[usable]
+                    if len(y_ok) > 20 and len(np.unique(y_ok)) == 2:
+                        auc_runs.append(roc_auc_score(y_ok, s_ok))
+                        f1_runs.append(f1_score(y_ok, (s_ok > 0.5).astype(int),
                                                 zero_division=0))
                     # tabular baselines on identical kept indices
+                    # ...scored on the SAME usable subset as the LLM, so the
+                    # comparison never drifts onto a different cell set.
                     bsc, _ = _baseline_scores(X, y_cls, ex, tr, kept, seed)
                     for name, sc in bsc.items():
-                        if len(np.unique(yk)) == 2:
+                        if len(y_ok) > 20 and len(np.unique(y_ok)) == 2:
                             base_runs.setdefault(name, []).append(
-                                roc_auc_score(yk, sc))
+                                roc_auc_score(y_ok, np.asarray(sc)[usable]))
                 point = {
                     "scheme": scheme, "variant": variant, "k": k,
                     "auc_llm": float(np.mean(auc_runs)) if auc_runs else None,
@@ -454,10 +499,11 @@ def run_curve(cells, model=None, shots=None, variants=("full", "georegion_blind"
                 results["points"].append(point)
                 log(f"[{scheme}/{variant}] k={k:>2}  AUC_llm="
                     f"{point['auc_llm']}  calls={client.calls_made} "
-                    f"hits={client.cache_hits}")
+                    f"hits={client.cache_hits} fails={client.parse_failures}")
 
     results["api_calls"] = client.calls_made
     results["cache_hits"] = client.cache_hits
+    results["parse_failures"] = client.parse_failures
     with open(os.path.join(out_dir, "tabllm_results.json"), "w") as f:
         json.dump(results, f, indent=2)
     log(f"[saved] {out_dir}/tabllm_results.json")
@@ -579,8 +625,25 @@ def _selftest():
     assistant = [m for m in msgs if m["role"] == "assistant"]
     assert all("p_high" not in m["content"] for m in assistant)  # no anchoring
     assert len(assistant) == len(ex)
+
+    # --- logprob scoring: answer-format instruction + bare-word demos --------
+    sys_lp = build_system("Caretta caretta", "full", 0.18, scoring="logprob")
+    assert "exactly one word" in sys_lp
+    assert "give a probability" not in sys_lp   # prose request must be gone
+    assert "18%" in sys_lp                      # evidence/base rate unchanged
+    # the serialized EVIDENCE must be identical across scoring modes — only the
+    # answer format may differ, else the two runs aren't comparable
+    assert (build_system("Caretta caretta", "full", 0.18).split("Task:")[0]
+            == sys_lp.split("Task:")[0])
+    msgs_lp = build_messages(X, ex, 215, "full", True, scoring="logprob")
+    demos = [m["content"] for m in msgs_lp if m["role"] == "assistant"]
+    assert demos and all(d in ("HIGH", "LOW") for d in demos), demos
+    assert msgs_lp[-1]["role"] == "user"
+    # user turns carry the same evidence in both modes
+    assert ([m["content"] for m in msgs_lp if m["role"] == "user"]
+            == [m["content"] for m in msgs if m["role"] == "user"])
     print("tabllm_pipeline self-test OK "
-          "(serialize, system, exemplars, leakage, subsample, messages)")
+          "(serialize, system, exemplars, leakage, subsample, messages, logprob)")
 
 
 def main(argv=None):
@@ -617,6 +680,20 @@ def main(argv=None):
                     help="circuit-breaker: abort a batched run after this many "
                          "failed requests (server likely down), leaving the cache "
                          "clean. 0 disables.")
+    ap.add_argument("--scoring", default="verbalized",
+                    choices=["verbalized", "logprob"],
+                    help="how the continuous score is read out. 'verbalized' "
+                         "(default, back-compatible): the model WRITES p_high — "
+                         "clusters on round numbers, ties ~26%% of pairs, caps "
+                         "AUC near 0.68. 'logprob': P(high)/(P(high)+P(low)) "
+                         "from the answer-token distribution — this is what the "
+                         "TabLLM paper specifies, is continuous, and removes the "
+                         "tie ceiling. Needs an OpenAI-compatible --base-url "
+                         "(Anthropic does not expose logprobs).")
+    ap.add_argument("--top-logprobs", type=int, default=20,
+                    help="how many candidate tokens to request per position when "
+                         "--scoring logprob (needs to be wide enough that both "
+                         "verbalizers appear)")
     ap.add_argument("--probe", action="store_true",
                     help="load cells and report prevalence/land/counts, then stop "
                          "(no API calls, free)")
@@ -650,14 +727,22 @@ def main(argv=None):
         ex_row = cells["X"][int(np.argmax(cells["y_cls"]))]
         print("--- sample serialization (full) ---")
         print(serialize_row(ex_row, "full", cells["land_present"]))
-        print("--- system prompt (full, prior-free) ---")
-        print(build_system(args.species, "full", cells["prevalence"]))
+        print(f"--- system prompt (full, prior-free, scoring={args.scoring}) ---")
+        print(build_system(args.species, "full", cells["prevalence"],
+                           scoring=args.scoring))
         return 0
     if args.smoke:
+        # Concurrent fan-out on an OpenAI/vLLM backend (its continuous batching
+        # turns concurrent requests into GPU batches — sequential calls leave a
+        # per-second-billed GPU idle between round-trips). Sequential on the
+        # Anthropic path, where use_batch means the ~1h Batch API instead.
         run_curve(cells, model=args.model, shots=[0, 8], variants=("full",),
-                  schemes=("random",), n_test=50, n_vote=1, use_batch=False,
+                  schemes=("random",), n_test=50, n_vote=1,
+                  use_batch=bool(args.base_url),
                   base_url=args.base_url, api_key=args.api_key,
-                  max_retries=args.max_retries, error_abort=args.error_abort)
+                  max_retries=args.max_retries, error_abort=args.error_abort,
+                  max_tokens=args.max_tokens, scoring=args.scoring,
+                  top_logprobs=args.top_logprobs)
     else:
         kw = {}
         if args.shots:
@@ -671,7 +756,8 @@ def main(argv=None):
         run_curve(cells, model=args.model, n_test=args.n_test, n_vote=args.n_vote,
                   base_url=args.base_url, api_key=args.api_key,
                   max_retries=args.max_retries, error_abort=args.error_abort,
-                  max_tokens=args.max_tokens, **kw)
+                  max_tokens=args.max_tokens, scoring=args.scoring,
+                  top_logprobs=args.top_logprobs, **kw)
     return 0
 
 

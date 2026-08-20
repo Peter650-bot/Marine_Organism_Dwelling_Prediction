@@ -1,0 +1,31 @@
+{
+  "species": "Caretta caretta",
+  "model": "TabICL",
+  "n_cells": 13683,
+  "prevalence": 0.4347730760798071,
+  "n_test": 300,
+  "n_estimators": 2,
+  "device": "auto",
+  "seed_variant": "full",
+  "points": [
+    {
+      "scheme": "random",
+      "mode": "full",
+      "k": null,
+      "auc_tabicl": 0.9991733333333332,
+      "n_folds": 5,
+      "context_rows": 10946,
+      "auc_rf_full": 0.985751111111111
+    },
+    {
+      "scheme": "spatial",
+      "mode": "full",
+      "k": null,
+      "auc_tabicl": 0.9207555555555554,
+      "n_folds": 5,
+      "context_rows": 10946,
+      "auc_rf_full": 0.8834399999999999
+    }
+  ],
+  "notes": []
+}

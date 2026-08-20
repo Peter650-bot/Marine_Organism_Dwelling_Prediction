@@ -1,0 +1,360 @@
+{
+  "scheme": "spatial",
+  "n_folds_requested": 5,
+  "models": [
+    "TabICLv2",
+    "RF-full"
+  ],
+  "reading_notes": "Test subsamples are class-balanced, so the trivial all-HIGH baseline is F1 ~ 0.667 (not 0). With 5 spatial blocks a t-CI has 4 df -- indicative only, and it can extend past a bounded metric's maximum.",
+  "species": [
+    {
+      "species": "Caretta caretta",
+      "source": "figures/Caretta_caretta/tabicl_f1_spatial.json",
+      "architecture": "unrecorded",
+      "checkpoint": null,
+      "scheme": "spatial",
+      "n_folds": 5,
+      "n_cells": null,
+      "prevalence": null,
+      "n_blocks": null,
+      "n_context_per_fold": 10945,
+      "n_test_per_fold": 300,
+      "threshold": 0.5,
+      "n_estimators": 2,
+      "reproduction_check": {
+        "auc_tabicl_max_abs_diff": 0.0,
+        "auc_rf_full_max_abs_diff": 0.0
+      },
+      "folds": [
+        {
+          "fold": 0,
+          "auc_tabicl": 0.9755111111111111,
+          "auc_rf_full": 0.9738222222222221,
+          "f1_tabicl": 0.8333333333333334,
+          "f1_rf_full": 0.9568106312292359
+        },
+        {
+          "fold": 1,
+          "auc_tabicl": 0.9475555555555556,
+          "auc_rf_full": 0.9323111111111111,
+          "f1_tabicl": 0.8940397350993378,
+          "f1_rf_full": 0.8579710144927536
+        },
+        {
+          "fold": 2,
+          "auc_tabicl": 0.9692444444444445,
+          "auc_rf_full": 0.9710666666666666,
+          "f1_tabicl": 0.8872727272727273,
+          "f1_rf_full": 0.8593155893536122
+        },
+        {
+          "fold": 3,
+          "auc_tabicl": 0.9444444444444444,
+          "auc_rf_full": 0.9286222222222222,
+          "f1_tabicl": 0.8015267175572519,
+          "f1_rf_full": 0.8729641693811075
+        },
+        {
+          "fold": 4,
+          "auc_tabicl": 0.7670222222222222,
+          "auc_rf_full": 0.6113777777777778,
+          "f1_tabicl": 0.6771653543307087,
+          "f1_rf_full": 0.5292307692307693
+        }
+      ],
+      "metrics": {
+        "auc": {
+          "tabicl": {
+            "mean": 0.9207555555555554,
+            "sd": 0.0869808663506585,
+            "worst_fold": 0.7670222222222222,
+            "best_fold": 0.9755111111111111,
+            "range": 0.20848888888888895
+          },
+          "rf_full": {
+            "mean": 0.8834399999999999,
+            "sd": 0.15353749564162245,
+            "worst_fold": 0.6113777777777778,
+            "best_fold": 0.9738222222222221,
+            "range": 0.36244444444444435
+          },
+          "delta": {
+            "mean": 0.03731555555555557,
+            "half": 0.08271721090804444,
+            "lo": -0.04540165535248888,
+            "hi": 0.1200327664636,
+            "p": 0.2786135054808939,
+            "wins": 4,
+            "n": 5,
+            "significant": false
+          }
+        },
+        "f1": {
+          "tabicl": {
+            "mean": 0.8186675735186718,
+            "sd": 0.08791956743539725,
+            "worst_fold": 0.6771653543307087,
+            "best_fold": 0.8940397350993378,
+            "range": 0.21687438076862908
+          },
+          "rf_full": {
+            "mean": 0.8152584347374956,
+            "sd": 0.1650334806333556,
+            "worst_fold": 0.5292307692307693,
+            "best_fold": 0.9568106312292359,
+            "range": 0.42757986199846665
+          },
+          "delta": {
+            "mean": 0.003409138781176102,
+            "half": 0.13060959237144218,
+            "lo": -0.12720045359026608,
+            "hi": 0.13401873115261828,
+            "p": 0.9457068331969866,
+            "wins": 3,
+            "n": 5,
+            "significant": false
+          }
+        }
+      }
+    },
+    {
+      "species": "Cetorhinus maximus",
+      "source": "figures/Cetorhinus_maximus/tabicl_f1_spatial.json",
+      "architecture": "v2",
+      "checkpoint": {
+        "checkpoint_version_requested": "tabicl-classifier-v2-20260212.ckpt",
+        "model_path_loaded": "models/tabicl-classifier-v2-20260212.ckpt",
+        "architecture": "v2",
+        "config": {
+          "embed_dim": 128,
+          "icl_num_blocks": 12,
+          "max_classes": 10,
+          "col_target_aware": true,
+          "col_ssmax": "qassmax-mlp-elementwise",
+          "icl_ssmax": "qassmax-mlp-elementwise"
+        }
+      },
+      "scheme": "spatial",
+      "n_folds": 5,
+      "n_cells": 36902,
+      "prevalence": 0.26312936968186007,
+      "n_blocks": 88,
+      "n_context_per_fold": 29531,
+      "n_test_per_fold": 300,
+      "threshold": 0.5,
+      "n_estimators": 2,
+      "reproduction_check": {},
+      "folds": [
+        {
+          "fold": 0,
+          "auc_tabicl": 0.9688888888888889,
+          "auc_rf_full": 0.9167555555555555,
+          "f1_tabicl": 0.9174917491749175,
+          "f1_rf_full": 0.8655737704918033
+        },
+        {
+          "fold": 1,
+          "auc_tabicl": 0.9936888888888888,
+          "auc_rf_full": 0.9447111111111112,
+          "f1_tabicl": 0.952054794520548,
+          "f1_rf_full": 0.8729641693811075
+        },
+        {
+          "fold": 2,
+          "auc_tabicl": 0.9390222222222222,
+          "auc_rf_full": 0.8715555555555556,
+          "f1_tabicl": 0.7058823529411765,
+          "f1_rf_full": 0.7632508833922261
+        },
+        {
+          "fold": 3,
+          "auc_tabicl": 0.9616888888888889,
+          "auc_rf_full": 0.8774222222222223,
+          "f1_tabicl": 0.8794326241134752,
+          "f1_rf_full": 0.7509293680297398
+        },
+        {
+          "fold": 4,
+          "auc_tabicl": 0.9292888888888889,
+          "auc_rf_full": 0.7570222222222223,
+          "f1_tabicl": 0.8424657534246576,
+          "f1_rf_full": 0.7048192771084337
+        }
+      ],
+      "metrics": {
+        "auc": {
+          "tabicl": {
+            "mean": 0.9585155555555556,
+            "sd": 0.02544124385498649,
+            "worst_fold": 0.9292888888888889,
+            "best_fold": 0.9936888888888888,
+            "range": 0.0643999999999999
+          },
+          "rf_full": {
+            "mean": 0.8734933333333335,
+            "sd": 0.07163850678455677,
+            "worst_fold": 0.7570222222222223,
+            "best_fold": 0.9447111111111112,
+            "range": 0.1876888888888889
+          },
+          "delta": {
+            "mean": 0.08502222222222218,
+            "half": 0.06301136651625726,
+            "lo": 0.02201085570596492,
+            "hi": 0.14803358873847944,
+            "p": 0.020011230969952054,
+            "wins": 5,
+            "n": 5,
+            "significant": true
+          }
+        },
+        "f1": {
+          "tabicl": {
+            "mean": 0.859465454834955,
+            "sd": 0.09515156796211136,
+            "worst_fold": 0.7058823529411765,
+            "best_fold": 0.952054794520548,
+            "range": 0.24617244157937146
+          },
+          "rf_full": {
+            "mean": 0.7915074936806621,
+            "sd": 0.07429816716386799,
+            "worst_fold": 0.7048192771084337,
+            "best_fold": 0.8729641693811075,
+            "range": 0.16814489227267382
+          },
+          "delta": {
+            "mean": 0.06795796115429287,
+            "half": 0.0973938172945188,
+            "lo": -0.02943585614022594,
+            "hi": 0.16535177844881166,
+            "p": 0.12476311583097532,
+            "wins": 4,
+            "n": 5,
+            "significant": false
+          }
+        }
+      }
+    },
+    {
+      "species": "Balaenoptera musculus",
+      "source": "figures/Balaenoptera_musculus/tabicl_f1_spatial.json",
+      "architecture": "v2",
+      "checkpoint": {
+        "checkpoint_version_requested": "tabicl-classifier-v2-20260212.ckpt",
+        "model_path_loaded": "models/tabicl-classifier-v2-20260212.ckpt",
+        "architecture": "v2",
+        "config": {
+          "embed_dim": 128,
+          "icl_num_blocks": 12,
+          "max_classes": 10,
+          "col_target_aware": true,
+          "col_ssmax": "qassmax-mlp-elementwise",
+          "icl_ssmax": "qassmax-mlp-elementwise"
+        }
+      },
+      "scheme": "spatial",
+      "n_folds": 5,
+      "n_cells": 67200,
+      "prevalence": 0.0843452380952381,
+      "n_blocks": 132,
+      "n_context_per_fold": 53760,
+      "n_test_per_fold": 300,
+      "threshold": 0.5,
+      "n_estimators": 2,
+      "reproduction_check": {},
+      "folds": [
+        {
+          "fold": 0,
+          "auc_tabicl": 0.9952444444444444,
+          "auc_rf_full": 0.9817333333333332,
+          "f1_tabicl": 0.7951807228915663,
+          "f1_rf_full": 0.6301369863013698
+        },
+        {
+          "fold": 1,
+          "auc_tabicl": 0.9829777777777778,
+          "auc_rf_full": 0.9313777777777777,
+          "f1_tabicl": 0.9154929577464789,
+          "f1_rf_full": 0.8642857142857143
+        },
+        {
+          "fold": 2,
+          "auc_tabicl": 0.9930666666666667,
+          "auc_rf_full": 0.9511555555555555,
+          "f1_tabicl": 0.8945454545454545,
+          "f1_rf_full": 0.7954545454545454
+        },
+        {
+          "fold": 3,
+          "auc_tabicl": 0.9865333333333333,
+          "auc_rf_full": 0.9509777777777777,
+          "f1_tabicl": 0.9310344827586207,
+          "f1_rf_full": 0.8695652173913043
+        },
+        {
+          "fold": 4,
+          "auc_tabicl": 0.9993777777777777,
+          "auc_rf_full": 0.9868444444444444,
+          "f1_tabicl": 0.9547038327526133,
+          "f1_rf_full": 0.9419354838709677
+        }
+      ],
+      "metrics": {
+        "auc": {
+          "tabicl": {
+            "mean": 0.9914400000000001,
+            "sd": 0.006629719842133953,
+            "worst_fold": 0.9829777777777778,
+            "best_fold": 0.9993777777777777,
+            "range": 0.01639999999999986
+          },
+          "rf_full": {
+            "mean": 0.9604177777777778,
+            "sd": 0.023296703523497223,
+            "worst_fold": 0.9313777777777777,
+            "best_fold": 0.9868444444444444,
+            "range": 0.055466666666666664
+          },
+          "delta": {
+            "mean": 0.03102222222222224,
+            "half": 0.021604971188491452,
+            "lo": 0.009417251033730787,
+            "hi": 0.05262719341071369,
+            "p": 0.01631037631672141,
+            "wins": 5,
+            "n": 5,
+            "significant": true
+          }
+        },
+        "f1": {
+          "tabicl": {
+            "mean": 0.8981914901389467,
+            "sd": 0.06163635201266757,
+            "worst_fold": 0.7951807228915663,
+            "best_fold": 0.9547038327526133,
+            "range": 0.159523109861047
+          },
+          "rf_full": {
+            "mean": 0.8202755894607803,
+            "sd": 0.11825423993826283,
+            "worst_fold": 0.6301369863013698,
+            "best_fold": 0.9419354838709677,
+            "range": 0.3117984975695979
+          },
+          "delta": {
+            "mean": 0.07791590067816641,
+            "half": 0.07151081472375789,
+            "lo": 0.006405085954408515,
+            "hi": 0.14942671540192431,
+            "p": 0.03896652529043953,
+            "wins": 5,
+            "n": 5,
+            "significant": true
+          }
+        }
+      }
+    }
+  ],
+  "not_run": []
+}

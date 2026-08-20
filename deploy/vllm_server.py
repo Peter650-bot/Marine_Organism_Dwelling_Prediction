@@ -65,7 +65,11 @@ app = modal.App("vllm-tabllm")
 @app.function(
     image=vllm_image,
     gpu=GPU,
-    scaledown_window=15 * MINUTES,   # keep warm 15 min after the last request
+    # 5 min: long enough to bridge the gap between back-to-back pipeline arms
+    # (a scaledown mid-run would force another expensive cold start), short
+    # enough that forgetting to `modal app stop` costs minutes, not a quarter
+    # hour, of 4-GPU idle time.
+    scaledown_window=5 * MINUTES,
     timeout=60 * MINUTES,
     volumes={
         "/root/.cache/huggingface": hf_cache_vol,
@@ -73,7 +77,10 @@ app = modal.App("vllm-tabllm")
     },
 )
 @modal.concurrent(max_inputs=64)     # let vLLM batch many in-flight requests
-@modal.web_server(port=VLLM_PORT, startup_timeout=15 * MINUTES)
+# 30 min, not 15: a cold 72B boot on 4 GPUs exceeded 15 min and Modal killed and
+# respawned the container repeatedly, stacking two live 4-GPU containers while
+# never serving. Better to wait once than to pay for a restart loop.
+@modal.web_server(port=VLLM_PORT, startup_timeout=30 * MINUTES)
 def serve():
     import subprocess
 
@@ -81,6 +88,19 @@ def serve():
         f"vllm serve {MODEL} --served-model-name {MODEL} "
         f"--quantization awq --tensor-parallel-size {TENSOR_PARALLEL} "
         f"--max-model-len {MAX_MODEL_LEN} "
+        # TabLLM logprob scoring reads the answer-token distribution and asks
+        # for top_logprobs=20; vLLM's default --max-logprobs is exactly 20, so
+        # give it headroom rather than sitting on the boundary.
+        f"--max-logprobs 25 "
+        # CUDA-graph capture is what hung startup on 2026-07-29: on 4x PCIe-only
+        # A10Gs vLLM disables BOTH fast collectives ("Custom allreduce is
+        # disabled ... more than two PCIe-only GPUs" and "SymmMemCommunicator:
+        # Device capability 8.6 not supported"), so capture falls back to NCCL
+        # over PCIe and never finished inside startup_timeout — three containers
+        # died in a restart loop having served zero tokens. Eager mode skips
+        # capture entirely; it costs ~10-20% throughput, which is irrelevant for
+        # a few thousand short classification calls.
+        f"--enforce-eager "
         f"--gpu-memory-utilization 0.92 --port {VLLM_PORT}"
     )
     # Popen (not run): return immediately so Modal can proxy the port while

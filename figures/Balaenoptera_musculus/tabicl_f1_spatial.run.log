@@ -1,0 +1,23 @@
+[67s] n_cells=67200 prevalence=0.0843 n_blocks=132
+WARNING: no full-mode 'spatial' point in figures/Balaenoptera_musculus/tabicl_results.json; the reproduction check will be skipped.
+[74s] weights: v2 <- models/tabicl-classifier-v2-20260212.ckpt
+[2538s] fold 0: AUC tabicl=0.9952 rf=0.9817 | F1 tabicl=0.7952 rf=0.6301
+[4573s] fold 1: AUC tabicl=0.9830 rf=0.9314 | F1 tabicl=0.9155 rf=0.8643
+[10234s] fold 2: AUC tabicl=0.9931 rf=0.9512 | F1 tabicl=0.8945 rf=0.7955
+[12946s] fold 3: AUC tabicl=0.9865 rf=0.9510 | F1 tabicl=0.9310 rf=0.8696
+[15674s] fold 4: AUC tabicl=0.9994 rf=0.9868 | F1 tabicl=0.9547 rf=0.9419
+[saved] figures/Balaenoptera_musculus/tabicl_f1_spatial.json
+
+tabicl   F1 per fold: 0.7952  0.9155  0.8945  0.9310  0.9547
+         mean=0.8982  SD=0.0616  SEM=0.0276  95% CI [0.8217, 0.9747]  (±0.0765)
+         precision=0.9837  recall=0.8320  pred-pos-rate=0.4233
+
+rf_full  F1 per fold: 0.6301  0.8643  0.7955  0.8696  0.9419
+         mean=0.8203  SD=0.1183  SEM=0.0529  95% CI [0.6734, 0.9671]  (±0.1468)
+         precision=0.9274  recall=0.7613  pred-pos-rate=0.4147
+
+paired delta (TabICL - RF-full): +0.1650  +0.0512  +0.0991  +0.0615  +0.0128
+  mean=+0.0779  95% CI [+0.0064, +0.1494]  t p=0.0390  wilcoxon p=0.0625  wins 5/5
+  CI EXCLUDES zero
+
+[saved] figures/Balaenoptera_musculus/tabicl_f1_spatial_summary.json  (15675s total)

@@ -11,6 +11,9 @@ scipy
 scikit-learn
 pillow
 
+# ---- tabular foundation model (TabICLv2) ----
+tabicl
+
 # ---- optional (scripts degrade gracefully and print an install hint if missing) ----
 # libpysal        # Moran's I spatial autocorrelation
 # esda            # Moran's I spatial autocorrelation
@@ -19,3 +22,5 @@ pillow
 # anthropic       # paid TabLLM backend (pay-as-you-go Anthropic API)
 # openai          # free TabLLM backend (self-hosted vLLM OpenAI-compatible server)
 # copernicusmarine# download the DUACS L4 geostrophic velocity cubes (see README)
+# tabicl[finetune] # fine-tuning extra (pulls transformers); GPU strongly recommended
+# modal           # run the GPU fine-tuning study (deploy/tabicl_finetune_modal.py)

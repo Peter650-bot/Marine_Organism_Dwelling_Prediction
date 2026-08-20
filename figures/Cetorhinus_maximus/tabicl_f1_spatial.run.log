@@ -1,0 +1,27 @@
+/mnt/c/Users/Personal/OneDrive/Masters/Applied ML/Final_project/retention_core.py:194: RuntimeWarning: Mean of empty slice
+  u_mean = np.nanmean(u, axis=0)
+/mnt/c/Users/Personal/OneDrive/Masters/Applied ML/Final_project/retention_core.py:195: RuntimeWarning: Mean of empty slice
+  v_mean = np.nanmean(v, axis=0)
+[10s] n_cells=36902 prevalence=0.2631 n_blocks=88
+WARNING: no full-mode 'spatial' point in figures/Cetorhinus_maximus/tabicl_results.json; the reproduction check will be skipped.
+[14s] weights: v2 <- models/tabicl-classifier-v2-20260212.ckpt
+[725s] fold 0: AUC tabicl=0.9689 rf=0.9168 | F1 tabicl=0.9175 rf=0.8656
+[1414s] fold 1: AUC tabicl=0.9937 rf=0.9447 | F1 tabicl=0.9521 rf=0.8730
+[2124s] fold 2: AUC tabicl=0.9390 rf=0.8716 | F1 tabicl=0.7059 rf=0.7633
+[2860s] fold 3: AUC tabicl=0.9617 rf=0.8774 | F1 tabicl=0.8794 rf=0.7509
+[3598s] fold 4: AUC tabicl=0.9293 rf=0.7570 | F1 tabicl=0.8425 rf=0.7048
+[saved] figures/Cetorhinus_maximus/tabicl_f1_spatial.json
+
+tabicl   F1 per fold: 0.9175  0.9521  0.7059  0.8794  0.8425
+         mean=0.8595  SD=0.0952  SEM=0.0426  95% CI [0.7413, 0.9776]  (±0.1181)
+         precision=0.9295  recall=0.8120  pred-pos-rate=0.4380
+
+rf_full  F1 per fold: 0.8656  0.8730  0.7633  0.7509  0.7048
+         mean=0.7915  SD=0.0743  SEM=0.0332  95% CI [0.6993, 0.8838]  (±0.0923)
+         precision=0.8017  recall=0.7893  pred-pos-rate=0.4973
+
+paired delta (TabICL - RF-full): +0.0519  +0.0791  -0.0574  +0.1285  +0.1376
+  mean=+0.0680  95% CI [-0.0294, +0.1654]  t p=0.1248  wilcoxon p=0.1875  wins 4/5
+  CI INCLUDES zero
+
+[saved] figures/Cetorhinus_maximus/tabicl_f1_spatial_summary.json  (3598s total)

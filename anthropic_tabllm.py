@@ -48,9 +48,67 @@ OUT_SCHEMA = {
         "p_high": {"type": "number"},
     },
 }
-_SCHEMA_HASH = hashlib.sha256(
-    json.dumps(OUT_SCHEMA, sort_keys=True).encode()
-).hexdigest()[:16]
+# Bulk-pass schema: `reasoning` REMOVED. Leaving it in is not free — under guided
+# decoding the model opens with it, burns max_tokens, and truncates into invalid
+# JSON that _parse used to score as a confident p_high=0.0. Measured on the 72B
+# cache: 5,418 / 39,277 responses (13.8%) were truncated this way, 81.9% of them
+# starting with a `reasoning` field. See _effective_schema.
+BULK_SCHEMA = {
+    "type": "object",
+    "additionalProperties": False,
+    "required": ["label", "p_high"],
+    "properties": {
+        "label": {"type": "string", "enum": ["high", "low"]},
+        "p_high": {"type": "number"},
+    },
+}
+
+
+def _hash_schema(schema):
+    return hashlib.sha256(
+        json.dumps(schema, sort_keys=True).encode()
+    ).hexdigest()[:16]
+
+
+_SCHEMA_HASH = _hash_schema(OUT_SCHEMA)
+
+# ---- scoring modes ---------------------------------------------------------
+# "verbalized": the model WRITES a p_high number (the original implementation).
+#   LLMs emit round numbers, so scores cluster on a handful of values: measured
+#   on the 72B cache, 66 distinct scores over 39k calls with 64% of the mass in
+#   the top 5. That ties ~26% of positive/negative pairs and caps ROC-AUC at
+#   ~0.68 no matter how good the model is.
+# "logprob": score = P("high") / (P("high") + P("low")) read from the token
+#   log-probabilities of the answer position. This is what TabLLM (Hegselmann
+#   et al., arXiv 2210.10723) actually specifies — the LM's likelihood over the
+#   label verbalizers — and it is continuous, so the tie ceiling disappears.
+#   REQUIRES an OpenAI-compatible backend: the Anthropic Messages API does not
+#   expose logprobs.
+SCORING_VERBALIZED = "verbalized"
+SCORING_LOGPROB = "logprob"
+SCORINGS = (SCORING_VERBALIZED, SCORING_LOGPROB)
+
+# Verbalizer words whose token probabilities carry the label decision.
+_VERBALIZERS = {"high": 1, "low": 0}
+
+
+def _norm_token(tok):
+    """Normalize a raw token for verbalizer matching: strip whitespace, quotes
+    and JSON punctuation, lowercase. ' High' / '"high' / 'HIGH' -> 'high'."""
+    return str(tok).strip().strip('"\'{}[]:,').lower()
+
+
+def _match_verbalizer(tok):
+    """Return 'high'/'low' if `tok` is a non-empty prefix of either verbalizer,
+    else None. Prefix matching absorbs tokenizer splits ('hi'+'gh') and the
+    leading-space variants (' high'). 'h*' and 'l*' cannot collide."""
+    t = _norm_token(tok)
+    if not t:
+        return None
+    for word in _VERBALIZERS:
+        if word.startswith(t):
+            return word
+    return None
 
 
 def _clamp01(x):
@@ -66,6 +124,65 @@ def _clamp01(x):
 def _label_to_p(label):
     """Fallback score when p_high is missing/garbage: map the label to {0,1}."""
     return 1.0 if str(label).strip().lower() == "high" else 0.0
+
+
+def _p_from_logprobs(content_positions, max_scan=8):
+    """TabLLM-style score from token log-probabilities.
+
+    `content_positions` is the OpenAI `logprobs.content` list; each entry has a
+    chosen `token` and a `top_logprobs` list of {token, logprob}. We scan forward
+    to the first position whose candidate set mentions a verbalizer — this skips
+    leading whitespace/newline tokens and any pre-answer punctuation — then
+    return P(high) / (P(high) + P(low)) over that position's distribution.
+
+    Returns (p_high, label, n_scanned) or (None, None, n_scanned) if no
+    verbalizer appears (caller treats that as a failure and does NOT cache it).
+    """
+    import math
+    for pos, entry in enumerate(content_positions[:max_scan]):
+        top = entry.get("top_logprobs") or []
+        mass = {"high": 0.0, "low": 0.0}
+        seen = False
+        for cand in top:
+            word = _match_verbalizer(cand.get("token"))
+            if word is None:
+                continue
+            lp = cand.get("logprob")
+            if lp is None:
+                continue
+            mass[word] += math.exp(float(lp))
+            seen = True
+        if not seen:
+            continue
+        total = mass["high"] + mass["low"]
+        if total <= 0.0:
+            continue
+        p = mass["high"] / total
+        return p, ("high" if p >= 0.5 else "low"), pos
+    return None, None, min(len(content_positions), max_scan)
+
+
+def _logprobs_to_dicts(resp):
+    """Normalize an OpenAI SDK logprobs payload (objects OR dicts) into the
+    plain [{token, top_logprobs:[{token, logprob}]}] shape _p_from_logprobs
+    expects, so the parser is testable without the SDK."""
+    def _g(o, k):
+        return getattr(o, k, None) if not isinstance(o, dict) else o.get(k)
+    try:
+        choice = resp.choices[0] if not isinstance(resp, dict) else resp["choices"][0]
+    except (AttributeError, IndexError, KeyError, TypeError):
+        return []
+    lp = _g(choice, "logprobs")
+    content = _g(lp, "content") if lp is not None else None
+    out = []
+    for entry in content or []:
+        tops = _g(entry, "top_logprobs") or []
+        out.append({
+            "token": _g(entry, "token"),
+            "top_logprobs": [{"token": _g(c, "token"), "logprob": _g(c, "logprob")}
+                             for c in tops],
+        })
+    return out
 
 
 class TabLLMClient:
@@ -93,7 +210,8 @@ class TabLLMClient:
     def __init__(self, model=HAIKU, cache_path="figures/tabllm_cache.sqlite",
                  n_vote=1, temperature=0.0, max_tokens=128, keep_reasoning=False,
                  max_retries=4, base_url=None, api_key=None, error_abort=25,
-                 request_timeout=120):
+                 request_timeout=120, scoring=SCORING_VERBALIZED,
+                 top_logprobs=20):
         self.model = model
         self.cache_path = cache_path
         self.n_vote = max(1, int(n_vote))
@@ -101,6 +219,10 @@ class TabLLMClient:
         self.max_tokens = int(max_tokens)
         self.keep_reasoning = bool(keep_reasoning)
         self.max_retries = int(max_retries)
+        if scoring not in SCORINGS:
+            raise ValueError(f"scoring must be one of {SCORINGS}, got {scoring!r}")
+        self.scoring = scoring
+        self.top_logprobs = int(top_logprobs)
         # Per-request timeout (s). The OpenAI SDK defaults to 600s, so a socket
         # left half-open by a server scaledown/cold-start wedges a worker thread
         # for ten minutes before it retries. A tight timeout makes such requests
@@ -119,10 +241,22 @@ class TabLLMClient:
         self.base_url = base_url or os.environ.get("VLLM_BASE_URL")
         self.api_key = api_key or os.environ.get("VLLM_API_KEY", "EMPTY")
         self.is_openai = bool(self.base_url)
+        if self.scoring == SCORING_LOGPROB and not self.is_openai:
+            raise ValueError(
+                "scoring='logprob' needs an OpenAI-compatible backend "
+                "(--base-url / $VLLM_BASE_URL): the Anthropic Messages API does "
+                "not return token logprobs. Use scoring='verbalized' for Claude.")
         self._client = None  # lazy
         self._db = None       # lazy
         self.calls_made = 0   # live API calls this process (cache misses)
         self.cache_hits = 0
+        self.parse_failures = 0  # responses that yielded no usable score
+
+    # ----- schema ---------------------------------------------------------
+    def _effective_schema(self):
+        """The schema actually sent. `reasoning` is dropped unless explicitly
+        requested — see BULK_SCHEMA for why leaving it in corrupts the run."""
+        return OUT_SCHEMA if self.keep_reasoning else BULK_SCHEMA
 
     # ----- lazy resources -------------------------------------------------
     def _client_obj(self):
@@ -163,7 +297,14 @@ class TabLLMClient:
                 "max_tokens": self.max_tokens,
                 "keep_reasoning": self.keep_reasoning,
                 "vote_idx": vote_idx,
-                "schema": _SCHEMA_HASH,
+                # Hash the schema ACTUALLY sent, not the module-level one, so
+                # dropping `reasoning` cleanly invalidates the old (truncated)
+                # cache entries instead of silently re-serving them.
+                "schema": _hash_schema(self._effective_schema()),
+                # Old verbalized entries keep their keys (absent == verbalized).
+                **({} if self.scoring == SCORING_VERBALIZED
+                   else {"scoring": self.scoring,
+                         "top_logprobs": self.top_logprobs}),
             },
             sort_keys=True,
             ensure_ascii=False,
@@ -191,7 +332,8 @@ class TabLLMClient:
             max_tokens=self.max_tokens,
             system=system,
             messages=messages,
-            output_config={"format": {"type": "json_schema", "schema": OUT_SCHEMA}},
+            output_config={"format": {"type": "json_schema",
+                                      "schema": self._effective_schema()}},
         )
         if self.model in _ACCEPTS_TEMPERATURE:
             kw["temperature"] = temperature
@@ -199,20 +341,33 @@ class TabLLMClient:
 
     def _create_kwargs_openai(self, system, messages, temperature):
         """OpenAI/vLLM chat-completions request. The system prompt is prepended
-        as a message (no top-level `system` kwarg), and structured output uses
-        `response_format` json_schema (vLLM guided decoding). vLLM accepts
-        `temperature` for every model, so it is always sent."""
-        return dict(
+        as a message (no top-level `system` kwarg). vLLM accepts `temperature`
+        for every model, so it is always sent.
+
+        scoring='verbalized' -> structured output via `response_format`
+            json_schema (guided decoding), model writes {label, p_high}.
+        scoring='logprob'    -> NO json_schema. The prompt asks for the bare
+            verbalizer word, and we read the answer distribution from
+            `logprobs`. Guided decoding is deliberately off here: it would
+            renormalize the very distribution we are trying to measure.
+        """
+        kw = dict(
             model=self.model,
-            max_tokens=self.max_tokens,
             temperature=temperature,
             messages=[{"role": "system", "content": system}] + list(messages),
-            response_format={
-                "type": "json_schema",
-                "json_schema": {"name": "dwell", "schema": OUT_SCHEMA,
-                                "strict": True},
-            },
         )
+        if self.scoring == SCORING_LOGPROB:
+            kw["max_tokens"] = self.max_tokens
+            kw["logprobs"] = True
+            kw["top_logprobs"] = self.top_logprobs
+            return kw
+        kw["max_tokens"] = self.max_tokens
+        kw["response_format"] = {
+            "type": "json_schema",
+            "json_schema": {"name": "dwell", "schema": self._effective_schema(),
+                            "strict": True},
+        }
+        return kw
 
     # ----- backend-agnostic single inference -----------------------------
     def _infer_one(self, system, messages, temperature):
@@ -227,13 +382,32 @@ class TabLLMClient:
         return self._parse(resp)
 
     def _parse_openai(self, resp):
-        """Normalize an OpenAI/vLLM chat completion into the block shape `_parse`
-        expects (choices[0].message.content is a JSON string)."""
+        """Normalize an OpenAI/vLLM chat completion into {label, p_high, ok}."""
+        if self.scoring == SCORING_LOGPROB:
+            return self._parse_logprob(resp)
         try:
             text = resp.choices[0].message.content
         except (AttributeError, IndexError, TypeError):
             text = None
         return self._parse({"content": [{"type": "text", "text": text}]})
+
+    @staticmethod
+    def _parse_logprob(resp):
+        """TabLLM verbalizer scoring: p_high = P(high)/(P(high)+P(low)) at the
+        answer token position. `ok=False` when no verbalizer was found in the
+        top-k — the caller must NOT cache that, so a re-run retries it."""
+        positions = _logprobs_to_dicts(resp)
+        if not positions:
+            return {"label": "low", "p_high": 0.0, "ok": False,
+                    "raw": {"logprob_error": "no logprobs in response"}}
+        p, label, pos = _p_from_logprobs(positions)
+        if p is None:
+            head = "".join(str(e.get("token") or "") for e in positions[:8])
+            return {"label": "low", "p_high": 0.0, "ok": False,
+                    "raw": {"logprob_error": "no verbalizer in top-k",
+                            "head": head[:120]}}
+        return {"label": label, "p_high": float(p), "ok": True,
+                "raw": {"scoring": "logprob", "pos": pos}}
 
     @staticmethod
     def _parse(message_obj_or_dict):
@@ -252,16 +426,19 @@ class TabLLMClient:
                 text = getattr(block, "text", None) or block.get("text")
                 break
         if text is None:
-            return {"label": "low", "p_high": 0.0, "raw": None}
+            return {"label": "low", "p_high": 0.0, "ok": False, "raw": None}
         try:
             obj = json.loads(text)
         except (ValueError, TypeError):
-            return {"label": "low", "p_high": 0.0, "raw": text}
+            # Truncated / malformed JSON. This is NOT a low-dwelling prediction —
+            # it is a missing answer, and caching it as p_high=0.0 fabricates a
+            # confident negative. ok=False keeps it out of the cache.
+            return {"label": "low", "p_high": 0.0, "ok": False, "raw": text}
         label = str(obj.get("label", "low")).strip().lower()
         p = _clamp01(obj.get("p_high"))
         if p is None:
             p = _label_to_p(label)
-        return {"label": label, "p_high": p, "raw": obj}
+        return {"label": label, "p_high": p, "ok": True, "raw": obj}
 
     # ----- single-cell classification (synchronous) ----------------------
     def classify_one(self, system, messages):
@@ -278,27 +455,48 @@ class TabLLMClient:
             cached = self._cache_get(key)
             if cached is None:
                 parsed = self._infer_one(system, messages, t)
-                self._cache_put(key, parsed)
+                if parsed.get("ok", True):
+                    self._cache_put(key, parsed)
+                else:
+                    self.parse_failures += 1
                 self.calls_made += 1
                 any_live = True
             else:
                 parsed = cached
                 self.cache_hits += 1
             votes.append(parsed)
-        labels_high = [1.0 if v["label"] == "high" else 0.0 for v in votes]
-        p_means = [v["p_high"] for v in votes]
-        vote_freq = sum(labels_high) / len(votes)
-        p_mean = sum(p_means) / len(votes)
-        # single deterministic call -> use p_high directly; ensemble -> blend
-        score = p_mean if self.n_vote == 1 else 0.5 * (p_mean + vote_freq)
-        majority = "high" if vote_freq >= 0.5 else "low"
+        agg = self._aggregate(votes)
+        agg["cached"] = not any_live
+        return agg
+
+    def _aggregate(self, votes):
+        """Combine N votes into one score. Only usable votes count — a failed
+        response is a MISSING answer, not a confident 'low'."""
+        good = [v for v in votes if v.get("ok", True)]
+        if not good:
+            return {"label": "low", "p_high": 0.0, "p_mean": 0.0,
+                    "vote_freq": 0.0, "n_used": 0, "ok": False}
+        labels_high = [1.0 if v["label"] == "high" else 0.0 for v in good]
+        p_means = [v["p_high"] for v in good]
+        vote_freq = sum(labels_high) / len(good)
+        p_mean = sum(p_means) / len(good)
+        # single deterministic call -> use p_high directly; ensemble -> blend.
+        # Under logprob scoring p_high is already continuous, so averaging the
+        # raw probabilities across votes is the whole benefit; folding in the
+        # coarse vote_freq would re-introduce ties.
+        if len(good) == 1:
+            score = p_mean
+        elif self.scoring == SCORING_LOGPROB:
+            score = p_mean
+        else:
+            score = 0.5 * (p_mean + vote_freq)
         return {
-            "label": majority,
+            "label": "high" if vote_freq >= 0.5 else "low",
             "p_high": score,
             "p_mean": p_mean,
             "vote_freq": vote_freq,
-            "n_used": len(votes),
-            "cached": not any_live,
+            "n_used": len(good),
+            "ok": True,
         }
 
     # ----- batch classification ------------------------------------------
@@ -365,31 +563,18 @@ class TabLLMClient:
                 if result.result.type == "succeeded":
                     parsed = self._parse(result.result.message)
                 else:
-                    # errored/expired/canceled -> neutral, flagged
-                    parsed = {"label": "low", "p_high": 0.0,
+                    # errored/expired/canceled -> missing answer, never cached
+                    parsed = {"label": "low", "p_high": 0.0, "ok": False,
                               "raw": {"batch_error": result.result.type}}
-                self._cache_put(key, parsed)
+                if parsed.get("ok", True):
+                    self._cache_put(key, parsed)
+                else:
+                    self.parse_failures += 1
                 self.calls_made += 1
                 votes[job_id][vi] = parsed
 
-        # aggregate per job (same logic as classify_one)
-        out = {}
-        for jid, vlist in votes.items():
-            vlist = [v for v in vlist if v is not None]
-            if not vlist:
-                out[jid] = {"label": "low", "p_high": 0.0, "n_used": 0}
-                continue
-            labels_high = [1.0 if v["label"] == "high" else 0.0 for v in vlist]
-            p_means = [v["p_high"] for v in vlist]
-            vote_freq = sum(labels_high) / len(vlist)
-            p_mean = sum(p_means) / len(vlist)
-            score = p_mean if self.n_vote == 1 else 0.5 * (p_mean + vote_freq)
-            out[jid] = {
-                "label": "high" if vote_freq >= 0.5 else "low",
-                "p_high": score, "p_mean": p_mean,
-                "vote_freq": vote_freq, "n_used": len(vlist),
-            }
-        return out
+        return {jid: self._aggregate([v for v in vlist if v is not None])
+                for jid, vlist in votes.items()}
 
     def _classify_batch_openai(self, jobs, max_workers=32):
         """vLLM/OpenAI batch: serve cache hits, then fan out the misses over a
@@ -436,7 +621,14 @@ class TabLLMClient:
                             votes[jid][vi] = {"label": "low", "p_high": 0.0,
                                               "raw": {"vllm_error": err}}
                             continue
-                        self._cache_put(key, parsed)  # main thread only
+                        if parsed.get("ok", True):
+                            self._cache_put(key, parsed)  # main thread only
+                        else:
+                            # unparseable/truncated -> a MISSING answer. Not
+                            # cached, so a re-run retries it, and it counts
+                            # toward the circuit-breaker like a transport error.
+                            self.parse_failures += 1
+                            errors += 1
                         self.calls_made += 1
                         votes[jid][vi] = parsed
                     if self.error_abort > 0 and errors >= self.error_abort:
@@ -450,23 +642,8 @@ class TabLLMClient:
                             f"(Raise --max-retries or --error-abort to be more "
                             f"tolerant of transient errors.)")
 
-        out = {}
-        for jid in jobmap:
-            vlist = [v for v in votes[jid] if v is not None]
-            if not vlist:
-                out[jid] = {"label": "low", "p_high": 0.0, "n_used": 0}
-                continue
-            labels_high = [1.0 if v["label"] == "high" else 0.0 for v in vlist]
-            p_means = [v["p_high"] for v in vlist]
-            vote_freq = sum(labels_high) / len(vlist)
-            p_mean = sum(p_means) / len(vlist)
-            score = p_mean if self.n_vote == 1 else 0.5 * (p_mean + vote_freq)
-            out[jid] = {
-                "label": "high" if vote_freq >= 0.5 else "low",
-                "p_high": score, "p_mean": p_mean,
-                "vote_freq": vote_freq, "n_used": len(vlist),
-            }
-        return out
+        return {jid: self._aggregate([v for v in votes[jid] if v is not None])
+                for jid in jobmap}
 
 
 if __name__ == "__main__":
@@ -481,4 +658,62 @@ if __name__ == "__main__":
         {"content": [{"type": "text", "text": '{"label":"high","p_high":1.4}'}]}
     )
     assert parsed["label"] == "high" and parsed["p_high"] == 1.0
-    print("anthropic_tabllm self-test OK (cache key, clamp, parse)")
+    assert parsed["ok"] is True
+
+    # --- fix 1: truncated JSON is a MISSING answer, never a confident low ----
+    truncated = TabLLMClient._parse(
+        {"content": [{"type": "text", "text": '{ "reasoning": "the retention sc'}]}
+    )
+    assert truncated["ok"] is False, "truncated JSON must be flagged unusable"
+
+    # `reasoning` is dropped from the bulk schema (this is what caused the
+    # truncation: the model opened with it and blew past max_tokens)
+    assert "reasoning" in OUT_SCHEMA["properties"]
+    assert "reasoning" not in BULK_SCHEMA["properties"]
+    assert "reasoning" not in c._effective_schema()["properties"]
+    assert "reasoning" in TabLLMClient(
+        cache_path="/tmp/_tabllm_selftest_cache.sqlite", keep_reasoning=True
+    )._effective_schema()["properties"]
+    # ...and that change must invalidate the old cache entries rather than
+    # silently re-serving the poisoned ones
+    assert _hash_schema(BULK_SCHEMA) != _hash_schema(OUT_SCHEMA)
+
+    # --- fix 2: logprob (TabLLM verbalizer) scoring --------------------------
+    assert _match_verbalizer(" High") == "high"
+    assert _match_verbalizer('"low') == "low"
+    assert _match_verbalizer("hi") == "high"      # tokenizer split
+    assert _match_verbalizer("\n") is None
+    assert _match_verbalizer("ocean") is None
+
+    import math
+    lg = lambda p: math.log(p)
+    resp = {"choices": [{"logprobs": {"content": [
+        {"token": "\n", "top_logprobs": [{"token": "\n", "logprob": lg(0.9)}]},
+        {"token": "HIGH", "top_logprobs": [{"token": "HIGH", "logprob": lg(0.6)},
+                                            {"token": "LOW", "logprob": lg(0.2)}]},
+    ]}}]}
+    out = TabLLMClient._parse_logprob(resp)
+    assert out["ok"] is True and out["label"] == "high"
+    assert abs(out["p_high"] - 0.75) < 1e-9, out   # 0.6 / (0.6 + 0.2)
+    assert out["raw"]["pos"] == 1, "must skip the leading newline token"
+    # no verbalizer anywhere -> unusable, so it is not cached as a 0.0
+    blind = TabLLMClient._parse_logprob({"choices": [{"logprobs": {"content": [
+        {"token": "Sure", "top_logprobs": [{"token": "Sure", "logprob": lg(1.0)}]}
+    ]}}]})
+    assert blind["ok"] is False
+
+    # logprob scoring is impossible on the Anthropic backend -> fail loudly
+    try:
+        TabLLMClient(cache_path="/tmp/_tabllm_selftest_cache.sqlite",
+                     scoring=SCORING_LOGPROB)
+        raise RuntimeError("should have rejected logprob scoring without base_url")
+    except ValueError:
+        pass
+
+    # aggregation ignores failed votes instead of averaging fabricated zeros
+    agg = c._aggregate([{"label": "high", "p_high": 0.8, "ok": True},
+                        {"label": "low", "p_high": 0.0, "ok": False}])
+    assert agg["n_used"] == 1 and abs(agg["p_high"] - 0.8) < 1e-9, agg
+    assert c._aggregate([{"label": "low", "p_high": 0.0, "ok": False}])["ok"] is False
+    print("anthropic_tabllm self-test OK "
+          "(cache key, clamp, parse, schema-strip, logprob scoring, aggregation)")

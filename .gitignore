@@ -4,8 +4,16 @@ Datasets/*.nc
 # ---- third-party copyrighted publication ----
 Modeled Particle Retention for Habitat Prediction publication.pdf
 
-# ---- in-progress paper draft (kept private) ----
+# ---- in-progress paper drafts (kept private) ----
 paper.tex
+paper_climate.md
+
+# ---- pretrained TabICL weights (110 MB, over GitHub's file limit) ----
+# Auto-downloaded from the HF Hub on first use, or pass --model-path.
+models/
+
+# ---- editor / office backup files ----
+*.bak
 
 # ---- derived retention caches (regenerated from the .nc cubes) ----
 figures/**/.retention*.npy
@@ -29,6 +37,9 @@ __pycache__/
 vllm.log
 tunnel.log
 cloudflared
+
+# NOTE: figures/**/cells_export.npz IS committed on purpose (< 1 MB each) —
+# it is the frozen CV split the Modal fine-tuning run scores against.
 
 # NOTE: figures/**/tabllm_cache.sqlite is intentionally committed
 # (it is the LLM-reproducibility anchor; LLM output is not byte-deterministic).

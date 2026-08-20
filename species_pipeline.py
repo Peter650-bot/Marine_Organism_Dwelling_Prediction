@@ -336,6 +336,15 @@ def main(argv=None):
     ap.add_argument("--tabllm-error-abort", type=int, default=25,
                     help="abort a batched TabLLM run after this many failed "
                          "requests, keeping the cache clean (0 disables)")
+    ap.add_argument("--tabllm-scoring", default="verbalized",
+                    choices=["verbalized", "logprob"],
+                    help="score read-out. 'logprob' (P(high)/(P(high)+P(low)) "
+                         "from the answer-token distribution) is the TabLLM "
+                         "paper's method and removes the tie ceiling that caps "
+                         "'verbalized' near 0.68 AUC; needs --tabllm-base-url")
+    ap.add_argument("--tabllm-max-tokens", type=int, default=128,
+                    help="output cap per TabLLM call (raise to 384 for a "
+                         "reasoning model under verbalized scoring)")
     args = ap.parse_args(argv)
 
     runs = [tuple(r.split(":", 2)) for r in args.run]
@@ -361,7 +370,9 @@ def main(argv=None):
                          n_test=args.tabllm_n_test, n_vote=args.tabllm_n_vote,
                          base_url=args.tabllm_base_url, api_key=args.tabllm_api_key,
                          max_retries=args.tabllm_max_retries,
-                         error_abort=args.tabllm_error_abort)
+                         error_abort=args.tabllm_error_abort,
+                         scoring=args.tabllm_scoring,
+                         max_tokens=args.tabllm_max_tokens)
 
     print(f"\n{'='*70}\nDONE — {len(runs)} species\n{'='*70}")
     return 0

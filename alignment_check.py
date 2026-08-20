@@ -36,8 +36,18 @@ import h5py
 # Start of the satellite-altimetry / DUACS record: no geostrophic velocity
 # product can ever cover occurrence records earlier than this.
 ALTIMETRY_START = pd.Timestamp("1993-01-01")
-# CMEMS global product recommended for the multi-region extension.
-GLOBAL_DATASET_ID = "cmems_obs-sl_glo_phy-ssh_my_allsat-l4-duacs-0.25deg_P1D"
+# CMEMS global product recommended for the multi-region extension: the
+# REPROCESSED (my) daily L4 product, SEALEVEL_GLO_PHY_L4_MY_008_047, covering
+# 1993-01-01 -> 2026-01-16 at 0.125 deg -- same resolution as the committed
+# Mediterranean and NE Atlantic cubes, so cell counts stay comparable.
+#
+# Verified against the live catalogue 2026-08-15. The previous value here
+# ("...duacs-0.25deg_P1D") is retired and now errors with "Dataset not found":
+# 0.25 deg daily exists only in the NEAR-REAL-TIME product, which starts in
+# 2022 and therefore cannot cover pre-2022 occurrences. Reprocessed is the one
+# to use for anything historical -- check the catalogue before trusting this
+# constant, since CMEMS renames datasets between versions.
+GLOBAL_DATASET_ID = "cmems_obs-sl_glo_phy-ssh_my_allsat-l4-duacs-0.125deg_P1D"
 
 
 def load_velocity_bounds(path):

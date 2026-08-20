@@ -1,0 +1,152 @@
+{
+  "species": "Caretta caretta",
+  "scheme": "spatial",
+  "model": "TabICLv2 fine-tuned",
+  "gpu": "A10G",
+  "epochs": 30,
+  "learning_rate": 1e-05,
+  "time_limit_s": 1500,
+  "threshold": 0.5,
+  "folds": [
+    {
+      "fold": 0,
+      "n_train": 8390,
+      "n_val": 2555,
+      "n_test": 300,
+      "n_pos_test": 150,
+      "checkpoint": {
+        "architecture": "v2",
+        "config": {
+          "embed_dim": 128,
+          "icl_num_blocks": 12,
+          "max_classes": 10,
+          "col_target_aware": true,
+          "col_ssmax": "qassmax-mlp-elementwise",
+          "icl_ssmax": "qassmax-mlp-elementwise"
+        }
+      },
+      "seconds_zeroshot": 4.5,
+      "seconds_finetune": 25.3,
+      "auc_finetuned": 0.9784222222222223,
+      "f1_finetuned": 0.8740740740740741,
+      "precision_finetuned": 0.9833333333333333,
+      "recall_finetuned": 0.7866666666666666,
+      "auc_zeroshot": 0.9752444444444446,
+      "f1_zeroshot": 0.8377358490566038,
+      "precision_zeroshot": 0.9652173913043478,
+      "recall_zeroshot": 0.74
+    },
+    {
+      "fold": 1,
+      "n_train": 9667,
+      "n_val": 1283,
+      "n_test": 300,
+      "n_pos_test": 150,
+      "checkpoint": {
+        "architecture": "v2",
+        "config": {
+          "embed_dim": 128,
+          "icl_num_blocks": 12,
+          "max_classes": 10,
+          "col_target_aware": true,
+          "col_ssmax": "qassmax-mlp-elementwise",
+          "icl_ssmax": "qassmax-mlp-elementwise"
+        }
+      },
+      "seconds_zeroshot": 6.8,
+      "seconds_finetune": 45.5,
+      "auc_finetuned": 0.9213111111111111,
+      "f1_finetuned": 0.7012987012987013,
+      "precision_finetuned": 1.0,
+      "recall_finetuned": 0.54,
+      "auc_zeroshot": 0.9473333333333334,
+      "f1_zeroshot": 0.8940397350993378,
+      "precision_zeroshot": 0.8881578947368421,
+      "recall_zeroshot": 0.9
+    },
+    {
+      "fold": 2,
+      "n_train": 8976,
+      "n_val": 1970,
+      "n_test": 300,
+      "n_pos_test": 150,
+      "checkpoint": {
+        "architecture": "v2",
+        "config": {
+          "embed_dim": 128,
+          "icl_num_blocks": 12,
+          "max_classes": 10,
+          "col_target_aware": true,
+          "col_ssmax": "qassmax-mlp-elementwise",
+          "icl_ssmax": "qassmax-mlp-elementwise"
+        }
+      },
+      "seconds_zeroshot": 5.5,
+      "seconds_finetune": 43.0,
+      "auc_finetuned": 0.9710000000000001,
+      "f1_finetuned": 0.862453531598513,
+      "precision_finetuned": 0.9747899159663865,
+      "recall_finetuned": 0.7733333333333333,
+      "auc_zeroshot": 0.9693777777777778,
+      "f1_zeroshot": 0.8872727272727273,
+      "precision_zeroshot": 0.976,
+      "recall_zeroshot": 0.8133333333333334
+    },
+    {
+      "fold": 3,
+      "n_train": 8241,
+      "n_val": 2704,
+      "n_test": 300,
+      "n_pos_test": 150,
+      "checkpoint": {
+        "architecture": "v2",
+        "config": {
+          "embed_dim": 128,
+          "icl_num_blocks": 12,
+          "max_classes": 10,
+          "col_target_aware": true,
+          "col_ssmax": "qassmax-mlp-elementwise",
+          "icl_ssmax": "qassmax-mlp-elementwise"
+        }
+      },
+      "seconds_zeroshot": 3.6,
+      "seconds_finetune": 40.8,
+      "auc_finetuned": 0.9038666666666667,
+      "f1_finetuned": 0.7348484848484849,
+      "precision_finetuned": 0.8508771929824561,
+      "recall_finetuned": 0.6466666666666666,
+      "auc_zeroshot": 0.9446222222222223,
+      "f1_zeroshot": 0.8015267175572519,
+      "precision_zeroshot": 0.9375,
+      "recall_zeroshot": 0.7
+    },
+    {
+      "fold": 4,
+      "n_train": 8882,
+      "n_val": 2064,
+      "n_test": 300,
+      "n_pos_test": 150,
+      "checkpoint": {
+        "architecture": "v2",
+        "config": {
+          "embed_dim": 128,
+          "icl_num_blocks": 12,
+          "max_classes": 10,
+          "col_target_aware": true,
+          "col_ssmax": "qassmax-mlp-elementwise",
+          "icl_ssmax": "qassmax-mlp-elementwise"
+        }
+      },
+      "seconds_zeroshot": 5.0,
+      "seconds_finetune": 21.5,
+      "auc_finetuned": 0.7930888888888887,
+      "f1_finetuned": 0.6042553191489362,
+      "precision_finetuned": 0.8352941176470589,
+      "recall_finetuned": 0.47333333333333333,
+      "auc_zeroshot": 0.7687777777777777,
+      "f1_zeroshot": 0.6771653543307087,
+      "precision_zeroshot": 0.8269230769230769,
+      "recall_zeroshot": 0.5733333333333334
+    }
+  ]
+}

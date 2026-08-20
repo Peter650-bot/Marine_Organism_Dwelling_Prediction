@@ -1,0 +1,93 @@
+{
+  "species": "Caretta caretta",
+  "model": "TabICL",
+  "n_cells": 13683,
+  "prevalence": 0.4347730760798071,
+  "n_test": 300,
+  "n_estimators": 2,
+  "device": "auto",
+  "seed_variant": "full",
+  "points": [
+    {
+      "scheme": "random",
+      "mode": "kshot",
+      "k": 8,
+      "auc_tabicl": 0.6127555555555556,
+      "n_folds": 5,
+      "context_rows": 8,
+      "auc_rf_kshot": 0.6215866666666667,
+      "auc_gbt_kshot": 0.60824,
+      "auc_lr_kshot": 0.5562577777777777,
+      "auc_knn_kshot": 0.5415155555555555,
+      "auc_rf_full": 0.9876888888888888
+    },
+    {
+      "scheme": "random",
+      "mode": "kshot",
+      "k": 16,
+      "auc_tabicl": 0.6723911111111112,
+      "n_folds": 5,
+      "context_rows": 16,
+      "auc_rf_kshot": 0.6789333333333334,
+      "auc_gbt_kshot": 0.5837688888888888,
+      "auc_lr_kshot": 0.6021688888888889,
+      "auc_knn_kshot": 0.5897333333333333,
+      "auc_rf_full": 0.9890755555555556
+    },
+    {
+      "scheme": "random",
+      "mode": "kshot",
+      "k": 32,
+      "auc_tabicl": 0.6984444444444444,
+      "n_folds": 5,
+      "context_rows": 32,
+      "auc_rf_kshot": 0.713,
+      "auc_gbt_kshot": 0.6593288888888889,
+      "auc_lr_kshot": 0.5597866666666667,
+      "auc_knn_kshot": 0.6052933333333333,
+      "auc_rf_full": 0.9885244444444444
+    },
+    {
+      "scheme": "spatial",
+      "mode": "kshot",
+      "k": 8,
+      "auc_tabicl": 0.42019555555555554,
+      "n_folds": 5,
+      "context_rows": 8,
+      "auc_rf_kshot": 0.3989733333333333,
+      "auc_gbt_kshot": 0.4077466666666666,
+      "auc_lr_kshot": 0.3880088888888889,
+      "auc_knn_kshot": 0.4190844444444444,
+      "auc_rf_full": 0.894951111111111
+    },
+    {
+      "scheme": "spatial",
+      "mode": "kshot",
+      "k": 16,
+      "auc_tabicl": 0.57704,
+      "n_folds": 5,
+      "context_rows": 16,
+      "auc_rf_kshot": 0.6841555555555556,
+      "auc_gbt_kshot": 0.6730222222222223,
+      "auc_lr_kshot": 0.5762044444444444,
+      "auc_knn_kshot": 0.5728088888888889,
+      "auc_rf_full": 0.8965955555555555
+    },
+    {
+      "scheme": "spatial",
+      "mode": "kshot",
+      "k": 32,
+      "auc_tabicl": 0.6426133333333335,
+      "n_folds": 5,
+      "context_rows": 32,
+      "auc_rf_kshot": 0.6134222222222222,
+      "auc_gbt_kshot": 0.6531822222222223,
+      "auc_lr_kshot": 0.5016088888888889,
+      "auc_knn_kshot": 0.5452355555555555,
+      "auc_rf_full": 0.8714222222222222
+    }
+  ],
+  "notes": [
+    "k-shot points use 8-32 context rows; TabICL is pretrained for 300-100,000. Those points probe TabICL far outside its design range and exist only for matched-k comparability with TabLLM."
+  ]
+}

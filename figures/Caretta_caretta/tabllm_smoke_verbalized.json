@@ -1,0 +1,142 @@
+{
+  "species": "Caretta caretta",
+  "model": "Qwen/Qwen2.5-72B-Instruct-AWQ",
+  "prevalence": 0.4347730760798071,
+  "n_cells": 13683,
+  "land_present": true,
+  "n_vote": 1,
+  "scoring": "verbalized",
+  "points": [
+    {
+      "scheme": "random",
+      "variant": "full",
+      "k": 0,
+      "auc_llm": 0.53712,
+      "f1_llm": 0.1480488925650216,
+      "n_folds": 5,
+      "auc_rf_full": 0.9862399999999999
+    },
+    {
+      "scheme": "random",
+      "variant": "full",
+      "k": 8,
+      "auc_llm": 0.5750409486166008,
+      "f1_llm": 0.5101752373491504,
+      "n_folds": 5,
+      "auc_rf_kshot": 0.6343405533596839,
+      "auc_gbt_kshot": 0.6450260869565217,
+      "auc_lr_kshot": 0.5850510671936759,
+      "auc_knn_kshot": 0.60036395256917,
+      "auc_rf_full": 0.995464347826087
+    }
+  ],
+  "dropped_log": [
+    {
+      "scheme": "random",
+      "variant": "full",
+      "k": 0,
+      "fold": 0,
+      "n_test_full": 2737,
+      "n_test_used": 50,
+      "n_dropped": 2687
+    },
+    {
+      "scheme": "random",
+      "variant": "full",
+      "k": 0,
+      "fold": 1,
+      "n_test_full": 2737,
+      "n_test_used": 50,
+      "n_dropped": 2687
+    },
+    {
+      "scheme": "random",
+      "variant": "full",
+      "k": 0,
+      "fold": 2,
+      "n_test_full": 2737,
+      "n_test_used": 50,
+      "n_dropped": 2687
+    },
+    {
+      "scheme": "random",
+      "variant": "full",
+      "k": 0,
+      "fold": 3,
+      "n_test_full": 2736,
+      "n_test_used": 50,
+      "n_dropped": 2686
+    },
+    {
+      "scheme": "random",
+      "variant": "full",
+      "k": 0,
+      "fold": 4,
+      "n_test_full": 2736,
+      "n_test_used": 50,
+      "n_dropped": 2686
+    },
+    {
+      "scheme": "random",
+      "variant": "full",
+      "k": 8,
+      "fold": 0,
+      "n_test_full": 2737,
+      "n_test_used": 50,
+      "n_dropped": 2687
+    },
+    {
+      "scheme": "random",
+      "variant": "full",
+      "k": 8,
+      "fold": 1,
+      "n_test_full": 2737,
+      "n_test_used": 50,
+      "n_dropped": 2687
+    },
+    {
+      "scheme": "random",
+      "variant": "full",
+      "k": 8,
+      "fold": 1,
+      "n_no_answer": 2
+    },
+    {
+      "scheme": "random",
+      "variant": "full",
+      "k": 8,
+      "fold": 2,
+      "n_test_full": 2737,
+      "n_test_used": 50,
+      "n_dropped": 2687
+    },
+    {
+      "scheme": "random",
+      "variant": "full",
+      "k": 8,
+      "fold": 2,
+      "n_no_answer": 5
+    },
+    {
+      "scheme": "random",
+      "variant": "full",
+      "k": 8,
+      "fold": 3,
+      "n_test_full": 2736,
+      "n_test_used": 50,
+      "n_dropped": 2686
+    },
+    {
+      "scheme": "random",
+      "variant": "full",
+      "k": 8,
+      "fold": 4,
+      "n_test_full": 2736,
+      "n_test_used": 50,
+      "n_dropped": 2686
+    }
+  ],
+  "api_calls": 500,
+  "cache_hits": 0,
+  "parse_failures": 7
+}
