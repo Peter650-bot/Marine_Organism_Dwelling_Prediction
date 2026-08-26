@@ -1,0 +1,19 @@
+# Dependencies for the corrected pipeline.
+# Versions are intentionally unpinned; any reasonably recent release works.
+
+# ---- core ----
+numpy
+pandas
+h5py
+scipy
+scikit-learn
+matplotlib
+
+# ---- tabular foundation model (TabICLv2) ----
+tabicl
+
+# ---- optional ----
+# openai            # TabLLM backend (OpenAI-compatible vLLM server)
+# anthropic         # alternative TabLLM backend (paid Anthropic API)
+# modal             # deploy the vLLM server used for the TabLLM rows
+# copernicusmarine  # download the DUACS L4 geostrophic velocity cubes (see README)

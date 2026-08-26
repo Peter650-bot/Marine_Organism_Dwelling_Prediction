@@ -1,0 +1,39 @@
+# ---- large ocean velocity cubes (~1.8 GB; download separately, see README) ----
+Datasets/*.nc
+
+# ---- private / third-party documents, not for distribution ----
+PAPER.pdf
+paper.tex
+*.docx
+Modeled Particle Retention for Habitat Prediction publication.pdf
+
+# ---- pretrained TabICL weights (110 MB, over GitHub's file limit) ----
+# Auto-downloaded from the HF Hub on first use, or pass --ckpt.
+models/
+
+# ---- derived retention caches (regenerated from the .nc cubes) ----
+figures/**/.retention*.npy
+.retention*.npy
+
+# ---- python / tooling ----
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+.claude/
+.lavish/
+
+# ---- stray / environment ----
+.env
+*.bak
+*.sqlite-journal
+vllm.log
+tunnel.log
+cloudflared
+
+# NOTE: figures/fixed/tabllm_cache.sqlite is intentionally committed —
+# it is the LLM-reproducibility anchor (LLM output is not byte-deterministic).
+
+# ---- paper manuscript source + its build artefacts (not needed to reproduce) ----
+Amortized_In_Context_Habitat_Prediction_for_Climate_Scale_Species_Redistribution_Assessment/
+Amortized_In_Context_Habitat_Prediction_for_Climate_Scale_Species_Redistribution_Assessment.zip
