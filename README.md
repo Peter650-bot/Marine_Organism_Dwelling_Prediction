@@ -269,7 +269,7 @@ so a silent divergence cannot slip through.
 | `make_context_sweep_figure.py`, `make_timing_figure.py` | context-sweep and timing figures |
 | `make_label_maps.py` | maps of the KDE core-area label |
 | `extension/` | TabICLv2 vs MaxEnt on MarineSPEED — see [`extension/README.md`](extension/README.md) |
-| `research_notes/`, `reports/` | notes on TabICL context (KV) caching and its speed |
+| `reports/` | report on TabICL context (KV) caching and its speed |
 | `deploy/vllm_server.py` | Modal deployment of the vLLM server used for TabLLM |
 
 Reproducibility: all randomness is seeded (`SEED = 42`; ensemble runs use

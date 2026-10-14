@@ -40,3 +40,6 @@ Amortized_In_Context_Habitat_Prediction_for_Climate_Scale_Species_Redistribution
 
 # ---- MarineSPEED benchmark download (extension/fetch_marinespeed.py) ----
 extension/data/
+
+# ---- local research notes (removed from the repository) ----
+research_notes/
