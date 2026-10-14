@@ -1,0 +1,552 @@
+maxent  Balaena mysticetus             pseudodisc k=1 ctx=  500 n=   500      0.1 s  AUC 0.9809
+maxent  Balaena mysticetus             pseudodisc k=1 ctx=  500 n=   500      0.1 s  AUC 0.9845
+maxent  Balaena mysticetus             pseudodisc k=1 ctx=  500 n=   500      0.1 s  AUC 0.9842
+maxent  Balaena mysticetus             pseudodisc k=1 ctx= 1000 n= 1,000      0.3 s  AUC 0.9810
+maxent  Balaena mysticetus             pseudodisc k=1 ctx= 1000 n= 1,000      0.1 s  AUC 0.9800
+maxent  Balaena mysticetus             pseudodisc k=1 ctx= 1000 n= 1,000      0.2 s  AUC 0.9853
+maxent  Balaena mysticetus             pseudodisc k=1 ctx= 2000 n= 2,000      0.6 s  AUC 0.9785
+maxent  Balaena mysticetus             pseudodisc k=1 ctx= 2000 n= 2,000      1.0 s  AUC 0.9919
+maxent  Balaena mysticetus             pseudodisc k=1 ctx= 2000 n= 2,000      0.6 s  AUC 0.9888
+maxent  Balaena mysticetus             pseudodisc k=1 ctx= 5000 n= 5,000      6.7 s  AUC 0.9919
+maxent  Balaena mysticetus             pseudodisc k=1 ctx= 5000 n= 5,000     19.6 s  AUC 0.9929
+maxent  Balaena mysticetus             pseudodisc k=1 ctx= 5000 n= 5,000      8.8 s  AUC 0.9881
+maxent  Balaena mysticetus             pseudodisc k=1 ctx= full n= 8,882     24.4 s  AUC 0.9901
+maxent  Balaenoptera acutorostrata     pseudodisc k=1 ctx=  500 n=   500      0.1 s  AUC 0.9457
+maxent  Balaenoptera acutorostrata     pseudodisc k=1 ctx=  500 n=   500      0.2 s  AUC 0.9372
+maxent  Balaenoptera acutorostrata     pseudodisc k=1 ctx=  500 n=   500      0.2 s  AUC 0.9391
+maxent  Balaenoptera acutorostrata     pseudodisc k=1 ctx= 1000 n= 1,000      0.6 s  AUC 0.9637
+maxent  Balaenoptera acutorostrata     pseudodisc k=1 ctx= 1000 n= 1,000      1.0 s  AUC 0.9071
+maxent  Balaenoptera acutorostrata     pseudodisc k=1 ctx= 1000 n= 1,000      1.1 s  AUC 0.9643
+maxent  Balaenoptera acutorostrata     pseudodisc k=1 ctx= 2000 n= 2,000      4.6 s  AUC 0.9333
+maxent  Balaenoptera acutorostrata     pseudodisc k=1 ctx= 2000 n= 2,000      4.9 s  AUC 0.9745
+maxent  Balaenoptera acutorostrata     pseudodisc k=1 ctx= 2000 n= 2,000      3.1 s  AUC 0.9789
+maxent  Balaenoptera acutorostrata     pseudodisc k=1 ctx= 5000 n= 5,000     20.1 s  AUC 0.9732
+maxent  Balaenoptera acutorostrata     pseudodisc k=1 ctx= 5000 n= 5,000     21.7 s  AUC 0.9834
+maxent  Balaenoptera acutorostrata     pseudodisc k=1 ctx= 5000 n= 5,000     23.2 s  AUC 0.9733
+maxent  Balaenoptera acutorostrata     pseudodisc k=1 ctx= full n= 9,291     50.2 s  AUC 0.9751
+maxent  Chlorurus sordidus             pseudodisc k=1 ctx=  500 n=   500      0.1 s  AUC 0.9593
+maxent  Chlorurus sordidus             pseudodisc k=1 ctx=  500 n=   500      0.1 s  AUC 0.9662
+maxent  Chlorurus sordidus             pseudodisc k=1 ctx=  500 n=   500      0.1 s  AUC 0.9699
+maxent  Chlorurus sordidus             pseudodisc k=1 ctx= 1000 n= 1,000      0.3 s  AUC 0.9609
+maxent  Chlorurus sordidus             pseudodisc k=1 ctx= 1000 n= 1,000      0.3 s  AUC 0.9594
+maxent  Chlorurus sordidus             pseudodisc k=1 ctx= 1000 n= 1,000      0.2 s  AUC 0.9575
+maxent  Chlorurus sordidus             pseudodisc k=1 ctx= 2000 n= 2,000      1.3 s  AUC 0.9558
+maxent  Chlorurus sordidus             pseudodisc k=1 ctx= 2000 n= 2,000      1.1 s  AUC 0.9706
+maxent  Chlorurus sordidus             pseudodisc k=1 ctx= 2000 n= 2,000      1.0 s  AUC 0.9594
+maxent  Chlorurus sordidus             pseudodisc k=1 ctx= 5000 n= 5,000      7.5 s  AUC 0.9769
+maxent  Chlorurus sordidus             pseudodisc k=1 ctx= 5000 n= 5,000      8.7 s  AUC 0.9743
+maxent  Chlorurus sordidus             pseudodisc k=1 ctx= 5000 n= 5,000      7.2 s  AUC 0.9728
+maxent  Chlorurus sordidus             pseudodisc k=1 ctx= full n= 5,875     11.7 s  AUC 0.9739
+maxent  Sterechinus neumayeri          pseudodisc k=1 ctx=  500 n=   500      0.0 s  AUC 0.9298
+maxent  Sterechinus neumayeri          pseudodisc k=1 ctx=  500 n=   500      0.0 s  AUC 0.9427
+maxent  Sterechinus neumayeri          pseudodisc k=1 ctx=  500 n=   500      0.0 s  AUC 0.8570
+maxent  Sterechinus neumayeri          pseudodisc k=1 ctx= 1000 n= 1,000      0.1 s  AUC 0.9004
+maxent  Sterechinus neumayeri          pseudodisc k=1 ctx= 1000 n= 1,000      0.1 s  AUC 0.9096
+maxent  Sterechinus neumayeri          pseudodisc k=1 ctx= 1000 n= 1,000      0.1 s  AUC 0.9202
+maxent  Sterechinus neumayeri          pseudodisc k=1 ctx= 2000 n= 2,000      0.3 s  AUC 0.9191
+maxent  Sterechinus neumayeri          pseudodisc k=1 ctx= 2000 n= 2,000      0.5 s  AUC 0.9023
+maxent  Sterechinus neumayeri          pseudodisc k=1 ctx= 2000 n= 2,000      0.3 s  AUC 0.8629
+maxent  Sterechinus neumayeri          pseudodisc k=1 ctx= 5000 n= 5,000      1.4 s  AUC 0.9036
+maxent  Sterechinus neumayeri          pseudodisc k=1 ctx= 5000 n= 5,000      1.2 s  AUC 0.9039
+maxent  Sterechinus neumayeri          pseudodisc k=1 ctx= 5000 n= 5,000      1.1 s  AUC 0.9208
+maxent  Sterechinus neumayeri          pseudodisc k=1 ctx= full n= 5,241      1.0 s  AUC 0.9039
+maxent  Pictilabrus laticlavius        pseudodisc k=1 ctx=  500 n=   500      0.0 s  AUC 0.9175
+maxent  Pictilabrus laticlavius        pseudodisc k=1 ctx=  500 n=   500      0.0 s  AUC 0.9217
+maxent  Pictilabrus laticlavius        pseudodisc k=1 ctx=  500 n=   500      0.0 s  AUC 0.9526
+maxent  Pictilabrus laticlavius        pseudodisc k=1 ctx= 1000 n= 1,000      0.1 s  AUC 0.9392
+maxent  Pictilabrus laticlavius        pseudodisc k=1 ctx= 1000 n= 1,000      0.0 s  AUC 0.9312
+maxent  Pictilabrus laticlavius        pseudodisc k=1 ctx= 1000 n= 1,000      0.1 s  AUC 0.9289
+maxent  Pictilabrus laticlavius        pseudodisc k=1 ctx= 2000 n= 2,000      0.2 s  AUC 0.9321
+maxent  Pictilabrus laticlavius        pseudodisc k=1 ctx= 2000 n= 2,000      0.2 s  AUC 0.9275
+maxent  Pictilabrus laticlavius        pseudodisc k=1 ctx= 2000 n= 2,000      0.2 s  AUC 0.9304
+maxent  Pictilabrus laticlavius        pseudodisc k=1 ctx= 5000 n= 5,000      0.5 s  AUC 0.9270
+maxent  Pictilabrus laticlavius        pseudodisc k=1 ctx= 5000 n= 5,000      0.6 s  AUC 0.9304
+maxent  Pictilabrus laticlavius        pseudodisc k=1 ctx= 5000 n= 5,000      0.8 s  AUC 0.9249
+maxent  Pictilabrus laticlavius        pseudodisc k=1 ctx= full n= 5,273      0.7 s  AUC 0.9307
+maxent  Auxis rochei rochei            pseudodisc k=1 ctx=  500 n=   500      0.2 s  AUC 0.4833
+maxent  Auxis rochei rochei            pseudodisc k=1 ctx=  500 n=   500      0.1 s  AUC 0.3075
+maxent  Auxis rochei rochei            pseudodisc k=1 ctx=  500 n=   500      0.1 s  AUC 0.7881
+maxent  Auxis rochei rochei            pseudodisc k=1 ctx= 1000 n= 1,000      0.6 s  AUC 0.3262
+maxent  Auxis rochei rochei            pseudodisc k=1 ctx= 1000 n= 1,000      0.3 s  AUC 0.5604
+maxent  Auxis rochei rochei            pseudodisc k=1 ctx= 1000 n= 1,000      0.5 s  AUC 0.7228
+maxent  Auxis rochei rochei            pseudodisc k=1 ctx= 2000 n= 2,000      1.3 s  AUC 0.7990
+maxent  Auxis rochei rochei            pseudodisc k=1 ctx= 2000 n= 2,000      1.2 s  AUC 0.7596
+maxent  Auxis rochei rochei            pseudodisc k=1 ctx= 2000 n= 2,000      2.4 s  AUC 0.6058
+maxent  Auxis rochei rochei            pseudodisc k=1 ctx= 5000 n= 5,000      8.7 s  AUC 0.7065
+maxent  Auxis rochei rochei            pseudodisc k=1 ctx= 5000 n= 5,000      7.6 s  AUC 0.7730
+maxent  Auxis rochei rochei            pseudodisc k=1 ctx= 5000 n= 5,000     10.8 s  AUC 0.7355
+maxent  Auxis rochei rochei            pseudodisc k=1 ctx= full n= 5,333      8.8 s  AUC 0.7428
+[saved] /mnt/c/Users/Personal/OneDrive/Masters/Applied ML/Final_project/extension/results/sweep_maxent.jsonl (+78 records)
+tabicl  Balaena mysticetus             pseudodisc k=1 ctx=  500 n=   500     10.6 s  AUC 0.9907
+tabicl  Balaena mysticetus             pseudodisc k=1 ctx=  500 n=   500     12.1 s  AUC 0.9953
+tabicl  Balaena mysticetus             pseudodisc k=1 ctx=  500 n=   500      9.5 s  AUC 0.9935
+tabicl  Balaena mysticetus             pseudodisc k=1 ctx= 1000 n= 1,000     13.7 s  AUC 0.9919
+tabicl  Balaena mysticetus             pseudodisc k=1 ctx= 1000 n= 1,000     12.1 s  AUC 0.9921
+tabicl  Balaena mysticetus             pseudodisc k=1 ctx= 1000 n= 1,000     11.9 s  AUC 0.9924
+tabicl  Balaena mysticetus             pseudodisc k=1 ctx= 2000 n= 2,000     22.0 s  AUC 0.9905
+tabicl  Balaena mysticetus             pseudodisc k=1 ctx= 2000 n= 2,000     17.3 s  AUC 0.9927
+tabicl  Balaena mysticetus             pseudodisc k=1 ctx= 2000 n= 2,000     20.9 s  AUC 0.9915
+tabicl  Balaena mysticetus             pseudodisc k=1 ctx= 5000 n= 5,000     51.5 s  AUC 0.9887
+tabicl  Balaena mysticetus             pseudodisc k=1 ctx= 5000 n= 5,000     47.1 s  AUC 0.9918
+tabicl  Balaena mysticetus             pseudodisc k=1 ctx= 5000 n= 5,000     52.6 s  AUC 0.9892
+tabicl  Balaena mysticetus             pseudodisc k=1 ctx= full n= 8,882    101.9 s  AUC 0.9860
+tabicl  Balaenoptera acutorostrata     pseudodisc k=1 ctx=  500 n=   500     24.1 s  AUC 0.9907
+tabicl  Balaenoptera acutorostrata     pseudodisc k=1 ctx=  500 n=   500     13.6 s  AUC 0.9861
+tabicl  Balaenoptera acutorostrata     pseudodisc k=1 ctx=  500 n=   500     12.3 s  AUC 0.9756
+tabicl  Balaenoptera acutorostrata     pseudodisc k=1 ctx= 1000 n= 1,000     19.9 s  AUC 0.9847
+tabicl  Balaenoptera acutorostrata     pseudodisc k=1 ctx= 1000 n= 1,000     17.6 s  AUC 0.9575
+tabicl  Balaenoptera acutorostrata     pseudodisc k=1 ctx= 1000 n= 1,000     17.1 s  AUC 0.9764
+tabicl  Balaenoptera acutorostrata     pseudodisc k=1 ctx= 2000 n= 2,000     25.8 s  AUC 0.9623
+tabicl  Balaenoptera acutorostrata     pseudodisc k=1 ctx= 2000 n= 2,000     23.9 s  AUC 0.9742
+tabicl  Balaenoptera acutorostrata     pseudodisc k=1 ctx= 2000 n= 2,000     22.9 s  AUC 0.9870
+tabicl  Balaenoptera acutorostrata     pseudodisc k=1 ctx= 5000 n= 5,000     61.8 s  AUC 0.9384
+tabicl  Balaenoptera acutorostrata     pseudodisc k=1 ctx= 5000 n= 5,000     55.4 s  AUC 0.9478
+tabicl  Balaenoptera acutorostrata     pseudodisc k=1 ctx= 5000 n= 5,000     59.9 s  AUC 0.9328
+tabicl  Balaenoptera acutorostrata     pseudodisc k=1 ctx= full n= 9,291    170.9 s  AUC 0.9226
+tabicl  Chlorurus sordidus             pseudodisc k=1 ctx=  500 n=   500     36.0 s  AUC 0.9655
+tabicl  Chlorurus sordidus             pseudodisc k=1 ctx=  500 n=   500     21.2 s  AUC 0.9673
+tabicl  Chlorurus sordidus             pseudodisc k=1 ctx=  500 n=   500     18.4 s  AUC 0.9701
+tabicl  Chlorurus sordidus             pseudodisc k=1 ctx= 1000 n= 1,000     14.0 s  AUC 0.9735
+tabicl  Chlorurus sordidus             pseudodisc k=1 ctx= 1000 n= 1,000     11.1 s  AUC 0.9617
+tabicl  Chlorurus sordidus             pseudodisc k=1 ctx= 1000 n= 1,000     11.0 s  AUC 0.9594
+tabicl  Chlorurus sordidus             pseudodisc k=1 ctx= 2000 n= 2,000     22.7 s  AUC 0.9539
+tabicl  Chlorurus sordidus             pseudodisc k=1 ctx= 2000 n= 2,000     21.7 s  AUC 0.9581
+tabicl  Chlorurus sordidus             pseudodisc k=1 ctx= 2000 n= 2,000     21.7 s  AUC 0.9611
+tabicl  Chlorurus sordidus             pseudodisc k=1 ctx= 5000 n= 5,000     40.8 s  AUC 0.9486
+tabicl  Chlorurus sordidus             pseudodisc k=1 ctx= 5000 n= 5,000     42.2 s  AUC 0.9481
+tabicl  Chlorurus sordidus             pseudodisc k=1 ctx= 5000 n= 5,000     43.3 s  AUC 0.9479
+tabicl  Chlorurus sordidus             pseudodisc k=1 ctx= full n= 5,875     76.4 s  AUC 0.9454
+tabicl  Sterechinus neumayeri          pseudodisc k=1 ctx=  500 n=   500      4.8 s  AUC 0.9187
+tabicl  Sterechinus neumayeri          pseudodisc k=1 ctx=  500 n=   500      4.2 s  AUC 0.9180
+tabicl  Sterechinus neumayeri          pseudodisc k=1 ctx=  500 n=   500      8.4 s  AUC 0.8900
+tabicl  Sterechinus neumayeri          pseudodisc k=1 ctx= 1000 n= 1,000      8.1 s  AUC 0.8953
+tabicl  Sterechinus neumayeri          pseudodisc k=1 ctx= 1000 n= 1,000      5.8 s  AUC 0.9107
+tabicl  Sterechinus neumayeri          pseudodisc k=1 ctx= 1000 n= 1,000      9.3 s  AUC 0.9174
+tabicl  Sterechinus neumayeri          pseudodisc k=1 ctx= 2000 n= 2,000     15.0 s  AUC 0.8965
+tabicl  Sterechinus neumayeri          pseudodisc k=1 ctx= 2000 n= 2,000     14.3 s  AUC 0.8739
+tabicl  Sterechinus neumayeri          pseudodisc k=1 ctx= 2000 n= 2,000     11.9 s  AUC 0.8925
+tabicl  Sterechinus neumayeri          pseudodisc k=1 ctx= 5000 n= 5,000     40.9 s  AUC 0.8735
+tabicl  Sterechinus neumayeri          pseudodisc k=1 ctx= 5000 n= 5,000     50.1 s  AUC 0.8814
+tabicl  Sterechinus neumayeri          pseudodisc k=1 ctx= 5000 n= 5,000     38.0 s  AUC 0.8737
+tabicl  Sterechinus neumayeri          pseudodisc k=1 ctx= full n= 5,241     40.3 s  AUC 0.8783
+tabicl  Pictilabrus laticlavius        pseudodisc k=1 ctx=  500 n=   500      5.0 s  AUC 0.9927
+tabicl  Pictilabrus laticlavius        pseudodisc k=1 ctx=  500 n=   500      5.1 s  AUC 0.9790
+tabicl  Pictilabrus laticlavius        pseudodisc k=1 ctx=  500 n=   500      4.0 s  AUC 0.9839
+tabicl  Pictilabrus laticlavius        pseudodisc k=1 ctx= 1000 n= 1,000     10.3 s  AUC 0.9819
+tabicl  Pictilabrus laticlavius        pseudodisc k=1 ctx= 1000 n= 1,000      6.4 s  AUC 0.9696
+tabicl  Pictilabrus laticlavius        pseudodisc k=1 ctx= 1000 n= 1,000      5.8 s  AUC 0.9761
+tabicl  Pictilabrus laticlavius        pseudodisc k=1 ctx= 2000 n= 2,000     11.8 s  AUC 0.9248
+tabicl  Pictilabrus laticlavius        pseudodisc k=1 ctx= 2000 n= 2,000     12.3 s  AUC 0.9611
+tabicl  Pictilabrus laticlavius        pseudodisc k=1 ctx= 2000 n= 2,000     11.8 s  AUC 0.9373
+tabicl  Pictilabrus laticlavius        pseudodisc k=1 ctx= 5000 n= 5,000     40.5 s  AUC 0.9206
+tabicl  Pictilabrus laticlavius        pseudodisc k=1 ctx= 5000 n= 5,000     38.1 s  AUC 0.9102
+tabicl  Pictilabrus laticlavius        pseudodisc k=1 ctx= 5000 n= 5,000     40.5 s  AUC 0.9196
+tabicl  Pictilabrus laticlavius        pseudodisc k=1 ctx= full n= 5,273     45.4 s  AUC 0.9187
+tabicl  Auxis rochei rochei            pseudodisc k=1 ctx=  500 n=   500      7.0 s  AUC 0.8876
+tabicl  Auxis rochei rochei            pseudodisc k=1 ctx=  500 n=   500      6.1 s  AUC 0.8893
+tabicl  Auxis rochei rochei            pseudodisc k=1 ctx=  500 n=   500      5.8 s  AUC 0.8695
+tabicl  Auxis rochei rochei            pseudodisc k=1 ctx= 1000 n= 1,000      6.7 s  AUC 0.8716
+tabicl  Auxis rochei rochei            pseudodisc k=1 ctx= 1000 n= 1,000      7.1 s  AUC 0.9030
+tabicl  Auxis rochei rochei            pseudodisc k=1 ctx= 1000 n= 1,000      7.0 s  AUC 0.9422
+tabicl  Auxis rochei rochei            pseudodisc k=1 ctx= 2000 n= 2,000     16.0 s  AUC 0.8918
+tabicl  Auxis rochei rochei            pseudodisc k=1 ctx= 2000 n= 2,000     15.2 s  AUC 0.9265
+tabicl  Auxis rochei rochei            pseudodisc k=1 ctx= 2000 n= 2,000     12.3 s  AUC 0.8748
+tabicl  Auxis rochei rochei            pseudodisc k=1 ctx= 5000 n= 5,000     42.2 s  AUC 0.8735
+tabicl  Auxis rochei rochei            pseudodisc k=1 ctx= 5000 n= 5,000     42.5 s  AUC 0.8856
+tabicl  Auxis rochei rochei            pseudodisc k=1 ctx= 5000 n= 5,000     41.0 s  AUC 0.8961
+tabicl  Auxis rochei rochei            pseudodisc k=1 ctx= full n= 5,333     42.6 s  AUC 0.8909
+[saved] /mnt/c/Users/Personal/OneDrive/Masters/Applied ML/Final_project/extension/results/sweep_tabicl.jsonl (+78 records)
+maxent  Balaena mysticetus             pseudodisc k=5 ctx=      n= 8,876     22.0 s  AUC 0.9903
+maxent  Sterechinus neumayeri          pseudodisc k=1 ctx=      n= 5,241      1.0 s  AUC 0.9039
+maxent  Sterechinus neumayeri          pseudodisc k=2 ctx=      n= 5,241      1.1 s  AUC 0.8577
+maxent  Sterechinus neumayeri          pseudodisc k=3 ctx=      n= 5,241      1.1 s  AUC 0.8409
+maxent  Sterechinus neumayeri          pseudodisc k=4 ctx=      n= 5,241      1.3 s  AUC 0.7698
+maxent  Sterechinus neumayeri          pseudodisc k=5 ctx=      n= 5,236      1.4 s  AUC 0.8378
+maxent  Apostichopus californicus      pseudodisc k=1 ctx=      n= 5,208      0.8 s  AUC 0.8664
+maxent  Apostichopus californicus      pseudodisc k=2 ctx=      n= 5,208      0.8 s  AUC 0.8583
+maxent  Apostichopus californicus      pseudodisc k=3 ctx=      n= 5,208      0.9 s  AUC 0.8354
+maxent  Apostichopus californicus      pseudodisc k=4 ctx=      n= 5,208      0.8 s  AUC 0.6000
+maxent  Apostichopus californicus      pseudodisc k=5 ctx=      n= 5,200      0.9 s  AUC 0.6998
+maxent  Arrhoges occidentalis          pseudodisc k=1 ctx=      n= 5,108      1.4 s  AUC 0.7539
+maxent  Arrhoges occidentalis          pseudodisc k=2 ctx=      n= 5,108      0.8 s  AUC 0.7356
+maxent  Arrhoges occidentalis          pseudodisc k=3 ctx=      n= 5,108      0.7 s  AUC 0.7105
+maxent  Arrhoges occidentalis          pseudodisc k=4 ctx=      n= 5,108      1.2 s  AUC 0.6743
+maxent  Arrhoges occidentalis          pseudodisc k=5 ctx=      n= 5,100      0.8 s  AUC 0.6610
+maxent  Austrolabrus maculatus         pseudodisc k=1 ctx=      n= 5,149      0.5 s  AUC 0.8650
+maxent  Austrolabrus maculatus         pseudodisc k=2 ctx=      n= 5,149      0.7 s  AUC 0.8989
+maxent  Austrolabrus maculatus         pseudodisc k=3 ctx=      n= 5,149      0.6 s  AUC 0.8188
+maxent  Austrolabrus maculatus         pseudodisc k=4 ctx=      n= 5,149      0.5 s  AUC 0.9319
+maxent  Austrolabrus maculatus         pseudodisc k=5 ctx=      n= 5,144      0.8 s  AUC 0.9588
+maxent  Dictyota diemensis             pseudodisc k=1 ctx=      n= 5,060      0.6 s  AUC 0.9603
+maxent  Dictyota diemensis             pseudodisc k=2 ctx=      n= 5,060      0.6 s  AUC 0.9463
+maxent  Dictyota diemensis             pseudodisc k=3 ctx=      n= 5,060      0.4 s  AUC 0.7432
+maxent  Dictyota diemensis             pseudodisc k=4 ctx=      n= 5,060      0.7 s  AUC 0.8632
+maxent  Dictyota diemensis             pseudodisc k=5 ctx=      n= 5,052      0.5 s  AUC 0.9338
+maxent  Echiurus echiurus              pseudodisc k=1 ctx=      n= 5,211      5.0 s  AUC 0.6554
+maxent  Echiurus echiurus              pseudodisc k=2 ctx=      n= 5,211      4.6 s  AUC 0.9233
+maxent  Echiurus echiurus              pseudodisc k=3 ctx=      n= 5,211      4.3 s  AUC 0.9100
+maxent  Echiurus echiurus              pseudodisc k=4 ctx=      n= 5,211      3.8 s  AUC 0.8120
+maxent  Echiurus echiurus              pseudodisc k=5 ctx=      n= 5,204      4.0 s  AUC 0.8707
+maxent  Octopus rubescens              pseudodisc k=1 ctx=      n= 5,138      0.8 s  AUC 0.6991
+maxent  Octopus rubescens              pseudodisc k=2 ctx=      n= 5,138      0.8 s  AUC 0.8258
+maxent  Octopus rubescens              pseudodisc k=3 ctx=      n= 5,138      0.7 s  AUC 0.8268
+maxent  Octopus rubescens              pseudodisc k=4 ctx=      n= 5,138      0.9 s  AUC 0.6250
+maxent  Octopus rubescens              pseudodisc k=5 ctx=      n= 5,132      0.8 s  AUC 0.7942
+maxent  Sabatieria celtica             pseudodisc k=1 ctx=      n= 5,109      1.9 s  AUC 0.7206
+maxent  Sabatieria celtica             pseudodisc k=2 ctx=      n= 5,109      1.0 s  AUC 0.7874
+maxent  Sabatieria celtica             pseudodisc k=3 ctx=      n= 5,109      1.0 s  AUC 0.6794
+maxent  Sabatieria celtica             pseudodisc k=4 ctx=      n= 5,109      3.5 s  AUC 0.7500
+maxent  Sabatieria celtica             pseudodisc k=5 ctx=      n= 5,100      0.9 s  AUC 0.7292
+maxent  Synalpheus townsendi           pseudodisc k=1 ctx=      n= 5,145      1.9 s  AUC 0.8787
+maxent  Synalpheus townsendi           pseudodisc k=2 ctx=      n= 5,145      2.5 s  AUC 0.9506
+maxent  Synalpheus townsendi           pseudodisc k=3 ctx=      n= 5,145      3.7 s  AUC 0.7025
+maxent  Synalpheus townsendi           pseudodisc k=4 ctx=      n= 5,145      1.4 s  AUC 0.8281
+maxent  Synalpheus townsendi           pseudodisc k=5 ctx=      n= 5,136      0.9 s  AUC 0.8114
+maxent  Balaenoptera acutorostrata     pseudodisc k=1 ctx=      n= 9,291     45.5 s  AUC 0.9751
+maxent  Balaenoptera acutorostrata     pseudodisc k=2 ctx=      n= 9,291     33.9 s  AUC 0.8543
+maxent  Balaenoptera acutorostrata     pseudodisc k=3 ctx=      n= 9,291     37.4 s  AUC 0.5074
+maxent  Balaenoptera acutorostrata     pseudodisc k=4 ctx=      n= 9,291     45.8 s  AUC 0.9632
+maxent  Balaenoptera acutorostrata     pseudodisc k=5 ctx=      n= 9,284     58.7 s  AUC 0.9286
+maxent  Ciona intestinalis             pseudodisc k=1 ctx=      n= 6,193      7.6 s  AUC 0.9853
+maxent  Ciona intestinalis             pseudodisc k=2 ctx=      n= 6,193      4.2 s  AUC 0.9888
+maxent  Ciona intestinalis             pseudodisc k=3 ctx=      n= 6,193      7.2 s  AUC 0.9626
+maxent  Ciona intestinalis             pseudodisc k=4 ctx=      n= 6,193      8.2 s  AUC 1.0000
+maxent  Ciona intestinalis             pseudodisc k=5 ctx=      n= 6,184      6.3 s  AUC 0.9841
+maxent  Eukrohnia hamata               pseudodisc k=1 ctx=      n= 8,637     34.3 s  AUC 0.7133
+maxent  Eukrohnia hamata               pseudodisc k=2 ctx=      n= 8,637     42.4 s  AUC 0.6661
+maxent  Eukrohnia hamata               pseudodisc k=3 ctx=      n= 8,637     37.9 s  AUC 0.8300
+maxent  Eukrohnia hamata               pseudodisc k=4 ctx=      n= 8,637     42.4 s  AUC 0.7445
+maxent  Eukrohnia hamata               pseudodisc k=5 ctx=      n= 8,632     47.1 s  AUC 0.8080
+maxent  Limacina retroversa            pseudodisc k=1 ctx=      n=10,000     53.4 s  AUC 0.5844
+maxent  Limacina retroversa            pseudodisc k=2 ctx=      n=10,000     48.1 s  AUC 0.8473
+maxent  Limacina retroversa            pseudodisc k=3 ctx=      n=10,000     56.7 s  AUC 0.9247
+maxent  Limacina retroversa            pseudodisc k=4 ctx=      n=10,000     59.5 s  AUC 0.9717
+maxent  Limacina retroversa            pseudodisc k=5 ctx=      n=10,000     79.8 s  AUC 0.9222
+maxent  Platyxanthus patagonicus       pseudodisc k=1 ctx=      n= 5,657      0.6 s  AUC 0.5909
+maxent  Platyxanthus patagonicus       pseudodisc k=2 ctx=      n= 5,657      0.7 s  AUC 0.6250
+maxent  Platyxanthus patagonicus       pseudodisc k=3 ctx=      n= 5,657      0.5 s  AUC 0.5714
+maxent  Platyxanthus patagonicus       pseudodisc k=4 ctx=      n= 5,657      0.5 s  AUC 0.5556
+maxent  Platyxanthus patagonicus       pseudodisc k=5 ctx=      n= 5,648      0.5 s  AUC 0.8403
+maxent  Pleuronectes platessa          pseudodisc k=1 ctx=      n=10,000     13.5 s  AUC 0.9971
+maxent  Pleuronectes platessa          pseudodisc k=2 ctx=      n=10,000      8.1 s  AUC 0.9971
+maxent  Pleuronectes platessa          pseudodisc k=3 ctx=      n=10,000      6.3 s  AUC 0.9962
+maxent  Pleuronectes platessa          pseudodisc k=4 ctx=      n=10,000     16.1 s  AUC 1.0000
+maxent  Pleuronectes platessa          pseudodisc k=5 ctx=      n=10,000      7.9 s  AUC 0.9974
+maxent  Sepia australis                pseudodisc k=1 ctx=      n= 6,832      1.5 s  AUC 1.0000
+maxent  Sepia australis                pseudodisc k=2 ctx=      n= 6,832      4.1 s  AUC 1.0000
+maxent  Sepia australis                pseudodisc k=3 ctx=      n= 6,832      1.0 s  AUC 0.9999
+maxent  Sepia australis                pseudodisc k=4 ctx=      n= 6,832      2.7 s  AUC 1.0000
+maxent  Sepia australis                pseudodisc k=5 ctx=      n= 6,824      0.7 s  AUC 0.9979
+maxent  Sepia officinalis              pseudodisc k=1 ctx=      n= 6,386     12.4 s  AUC 0.9939
+maxent  Sepia officinalis              pseudodisc k=2 ctx=      n= 6,386      9.1 s  AUC 0.9935
+maxent  Sepia officinalis              pseudodisc k=3 ctx=      n= 6,386      7.9 s  AUC 0.9892
+maxent  Sepia officinalis              pseudodisc k=4 ctx=      n= 6,386      7.3 s  AUC 0.9941
+maxent  Sepia officinalis              pseudodisc k=5 ctx=      n= 6,380      4.8 s  AUC 0.9680
+maxent  Pictilabrus laticlavius        pseudodisc k=1 ctx=      n= 5,273      0.5 s  AUC 0.9307
+maxent  Pictilabrus laticlavius        pseudodisc k=2 ctx=      n= 5,273      0.9 s  AUC 0.9923
+maxent  Pictilabrus laticlavius        pseudodisc k=3 ctx=      n= 5,273      0.6 s  AUC 0.9816
+maxent  Pictilabrus laticlavius        pseudodisc k=4 ctx=      n= 5,273      0.5 s  AUC 0.8678
+maxent  Pictilabrus laticlavius        pseudodisc k=5 ctx=      n= 5,264      0.6 s  AUC 0.9296
+maxent  Scorpis lineolata              pseudodisc k=1 ctx=      n= 5,282      0.8 s  AUC 0.8672
+maxent  Scorpis lineolata              pseudodisc k=2 ctx=      n= 5,282      0.4 s  AUC 0.8958
+maxent  Scorpis lineolata              pseudodisc k=3 ctx=      n= 5,282      0.5 s  AUC 0.7969
+maxent  Scorpis lineolata              pseudodisc k=4 ctx=      n= 5,282      0.8 s  AUC 0.8784
+maxent  Scorpis lineolata              pseudodisc k=5 ctx=      n= 5,276      0.5 s  AUC 0.8756
+maxent  Semirossia tenera              pseudodisc k=1 ctx=      n= 5,245      8.9 s  AUC 0.9176
+maxent  Semirossia tenera              pseudodisc k=2 ctx=      n= 5,245      4.5 s  AUC 0.8980
+maxent  Semirossia tenera              pseudodisc k=3 ctx=      n= 5,245      2.7 s  AUC 0.5551
+maxent  Semirossia tenera              pseudodisc k=4 ctx=      n= 5,245      7.3 s  AUC 0.8538
+maxent  Semirossia tenera              pseudodisc k=5 ctx=      n= 5,236      3.3 s  AUC 0.5379
+maxent  Tubulanus polymorphus          pseudodisc k=1 ctx=      n= 5,393      2.3 s  AUC 0.8400
+maxent  Tubulanus polymorphus          pseudodisc k=2 ctx=      n= 5,393      1.6 s  AUC 0.9393
+maxent  Tubulanus polymorphus          pseudodisc k=3 ctx=      n= 5,393      0.7 s  AUC 0.8370
+maxent  Tubulanus polymorphus          pseudodisc k=4 ctx=      n= 5,393      1.1 s  AUC 0.8169
+maxent  Tubulanus polymorphus          pseudodisc k=5 ctx=      n= 5,384      0.7 s  AUC 0.7261
+maxent  Zostera (Zosterella) noltei    pseudodisc k=1 ctx=      n= 5,250      0.6 s  AUC 0.7965
+maxent  Zostera (Zosterella) noltei    pseudodisc k=2 ctx=      n= 5,250      0.7 s  AUC 0.8192
+maxent  Zostera (Zosterella) noltei    pseudodisc k=3 ctx=      n= 5,250      0.6 s  AUC 0.6910
+maxent  Zostera (Zosterella) noltei    pseudodisc k=4 ctx=      n= 5,250      0.7 s  AUC 0.8333
+maxent  Zostera (Zosterella) noltei    pseudodisc k=5 ctx=      n= 5,244      0.5 s  AUC 0.8207
+maxent  Favites abdita                 pseudodisc k=1 ctx=      n= 5,209      4.0 s  AUC 0.9049
+maxent  Favites abdita                 pseudodisc k=2 ctx=      n= 5,209      3.0 s  AUC 0.9540
+maxent  Favites abdita                 pseudodisc k=3 ctx=      n= 5,209      3.6 s  AUC 0.9419
+maxent  Favites abdita                 pseudodisc k=4 ctx=      n= 5,209      2.5 s  AUC 0.8830
+maxent  Favites abdita                 pseudodisc k=5 ctx=      n= 5,200      2.8 s  AUC 0.9607
+maxent  Hermodice carunculata          pseudodisc k=1 ctx=      n= 5,139      2.9 s  AUC 0.7511
+maxent  Hermodice carunculata          pseudodisc k=2 ctx=      n= 5,139      5.0 s  AUC 0.8996
+maxent  Hermodice carunculata          pseudodisc k=3 ctx=      n= 5,139      3.9 s  AUC 0.8690
+maxent  Hermodice carunculata          pseudodisc k=4 ctx=      n= 5,139      3.7 s  AUC 0.8189
+maxent  Hermodice carunculata          pseudodisc k=5 ctx=      n= 5,132      5.0 s  AUC 0.9086
+maxent  Octopus joubini                pseudodisc k=1 ctx=      n= 5,093      2.8 s  AUC 0.8447
+maxent  Octopus joubini                pseudodisc k=2 ctx=      n= 5,093      2.0 s  AUC 0.9329
+maxent  Octopus joubini                pseudodisc k=3 ctx=      n= 5,093      1.8 s  AUC 0.8535
+maxent  Octopus joubini                pseudodisc k=4 ctx=      n= 5,093      1.1 s  AUC 0.6522
+maxent  Octopus joubini                pseudodisc k=5 ctx=      n= 5,084      1.2 s  AUC 0.8137
+maxent  Prunum apicinum                pseudodisc k=1 ctx=      n= 5,174      1.2 s  AUC 0.8263
+maxent  Prunum apicinum                pseudodisc k=2 ctx=      n= 5,174      1.6 s  AUC 0.8747
+maxent  Prunum apicinum                pseudodisc k=3 ctx=      n= 5,174      1.0 s  AUC 0.8267
+maxent  Prunum apicinum                pseudodisc k=4 ctx=      n= 5,174      1.3 s  AUC 0.7711
+maxent  Prunum apicinum                pseudodisc k=5 ctx=      n= 5,168      0.7 s  AUC 0.7449
+maxent  Symphyllia recta               pseudodisc k=1 ctx=      n= 5,164      1.8 s  AUC 0.9574
+maxent  Symphyllia recta               pseudodisc k=2 ctx=      n= 5,164      4.3 s  AUC 0.9770
+maxent  Symphyllia recta               pseudodisc k=3 ctx=      n= 5,164      1.7 s  AUC 0.9247
+maxent  Symphyllia recta               pseudodisc k=4 ctx=      n= 5,164      2.0 s  AUC 0.9456
+maxent  Symphyllia recta               pseudodisc k=5 ctx=      n= 5,156      1.5 s  AUC 0.8873
+maxent  Chlorurus sordidus             pseudodisc k=1 ctx=      n= 5,875     10.5 s  AUC 0.9739
+maxent  Chlorurus sordidus             pseudodisc k=2 ctx=      n= 5,875      8.9 s  AUC 0.9501
+maxent  Chlorurus sordidus             pseudodisc k=3 ctx=      n= 5,875      8.0 s  AUC 0.8743
+maxent  Chlorurus sordidus             pseudodisc k=4 ctx=      n= 5,875      7.5 s  AUC 0.9667
+maxent  Chlorurus sordidus             pseudodisc k=5 ctx=      n= 5,868      6.9 s  AUC 0.9545
+maxent  Decapterus macarellus          pseudodisc k=1 ctx=      n= 5,804     26.4 s  AUC 0.8828
+maxent  Decapterus macarellus          pseudodisc k=2 ctx=      n= 5,804     29.6 s  AUC 0.7523
+maxent  Decapterus macarellus          pseudodisc k=3 ctx=      n= 5,804     22.6 s  AUC 0.7503
+maxent  Decapterus macarellus          pseudodisc k=4 ctx=      n= 5,804     27.6 s  AUC 0.3910
+maxent  Decapterus macarellus          pseudodisc k=5 ctx=      n= 5,796     25.9 s  AUC 0.7801
+maxent  Monotaxis grandoculis          pseudodisc k=1 ctx=      n= 5,645      5.2 s  AUC 0.9397
+maxent  Monotaxis grandoculis          pseudodisc k=2 ctx=      n= 5,645      5.9 s  AUC 0.9913
+maxent  Monotaxis grandoculis          pseudodisc k=3 ctx=      n= 5,645      5.0 s  AUC 0.8880
+maxent  Monotaxis grandoculis          pseudodisc k=4 ctx=      n= 5,645      7.5 s  AUC 0.9808
+maxent  Monotaxis grandoculis          pseudodisc k=5 ctx=      n= 5,636      6.5 s  AUC 0.9646
+maxent  Auxis rochei rochei            pseudodisc k=1 ctx=      n= 5,333      7.8 s  AUC 0.7428
+maxent  Auxis rochei rochei            pseudodisc k=2 ctx=      n= 5,333     13.8 s  AUC 0.8969
+maxent  Auxis rochei rochei            pseudodisc k=3 ctx=      n= 5,333     16.2 s  AUC 0.8580
+maxent  Auxis rochei rochei            pseudodisc k=4 ctx=      n= 5,333     10.8 s  AUC 0.6207
+maxent  Auxis rochei rochei            pseudodisc k=5 ctx=      n= 5,328     14.1 s  AUC 0.7887
+maxent  Bodianus diplotaenia           pseudodisc k=1 ctx=      n= 5,348      1.6 s  AUC 0.9434
+maxent  Bodianus diplotaenia           pseudodisc k=2 ctx=      n= 5,348      1.7 s  AUC 0.9603
+maxent  Bodianus diplotaenia           pseudodisc k=3 ctx=      n= 5,348      1.3 s  AUC 0.9565
+maxent  Bodianus diplotaenia           pseudodisc k=4 ctx=      n= 5,348      1.1 s  AUC 0.8205
+maxent  Bodianus diplotaenia           pseudodisc k=5 ctx=      n= 5,340      1.3 s  AUC 0.8322
+maxent  Conger cinereus                pseudodisc k=1 ctx=      n= 5,325      9.9 s  AUC 0.9731
+maxent  Conger cinereus                pseudodisc k=2 ctx=      n= 5,325     14.0 s  AUC 0.9721
+maxent  Conger cinereus                pseudodisc k=3 ctx=      n= 5,325      8.0 s  AUC 0.9419
+maxent  Conger cinereus                pseudodisc k=4 ctx=      n= 5,325      8.7 s  AUC 0.9509
+maxent  Conger cinereus                pseudodisc k=5 ctx=      n= 5,316      6.5 s  AUC 0.9335
+maxent  Euthynnus affinis              pseudodisc k=1 ctx=      n= 5,423     16.4 s  AUC 0.7613
+maxent  Euthynnus affinis              pseudodisc k=2 ctx=      n= 5,423     23.6 s  AUC 0.7789
+maxent  Euthynnus affinis              pseudodisc k=3 ctx=      n= 5,423     12.9 s  AUC 0.8843
+maxent  Euthynnus affinis              pseudodisc k=4 ctx=      n= 5,423     12.8 s  AUC 0.8232
+maxent  Euthynnus affinis              pseudodisc k=5 ctx=      n= 5,416     10.0 s  AUC 0.8592
+maxent  Lethrinus nebulosus            pseudodisc k=1 ctx=      n= 5,400      6.5 s  AUC 0.8446
+maxent  Lethrinus nebulosus            pseudodisc k=2 ctx=      n= 5,400      8.1 s  AUC 0.8472
+maxent  Lethrinus nebulosus            pseudodisc k=3 ctx=      n= 5,400      2.4 s  AUC 0.8648
+maxent  Lethrinus nebulosus            pseudodisc k=4 ctx=      n= 5,400      5.2 s  AUC 0.8804
+maxent  Lethrinus nebulosus            pseudodisc k=5 ctx=      n= 5,392      4.2 s  AUC 0.8736
+maxent  Ophiactis savignyi             pseudodisc k=1 ctx=      n= 5,541      8.0 s  AUC 0.9759
+maxent  Ophiactis savignyi             pseudodisc k=2 ctx=      n= 5,541      8.6 s  AUC 0.9686
+maxent  Ophiactis savignyi             pseudodisc k=3 ctx=      n= 5,541      7.1 s  AUC 0.9463
+maxent  Ophiactis savignyi             pseudodisc k=4 ctx=      n= 5,541      7.6 s  AUC 0.9631
+maxent  Ophiactis savignyi             pseudodisc k=5 ctx=      n= 5,532      5.4 s  AUC 0.9657
+maxent  Pomacentrus coelestis          pseudodisc k=1 ctx=      n= 5,568      4.9 s  AUC 0.9315
+maxent  Pomacentrus coelestis          pseudodisc k=2 ctx=      n= 5,568      6.1 s  AUC 0.9749
+maxent  Pomacentrus coelestis          pseudodisc k=3 ctx=      n= 5,568      5.4 s  AUC 0.9231
+maxent  Pomacentrus coelestis          pseudodisc k=4 ctx=      n= 5,568      4.8 s  AUC 0.9238
+maxent  Pomacentrus coelestis          pseudodisc k=5 ctx=      n= 5,560      7.1 s  AUC 0.9231
+maxent  Uraspis secunda                pseudodisc k=1 ctx=      n= 5,336     11.8 s  AUC 0.7162
+maxent  Uraspis secunda                pseudodisc k=2 ctx=      n= 5,336     13.5 s  AUC 0.5402
+maxent  Uraspis secunda                pseudodisc k=3 ctx=      n= 5,336     19.4 s  AUC 0.5841
+maxent  Uraspis secunda                pseudodisc k=4 ctx=      n= 5,336     13.0 s  AUC 0.7392
+maxent  Uraspis secunda                pseudodisc k=5 ctx=      n= 5,328     17.8 s  AUC 0.6206
+[saved] /mnt/c/Users/Personal/OneDrive/Masters/Applied ML/Final_project/extension/results/maxent.jsonl (+191 records)
+tabicl  Ascidia challengeri            pseudodisc k=1 ctx=      n= 5,098     50.4 s  AUC 0.9202
+tabicl  Ascidia challengeri            pseudodisc k=2 ctx=      n= 5,098     45.0 s  AUC 0.9538
+tabicl  Ascidia challengeri            pseudodisc k=3 ctx=      n= 5,098     39.1 s  AUC 0.9009
+tabicl  Ascidia challengeri            pseudodisc k=4 ctx=      n= 5,098     40.3 s  AUC 0.5618
+tabicl  Ascidia challengeri            pseudodisc k=5 ctx=      n= 5,092     43.4 s  AUC 0.8297
+tabicl  Balaena mysticetus             pseudodisc k=1 ctx=      n= 8,882    115.6 s  AUC 0.9860
+tabicl  Balaena mysticetus             pseudodisc k=2 ctx=      n= 8,882     98.2 s  AUC 0.9890
+tabicl  Balaena mysticetus             pseudodisc k=3 ctx=      n= 8,882    120.2 s  AUC 0.9680
+tabicl  Balaena mysticetus             pseudodisc k=4 ctx=      n= 8,882     92.0 s  AUC 0.9967
+tabicl  Balaena mysticetus             pseudodisc k=5 ctx=      n= 8,876     94.9 s  AUC 0.9928
+tabicl  Sterechinus neumayeri          pseudodisc k=1 ctx=      n= 5,241     41.0 s  AUC 0.8783
+tabicl  Sterechinus neumayeri          pseudodisc k=2 ctx=      n= 5,241     49.5 s  AUC 0.8782
+tabicl  Sterechinus neumayeri          pseudodisc k=3 ctx=      n= 5,241     41.0 s  AUC 0.8194
+tabicl  Sterechinus neumayeri          pseudodisc k=4 ctx=      n= 5,241     43.6 s  AUC 0.7830
+tabicl  Sterechinus neumayeri          pseudodisc k=5 ctx=      n= 5,236     43.0 s  AUC 0.7859
+tabicl  Apostichopus californicus      pseudodisc k=1 ctx=      n= 5,208     41.4 s  AUC 0.9592
+tabicl  Apostichopus californicus      pseudodisc k=2 ctx=      n= 5,208     39.1 s  AUC 0.8924
+tabicl  Apostichopus californicus      pseudodisc k=3 ctx=      n= 5,208     36.4 s  AUC 0.8559
+tabicl  Apostichopus californicus      pseudodisc k=4 ctx=      n= 5,208     34.9 s  AUC 0.9143
+tabicl  Apostichopus californicus      pseudodisc k=5 ctx=      n= 5,200     37.1 s  AUC 0.7721
+tabicl  Arrhoges occidentalis          pseudodisc k=1 ctx=      n= 5,108     33.1 s  AUC 0.7764
+tabicl  Arrhoges occidentalis          pseudodisc k=2 ctx=      n= 5,108     33.1 s  AUC 0.5982
+tabicl  Arrhoges occidentalis          pseudodisc k=3 ctx=      n= 5,108     33.3 s  AUC 0.7271
+tabicl  Arrhoges occidentalis          pseudodisc k=4 ctx=      n= 5,108     33.3 s  AUC 0.7226
+tabicl  Arrhoges occidentalis          pseudodisc k=5 ctx=      n= 5,100     33.4 s  AUC 0.7804
+tabicl  Austrolabrus maculatus         pseudodisc k=1 ctx=      n= 5,149     34.6 s  AUC 0.8750
+tabicl  Austrolabrus maculatus         pseudodisc k=2 ctx=      n= 5,149     33.7 s  AUC 0.9655
+tabicl  Austrolabrus maculatus         pseudodisc k=3 ctx=      n= 5,149     35.9 s  AUC 0.8373
+tabicl  Austrolabrus maculatus         pseudodisc k=4 ctx=      n= 5,149     37.9 s  AUC 0.9803
+tabicl  Austrolabrus maculatus         pseudodisc k=5 ctx=      n= 5,144     34.8 s  AUC 0.8809
+tabicl  Dictyota diemensis             pseudodisc k=1 ctx=      n= 5,060     33.3 s  AUC 0.9976
+tabicl  Dictyota diemensis             pseudodisc k=2 ctx=      n= 5,060     33.0 s  AUC 0.9267
+tabicl  Dictyota diemensis             pseudodisc k=3 ctx=      n= 5,060     33.3 s  AUC 0.8618
+tabicl  Dictyota diemensis             pseudodisc k=4 ctx=      n= 5,060     33.3 s  AUC 0.8120
+tabicl  Dictyota diemensis             pseudodisc k=5 ctx=      n= 5,052     33.5 s  AUC 0.9426
+tabicl  Echiurus echiurus              pseudodisc k=1 ctx=      n= 5,211     35.6 s  AUC 0.7935
+tabicl  Echiurus echiurus              pseudodisc k=2 ctx=      n= 5,211     41.1 s  AUC 0.8805
+tabicl  Echiurus echiurus              pseudodisc k=3 ctx=      n= 5,211     35.0 s  AUC 0.9470
+tabicl  Echiurus echiurus              pseudodisc k=4 ctx=      n= 5,211     34.7 s  AUC 0.7009
+tabicl  Echiurus echiurus              pseudodisc k=5 ctx=      n= 5,204     35.8 s  AUC 0.8426
+tabicl  Octopus rubescens              pseudodisc k=1 ctx=      n= 5,138     33.2 s  AUC 0.7673
+tabicl  Octopus rubescens              pseudodisc k=2 ctx=      n= 5,138     35.1 s  AUC 0.8061
+tabicl  Octopus rubescens              pseudodisc k=3 ctx=      n= 5,138     34.1 s  AUC 0.7847
+tabicl  Octopus rubescens              pseudodisc k=4 ctx=      n= 5,138     33.7 s  AUC 0.9735
+tabicl  Octopus rubescens              pseudodisc k=5 ctx=      n= 5,132     34.5 s  AUC 0.8766
+tabicl  Sabatieria celtica             pseudodisc k=1 ctx=      n= 5,109     32.3 s  AUC 0.9129
+tabicl  Sabatieria celtica             pseudodisc k=2 ctx=      n= 5,109     34.7 s  AUC 0.6635
+tabicl  Sabatieria celtica             pseudodisc k=3 ctx=      n= 5,109     33.7 s  AUC 0.7234
+tabicl  Sabatieria celtica             pseudodisc k=4 ctx=      n= 5,109     33.6 s  AUC 0.9360
+tabicl  Sabatieria celtica             pseudodisc k=5 ctx=      n= 5,100     33.1 s  AUC 0.8109
+tabicl  Synalpheus townsendi           pseudodisc k=1 ctx=      n= 5,145     34.8 s  AUC 0.9699
+tabicl  Synalpheus townsendi           pseudodisc k=2 ctx=      n= 5,145     34.6 s  AUC 0.9373
+tabicl  Synalpheus townsendi           pseudodisc k=3 ctx=      n= 5,145     34.8 s  AUC 0.6914
+tabicl  Synalpheus townsendi           pseudodisc k=4 ctx=      n= 5,145     35.3 s  AUC 0.9126
+tabicl  Synalpheus townsendi           pseudodisc k=5 ctx=      n= 5,136     35.5 s  AUC 0.8003
+tabicl  Balaenoptera acutorostrata     pseudodisc k=1 ctx=      n= 9,291    112.8 s  AUC 0.9226
+tabicl  Balaenoptera acutorostrata     pseudodisc k=2 ctx=      n= 9,291    111.5 s  AUC 0.8264
+tabicl  Balaenoptera acutorostrata     pseudodisc k=3 ctx=      n= 9,291    110.0 s  AUC 0.3092
+tabicl  Balaenoptera acutorostrata     pseudodisc k=4 ctx=      n= 9,291    112.8 s  AUC 0.9386
+tabicl  Balaenoptera acutorostrata     pseudodisc k=5 ctx=      n= 9,284    110.1 s  AUC 0.9228
+tabicl  Ciona intestinalis             pseudodisc k=1 ctx=      n= 6,193     51.4 s  AUC 0.9925
+tabicl  Ciona intestinalis             pseudodisc k=2 ctx=      n= 6,193     51.9 s  AUC 0.9795
+tabicl  Ciona intestinalis             pseudodisc k=3 ctx=      n= 6,193     54.9 s  AUC 0.9791
+tabicl  Ciona intestinalis             pseudodisc k=4 ctx=      n= 6,193     45.6 s  AUC 0.9999
+tabicl  Ciona intestinalis             pseudodisc k=5 ctx=      n= 6,184     50.3 s  AUC 0.9904
+tabicl  Eukrohnia hamata               pseudodisc k=1 ctx=      n= 8,637     98.5 s  AUC 0.4548
+tabicl  Eukrohnia hamata               pseudodisc k=2 ctx=      n= 8,637    101.3 s  AUC 0.6870
+tabicl  Eukrohnia hamata               pseudodisc k=3 ctx=      n= 8,637    101.2 s  AUC 0.7840
+tabicl  Eukrohnia hamata               pseudodisc k=4 ctx=      n= 8,637     98.8 s  AUC 0.6191
+tabicl  Eukrohnia hamata               pseudodisc k=5 ctx=      n= 8,632     98.2 s  AUC 0.7198
+tabicl  Limacina retroversa            pseudodisc k=1 ctx=      n=10,000    134.4 s  AUC 0.2312
+tabicl  Limacina retroversa            pseudodisc k=2 ctx=      n=10,000    133.3 s  AUC 0.8261
+tabicl  Limacina retroversa            pseudodisc k=3 ctx=      n=10,000    127.7 s  AUC 0.9029
+tabicl  Limacina retroversa            pseudodisc k=4 ctx=      n=10,000    127.4 s  AUC 0.8910
+tabicl  Limacina retroversa            pseudodisc k=5 ctx=      n=10,000    145.8 s  AUC 0.9025
+tabicl  Platyxanthus patagonicus       pseudodisc k=1 ctx=      n= 5,657     40.3 s  AUC 0.8973
+tabicl  Platyxanthus patagonicus       pseudodisc k=2 ctx=      n= 5,657     40.3 s  AUC 0.8462
+tabicl  Platyxanthus patagonicus       pseudodisc k=3 ctx=      n= 5,657     41.1 s  AUC 0.8100
+tabicl  Platyxanthus patagonicus       pseudodisc k=4 ctx=      n= 5,657     39.6 s  AUC 0.7846
+tabicl  Platyxanthus patagonicus       pseudodisc k=5 ctx=      n= 5,648     37.6 s  AUC 0.9073
+tabicl  Pleuronectes platessa          pseudodisc k=1 ctx=      n=10,000    114.8 s  AUC 0.9949
+tabicl  Pleuronectes platessa          pseudodisc k=2 ctx=      n=10,000    111.8 s  AUC 0.9989
+tabicl  Pleuronectes platessa          pseudodisc k=3 ctx=      n=10,000    114.6 s  AUC 0.9961
+tabicl  Pleuronectes platessa          pseudodisc k=4 ctx=      n=10,000    116.2 s  AUC 1.0000
+tabicl  Pleuronectes platessa          pseudodisc k=5 ctx=      n=10,000    118.4 s  AUC 0.9989
+tabicl  Sepia australis                pseudodisc k=1 ctx=      n= 6,832     55.8 s  AUC 1.0000
+tabicl  Sepia australis                pseudodisc k=2 ctx=      n= 6,832     53.8 s  AUC 1.0000
+tabicl  Sepia australis                pseudodisc k=3 ctx=      n= 6,832     53.4 s  AUC 1.0000
+tabicl  Sepia australis                pseudodisc k=4 ctx=      n= 6,832     53.1 s  AUC 1.0000
+tabicl  Sepia australis                pseudodisc k=5 ctx=      n= 6,824     54.6 s  AUC 0.9996
+tabicl  Sepia officinalis              pseudodisc k=1 ctx=      n= 6,386     54.5 s  AUC 0.9943
+tabicl  Sepia officinalis              pseudodisc k=2 ctx=      n= 6,386     49.2 s  AUC 0.9999
+tabicl  Sepia officinalis              pseudodisc k=3 ctx=      n= 6,386     56.1 s  AUC 0.9831
+tabicl  Sepia officinalis              pseudodisc k=4 ctx=      n= 6,386     50.5 s  AUC 0.9980
+tabicl  Sepia officinalis              pseudodisc k=5 ctx=      n= 6,380     56.1 s  AUC 0.9909
+tabicl  Pictilabrus laticlavius        pseudodisc k=1 ctx=      n= 5,273     35.7 s  AUC 0.9187
+tabicl  Pictilabrus laticlavius        pseudodisc k=2 ctx=      n= 5,273     36.1 s  AUC 0.9929
+tabicl  Pictilabrus laticlavius        pseudodisc k=3 ctx=      n= 5,273     36.1 s  AUC 0.9882
+tabicl  Pictilabrus laticlavius        pseudodisc k=4 ctx=      n= 5,273     35.4 s  AUC 0.7452
+tabicl  Pictilabrus laticlavius        pseudodisc k=5 ctx=      n= 5,264     35.2 s  AUC 0.9063
+tabicl  Scorpis lineolata              pseudodisc k=1 ctx=      n= 5,282     36.7 s  AUC 0.9655
+tabicl  Scorpis lineolata              pseudodisc k=2 ctx=      n= 5,282     35.9 s  AUC 0.8760
+tabicl  Scorpis lineolata              pseudodisc k=3 ctx=      n= 5,282     33.1 s  AUC 0.8602
+tabicl  Scorpis lineolata              pseudodisc k=4 ctx=      n= 5,282     36.3 s  AUC 0.9312
+tabicl  Scorpis lineolata              pseudodisc k=5 ctx=      n= 5,276     34.9 s  AUC 0.8685
+tabicl  Semirossia tenera              pseudodisc k=1 ctx=      n= 5,245     36.3 s  AUC 0.7660
+tabicl  Semirossia tenera              pseudodisc k=2 ctx=      n= 5,245     36.3 s  AUC 0.8061
+tabicl  Semirossia tenera              pseudodisc k=3 ctx=      n= 5,245     34.3 s  AUC 0.6036
+tabicl  Semirossia tenera              pseudodisc k=4 ctx=      n= 5,245     35.1 s  AUC 0.7231
+tabicl  Semirossia tenera              pseudodisc k=5 ctx=      n= 5,236     34.3 s  AUC 0.6441
+tabicl  Tubulanus polymorphus          pseudodisc k=1 ctx=      n= 5,393     35.4 s  AUC 0.8303
+tabicl  Tubulanus polymorphus          pseudodisc k=2 ctx=      n= 5,393     37.7 s  AUC 0.9109
+tabicl  Tubulanus polymorphus          pseudodisc k=3 ctx=      n= 5,393     36.1 s  AUC 0.8614
+tabicl  Tubulanus polymorphus          pseudodisc k=4 ctx=      n= 5,393     35.8 s  AUC 0.7823
+tabicl  Tubulanus polymorphus          pseudodisc k=5 ctx=      n= 5,384     37.5 s  AUC 0.8898
+tabicl  Zostera (Zosterella) noltei    pseudodisc k=1 ctx=      n= 5,250     35.0 s  AUC 0.9411
+tabicl  Zostera (Zosterella) noltei    pseudodisc k=2 ctx=      n= 5,250     36.0 s  AUC 0.9437
+tabicl  Zostera (Zosterella) noltei    pseudodisc k=3 ctx=      n= 5,250     34.7 s  AUC 0.9144
+tabicl  Zostera (Zosterella) noltei    pseudodisc k=4 ctx=      n= 5,250     34.6 s  AUC 0.9654
+tabicl  Zostera (Zosterella) noltei    pseudodisc k=5 ctx=      n= 5,244     33.3 s  AUC 0.9693
+tabicl  Favites abdita                 pseudodisc k=1 ctx=      n= 5,209     33.9 s  AUC 0.8874
+tabicl  Favites abdita                 pseudodisc k=2 ctx=      n= 5,209     34.4 s  AUC 0.9585
+tabicl  Favites abdita                 pseudodisc k=3 ctx=      n= 5,209     36.1 s  AUC 0.9403
+tabicl  Favites abdita                 pseudodisc k=4 ctx=      n= 5,209     34.6 s  AUC 0.9668
+tabicl  Favites abdita                 pseudodisc k=5 ctx=      n= 5,200     35.0 s  AUC 0.9579
+tabicl  Hermodice carunculata          pseudodisc k=1 ctx=      n= 5,139     34.3 s  AUC 0.7025
+tabicl  Hermodice carunculata          pseudodisc k=2 ctx=      n= 5,139     32.8 s  AUC 0.8809
+tabicl  Hermodice carunculata          pseudodisc k=3 ctx=      n= 5,139     33.3 s  AUC 0.8764
+tabicl  Hermodice carunculata          pseudodisc k=4 ctx=      n= 5,139     33.6 s  AUC 0.8623
+tabicl  Hermodice carunculata          pseudodisc k=5 ctx=      n= 5,132     34.6 s  AUC 0.9341
+tabicl  Octopus joubini                pseudodisc k=1 ctx=      n= 5,093     32.0 s  AUC 0.8927
+tabicl  Octopus joubini                pseudodisc k=2 ctx=      n= 5,093     31.8 s  AUC 0.9338
+tabicl  Octopus joubini                pseudodisc k=3 ctx=      n= 5,093     32.4 s  AUC 0.8531
+tabicl  Octopus joubini                pseudodisc k=4 ctx=      n= 5,093     32.8 s  AUC 0.7468
+tabicl  Octopus joubini                pseudodisc k=5 ctx=      n= 5,084     32.4 s  AUC 0.8330
+tabicl  Prunum apicinum                pseudodisc k=1 ctx=      n= 5,174     33.5 s  AUC 0.8152
+tabicl  Prunum apicinum                pseudodisc k=2 ctx=      n= 5,174     34.4 s  AUC 0.8068
+tabicl  Prunum apicinum                pseudodisc k=3 ctx=      n= 5,174     34.1 s  AUC 0.8467
+tabicl  Prunum apicinum                pseudodisc k=4 ctx=      n= 5,174     35.9 s  AUC 0.9662
+tabicl  Prunum apicinum                pseudodisc k=5 ctx=      n= 5,168     38.6 s  AUC 0.7864
+tabicl  Symphyllia recta               pseudodisc k=1 ctx=      n= 5,164     38.0 s  AUC 0.9789
+tabicl  Symphyllia recta               pseudodisc k=2 ctx=      n= 5,164     35.7 s  AUC 0.9656
+tabicl  Symphyllia recta               pseudodisc k=3 ctx=      n= 5,164     35.4 s  AUC 0.9403
+tabicl  Symphyllia recta               pseudodisc k=4 ctx=      n= 5,164     39.3 s  AUC 0.9923
+tabicl  Symphyllia recta               pseudodisc k=5 ctx=      n= 5,156     33.8 s  AUC 0.8810
+tabicl  Chlorurus sordidus             pseudodisc k=1 ctx=      n= 5,875     50.7 s  AUC 0.9454
+tabicl  Chlorurus sordidus             pseudodisc k=2 ctx=      n= 5,875     49.0 s  AUC 0.9036
+tabicl  Chlorurus sordidus             pseudodisc k=3 ctx=      n= 5,875     50.5 s  AUC 0.9797
+tabicl  Chlorurus sordidus             pseudodisc k=4 ctx=      n= 5,875     50.9 s  AUC 0.9586
+tabicl  Chlorurus sordidus             pseudodisc k=5 ctx=      n= 5,868     50.7 s  AUC 0.8809
+tabicl  Decapterus macarellus          pseudodisc k=1 ctx=      n= 5,804     52.9 s  AUC 0.7656
+tabicl  Decapterus macarellus          pseudodisc k=2 ctx=      n= 5,804     51.3 s  AUC 0.6642
+tabicl  Decapterus macarellus          pseudodisc k=3 ctx=      n= 5,804     49.1 s  AUC 0.7735
+tabicl  Decapterus macarellus          pseudodisc k=4 ctx=      n= 5,804     52.0 s  AUC 0.5659
+tabicl  Decapterus macarellus          pseudodisc k=5 ctx=      n= 5,796     50.5 s  AUC 0.8918
+tabicl  Monotaxis grandoculis          pseudodisc k=1 ctx=      n= 5,645     44.7 s  AUC 0.9561
+tabicl  Monotaxis grandoculis          pseudodisc k=2 ctx=      n= 5,645     69.5 s  AUC 0.9931
+tabicl  Monotaxis grandoculis          pseudodisc k=3 ctx=      n= 5,645     64.7 s  AUC 0.9165
+tabicl  Monotaxis grandoculis          pseudodisc k=4 ctx=      n= 5,645     54.3 s  AUC 0.9669
+tabicl  Monotaxis grandoculis          pseudodisc k=5 ctx=      n= 5,636     49.5 s  AUC 0.9655
+tabicl  Auxis rochei rochei            pseudodisc k=1 ctx=      n= 5,333     38.5 s  AUC 0.8909
+tabicl  Auxis rochei rochei            pseudodisc k=2 ctx=      n= 5,333     37.8 s  AUC 0.8610
+tabicl  Auxis rochei rochei            pseudodisc k=3 ctx=      n= 5,333     38.4 s  AUC 0.8178
+tabicl  Auxis rochei rochei            pseudodisc k=4 ctx=      n= 5,333     37.6 s  AUC 0.7150
+tabicl  Auxis rochei rochei            pseudodisc k=5 ctx=      n= 5,328     39.5 s  AUC 0.7897
+tabicl  Bodianus diplotaenia           pseudodisc k=1 ctx=      n= 5,348     42.7 s  AUC 0.9736
+tabicl  Bodianus diplotaenia           pseudodisc k=2 ctx=      n= 5,348     39.6 s  AUC 0.9840
+tabicl  Bodianus diplotaenia           pseudodisc k=3 ctx=      n= 5,348     38.1 s  AUC 0.9392
+tabicl  Bodianus diplotaenia           pseudodisc k=4 ctx=      n= 5,348     36.3 s  AUC 0.8913
+tabicl  Bodianus diplotaenia           pseudodisc k=5 ctx=      n= 5,340     36.7 s  AUC 0.8460
+tabicl  Conger cinereus                pseudodisc k=1 ctx=      n= 5,325     44.8 s  AUC 0.9777
+tabicl  Conger cinereus                pseudodisc k=2 ctx=      n= 5,325     51.0 s  AUC 0.9753
+tabicl  Conger cinereus                pseudodisc k=3 ctx=      n= 5,325     40.5 s  AUC 0.9684
+tabicl  Conger cinereus                pseudodisc k=4 ctx=      n= 5,325     38.9 s  AUC 0.9490
+tabicl  Conger cinereus                pseudodisc k=5 ctx=      n= 5,316     37.0 s  AUC 0.9412
+tabicl  Euthynnus affinis              pseudodisc k=1 ctx=      n= 5,423     38.3 s  AUC 0.7569
+tabicl  Euthynnus affinis              pseudodisc k=2 ctx=      n= 5,423     51.0 s  AUC 0.8543
+tabicl  Euthynnus affinis              pseudodisc k=3 ctx=      n= 5,423     55.8 s  AUC 0.8971
+tabicl  Euthynnus affinis              pseudodisc k=4 ctx=      n= 5,423     41.7 s  AUC 0.8558
+tabicl  Euthynnus affinis              pseudodisc k=5 ctx=      n= 5,416     41.9 s  AUC 0.8829
+tabicl  Lethrinus nebulosus            pseudodisc k=1 ctx=      n= 5,400     42.1 s  AUC 0.8804
+tabicl  Lethrinus nebulosus            pseudodisc k=2 ctx=      n= 5,400     37.3 s  AUC 0.8460
+tabicl  Lethrinus nebulosus            pseudodisc k=3 ctx=      n= 5,400     38.6 s  AUC 0.9310
+tabicl  Lethrinus nebulosus            pseudodisc k=4 ctx=      n= 5,400     37.5 s  AUC 0.8756
+tabicl  Lethrinus nebulosus            pseudodisc k=5 ctx=      n= 5,392     39.1 s  AUC 0.8348
+tabicl  Ophiactis savignyi             pseudodisc k=1 ctx=      n= 5,541     41.1 s  AUC 0.9843
+tabicl  Ophiactis savignyi             pseudodisc k=2 ctx=      n= 5,541     40.1 s  AUC 0.9843
+tabicl  Ophiactis savignyi             pseudodisc k=3 ctx=      n= 5,541     40.3 s  AUC 0.9512
+tabicl  Ophiactis savignyi             pseudodisc k=4 ctx=      n= 5,541     41.1 s  AUC 0.9630
+tabicl  Ophiactis savignyi             pseudodisc k=5 ctx=      n= 5,532     44.4 s  AUC 0.9719
+tabicl  Pomacentrus coelestis          pseudodisc k=1 ctx=      n= 5,568     40.9 s  AUC 0.9427
+tabicl  Pomacentrus coelestis          pseudodisc k=2 ctx=      n= 5,568     41.4 s  AUC 0.9766
+tabicl  Pomacentrus coelestis          pseudodisc k=3 ctx=      n= 5,568     40.5 s  AUC 0.9038
+tabicl  Pomacentrus coelestis          pseudodisc k=4 ctx=      n= 5,568     40.9 s  AUC 0.8560
+tabicl  Pomacentrus coelestis          pseudodisc k=5 ctx=      n= 5,560     41.6 s  AUC 0.9276
+tabicl  Uraspis secunda                pseudodisc k=1 ctx=      n= 5,336     59.8 s  AUC 0.7892
+tabicl  Uraspis secunda                pseudodisc k=2 ctx=      n= 5,336     45.8 s  AUC 0.7178
+tabicl  Uraspis secunda                pseudodisc k=3 ctx=      n= 5,336     41.1 s  AUC 0.5844
+tabicl  Uraspis secunda                pseudodisc k=4 ctx=      n= 5,336     39.7 s  AUC 0.7049
+tabicl  Uraspis secunda                pseudodisc k=5 ctx=      n= 5,328     40.0 s  AUC 0.5892
+[saved] /mnt/c/Users/Personal/OneDrive/Masters/Applied ML/Final_project/extension/results/tabicl.jsonl (+200 records)
+ALL_DONE

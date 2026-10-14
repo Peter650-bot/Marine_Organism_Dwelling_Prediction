@@ -1,0 +1,194 @@
+{
+  "folds": "MarineSPEED pseudodisc (spatial) 5-fold",
+  "n_species": 40,
+  "mean_auc": {
+    "tabicl": 0.8702612052692823,
+    "maxent": 0.8538564729204368
+  },
+  "tabicl_minus_maxent": {
+    "n": 40,
+    "mean": 0.016404732348845756,
+    "median": 0.012268507942664875,
+    "ci95": [
+      6.096124581153842e-05,
+      0.03448560690187776
+    ],
+    "wilcoxon_p": 0.01650634321049438,
+    "wins": 30,
+    "losses": 10
+  },
+  "time_tabicl": {
+    "median": 38.96233796749766,
+    "min": 31.812997896995512,
+    "max": 145.76430208799866,
+    "total_h": 2.733444512875543
+  },
+  "time_maxent": {
+    "median": 3.6495848140002636,
+    "min": 0.42090431899850955,
+    "max": 79.8472592270009,
+    "total_h": 0.4746696000797167
+  },
+  "per_species": {
+    "Apostichopus californicus": {
+      "tabicl": 0.8787885909513585,
+      "maxent": 0.7719955190386061
+    },
+    "Arrhoges occidentalis": {
+      "tabicl": 0.7209428270100453,
+      "maxent": 0.7070664988170513
+    },
+    "Ascidia challengeri": {
+      "tabicl": 0.8333053389113143,
+      "maxent": 0.8597050540159945
+    },
+    "Austrolabrus maculatus": {
+      "tabicl": 0.9077911198969251,
+      "maxent": 0.8947021947966356
+    },
+    "Auxis rochei rochei": {
+      "tabicl": 0.8148841567393008,
+      "maxent": 0.7814464931277664
+    },
+    "Balaena mysticetus": {
+      "tabicl": 0.9864956772942006,
+      "maxent": 0.9859640308037771
+    },
+    "Balaenoptera acutorostrata": {
+      "tabicl": 0.7839295675846096,
+      "maxent": 0.8456942855930251
+    },
+    "Bodianus diplotaenia": {
+      "tabicl": 0.9268172776556574,
+      "maxent": 0.9025837768359561
+    },
+    "Chlorurus sordidus": {
+      "tabicl": 0.9336314515501444,
+      "maxent": 0.9439065838757621
+    },
+    "Ciona intestinalis": {
+      "tabicl": 0.9882780197854976,
+      "maxent": 0.9841522182051403
+    },
+    "Conger cinereus": {
+      "tabicl": 0.9623240567073506,
+      "maxent": 0.9542995175502395
+    },
+    "Decapterus macarellus": {
+      "tabicl": 0.7321963331208137,
+      "maxent": 0.7112988207774001
+    },
+    "Dictyota diemensis": {
+      "tabicl": 0.9081109597351569,
+      "maxent": 0.8893753479884621
+    },
+    "Echiurus echiurus": {
+      "tabicl": 0.8329018418179894,
+      "maxent": 0.8342695740160787
+    },
+    "Eukrohnia hamata": {
+      "tabicl": 0.6529492096539944,
+      "maxent": 0.7523625140530081
+    },
+    "Euthynnus affinis": {
+      "tabicl": 0.8494053963012659,
+      "maxent": 0.8213761298464304
+    },
+    "Favites abdita": {
+      "tabicl": 0.9421848415726339,
+      "maxent": 0.928880429987726
+    },
+    "Hermodice carunculata": {
+      "tabicl": 0.8512415441221475,
+      "maxent": 0.849417170567898
+    },
+    "Lethrinus nebulosus": {
+      "tabicl": 0.8735628506275928,
+      "maxent": 0.8621147598425525
+    },
+    "Limacina retroversa": {
+      "tabicl": 0.750739975,
+      "maxent": 0.850075275
+    },
+    "Monotaxis grandoculis": {
+      "tabicl": 0.9596291348526677,
+      "maxent": 0.9529083985552482
+    },
+    "Octopus joubini": {
+      "tabicl": 0.8518921585061046,
+      "maxent": 0.8193890697485827
+    },
+    "Octopus rubescens": {
+      "tabicl": 0.8416390056537582,
+      "maxent": 0.7541646621703005
+    },
+    "Ophiactis savignyi": {
+      "tabicl": 0.9709610093160108,
+      "maxent": 0.9639198304806798
+    },
+    "Pictilabrus laticlavius": {
+      "tabicl": 0.9102564386437553,
+      "maxent": 0.940400225470708
+    },
+    "Platyxanthus patagonicus": {
+      "tabicl": 0.8490839659942975,
+      "maxent": 0.6366452748031695
+    },
+    "Pleuronectes platessa": {
+      "tabicl": 0.9977572613855056,
+      "maxent": 0.9975631073781844
+    },
+    "Pomacentrus coelestis": {
+      "tabicl": 0.9213575330958756,
+      "maxent": 0.9352722996639047
+    },
+    "Prunum apicinum": {
+      "tabicl": 0.8442408292118285,
+      "maxent": 0.8087481784371635
+    },
+    "Sabatieria celtica": {
+      "tabicl": 0.8093564708735788,
+      "maxent": 0.7333117186618436
+    },
+    "Scorpis lineolata": {
+      "tabicl": 0.900270009116378,
+      "maxent": 0.8627875910200329
+    },
+    "Semirossia tenera": {
+      "tabicl": 0.7085927582768317,
+      "maxent": 0.7524673773521948
+    },
+    "Sepia australis": {
+      "tabicl": 0.9999220469552459,
+      "maxent": 0.9995518206742094
+    },
+    "Sepia officinalis": {
+      "tabicl": 0.9932568470625261,
+      "maxent": 0.9877286569285075
+    },
+    "Sterechinus neumayeri": {
+      "tabicl": 0.8289596108889947,
+      "maxent": 0.8420048080513427
+    },
+    "Symphyllia recta": {
+      "tabicl": 0.9516313345953591,
+      "maxent": 0.938376560132706
+    },
+    "Synalpheus townsendi": {
+      "tabicl": 0.8623231404398075,
+      "maxent": 0.8342495497887266
+    },
+    "Tubulanus polymorphus": {
+      "tabicl": 0.8549560510502652,
+      "maxent": 0.8318527967030113
+    },
+    "Uraspis secunda": {
+      "tabicl": 0.6771012551857943,
+      "maxent": 0.6400702484543291
+    },
+    "Zostera (Zosterella) noltei": {
+      "tabicl": 0.9467803136287095,
+      "maxent": 0.7921605476031075
+    }
+  }
+}

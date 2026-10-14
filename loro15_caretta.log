@@ -1,0 +1,23 @@
+/mnt/c/Users/Personal/OneDrive/Masters/Applied ML/Final_project/retention_core.py:238: RuntimeWarning: Mean of empty slice
+  u_mean = np.nanmean(u, axis=0)
+/mnt/c/Users/Personal/OneDrive/Masters/Applied ML/Final_project/retention_core.py:239: RuntimeWarning: Mean of empty slice
+  v_mean = np.nanmean(v, axis=0)
+fold 0 [664s, total 664s] n_test=234  AUC tabicl=0.9987 rf=0.9865 | F1 tabicl=0.9512 rf=0.9176
+fold 1 [588s, total 1252s] n_test=72  AUC tabicl=1.0000 rf=0.9649 | F1 tabicl=0.9474 rf=0.4000
+fold 2 [608s, total 1860s] n_test=300  AUC tabicl=0.9999 rf=0.9836 | F1 tabicl=0.9547 rf=0.9011
+fold 3 [575s, total 2435s] n_test=300  AUC tabicl=0.9917 rf=0.9854 | F1 tabicl=0.9288 rf=0.9298
+fold 4 [521s, total 2956s] n_test=300  AUC tabicl=0.9817 rf=0.8558 | F1 tabicl=0.8596 rf=0.8571
+fold 5: UNSCOREABLE (0 positives)
+fold 6: UNSCOREABLE (0 positives)
+fold 7 [555s, total 3511s] n_test=48  AUC tabicl=0.9983 rf=0.9957 | F1 tabicl=0.9091 rf=0.9796
+fold 8 [545s, total 4057s] n_test=276  AUC tabicl=0.9924 rf=0.9917 | F1 tabicl=0.9433 rf=0.6667
+fold 9: UNSCOREABLE (0 positives)
+fold 10 [545s, total 4602s] n_test=300  AUC tabicl=0.9985 rf=0.9965 | F1 tabicl=0.9900 rf=0.9521
+fold 11 [548s, total 5150s] n_test=300  AUC tabicl=0.9791 rf=0.9548 | F1 tabicl=0.8849 rf=0.7634
+fold 12 [555s, total 5705s] n_test=300  AUC tabicl=0.9998 rf=0.9990 | F1 tabicl=0.9835 rf=0.9737
+fold 13: UNSCOREABLE (0 positives)
+fold 14: UNSCOREABLE (0 positives)
+
+Caretta caretta, 15 regions: 10 scoreable, 5 unscoreable
+AUC  mean diff (TabICL - tuned RF) = +0.0226   Wilcoxon p = 0.0020
+F1   mean diff (TabICL - tuned RF) = +0.1011   Wilcoxon p = 0.0488

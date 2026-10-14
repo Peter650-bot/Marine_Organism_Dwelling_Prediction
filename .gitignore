@@ -37,3 +37,6 @@ cloudflared
 # ---- paper manuscript source + its build artefacts (not needed to reproduce) ----
 Amortized_In_Context_Habitat_Prediction_for_Climate_Scale_Species_Redistribution_Assessment/
 Amortized_In_Context_Habitat_Prediction_for_Climate_Scale_Species_Redistribution_Assessment.zip
+
+# ---- MarineSPEED benchmark download (extension/fetch_marinespeed.py) ----
+extension/data/

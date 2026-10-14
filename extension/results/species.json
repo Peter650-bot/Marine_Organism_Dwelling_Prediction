@@ -1,0 +1,248 @@
+{
+  "n": 40,
+  "seed": 42,
+  "species": [
+    "Ascidia challengeri",
+    "Balaena mysticetus",
+    "Sterechinus neumayeri",
+    "Apostichopus californicus",
+    "Arrhoges occidentalis",
+    "Austrolabrus maculatus",
+    "Dictyota diemensis",
+    "Echiurus echiurus",
+    "Octopus rubescens",
+    "Sabatieria celtica",
+    "Synalpheus townsendi",
+    "Balaenoptera acutorostrata",
+    "Ciona intestinalis",
+    "Eukrohnia hamata",
+    "Limacina retroversa",
+    "Platyxanthus patagonicus",
+    "Pleuronectes platessa",
+    "Sepia australis",
+    "Sepia officinalis",
+    "Pictilabrus laticlavius",
+    "Scorpis lineolata",
+    "Semirossia tenera",
+    "Tubulanus polymorphus",
+    "Zostera (Zosterella) noltei",
+    "Favites abdita",
+    "Hermodice carunculata",
+    "Octopus joubini",
+    "Prunum apicinum",
+    "Symphyllia recta",
+    "Chlorurus sordidus",
+    "Decapterus macarellus",
+    "Monotaxis grandoculis",
+    "Auxis rochei rochei",
+    "Bodianus diplotaenia",
+    "Conger cinereus",
+    "Euthynnus affinis",
+    "Lethrinus nebulosus",
+    "Ophiactis savignyi",
+    "Pomacentrus coelestis",
+    "Uraspis secunda"
+  ],
+  "strata": {
+    "Ascidia challengeri": [
+      "polar",
+      "few",
+      121
+    ],
+    "Balaena mysticetus": [
+      "polar",
+      "many",
+      4851
+    ],
+    "Sterechinus neumayeri": [
+      "polar",
+      "mid",
+      300
+    ],
+    "Apostichopus californicus": [
+      "temperate",
+      "few",
+      258
+    ],
+    "Arrhoges occidentalis": [
+      "temperate",
+      "few",
+      133
+    ],
+    "Austrolabrus maculatus": [
+      "temperate",
+      "few",
+      185
+    ],
+    "Dictyota diemensis": [
+      "temperate",
+      "few",
+      73
+    ],
+    "Echiurus echiurus": [
+      "temperate",
+      "few",
+      262
+    ],
+    "Octopus rubescens": [
+      "temperate",
+      "few",
+      171
+    ],
+    "Sabatieria celtica": [
+      "temperate",
+      "few",
+      134
+    ],
+    "Synalpheus townsendi": [
+      "temperate",
+      "few",
+      179
+    ],
+    "Balaenoptera acutorostrata": [
+      "temperate",
+      "many",
+      5362
+    ],
+    "Ciona intestinalis": [
+      "temperate",
+      "many",
+      1489
+    ],
+    "Eukrohnia hamata": [
+      "temperate",
+      "many",
+      4545
+    ],
+    "Limacina retroversa": [
+      "temperate",
+      "many",
+      32788
+    ],
+    "Platyxanthus patagonicus": [
+      "temperate",
+      "many",
+      819
+    ],
+    "Pleuronectes platessa": [
+      "temperate",
+      "many",
+      11053
+    ],
+    "Sepia australis": [
+      "temperate",
+      "many",
+      2288
+    ],
+    "Sepia officinalis": [
+      "temperate",
+      "many",
+      1731
+    ],
+    "Pictilabrus laticlavius": [
+      "temperate",
+      "mid",
+      339
+    ],
+    "Scorpis lineolata": [
+      "temperate",
+      "mid",
+      351
+    ],
+    "Semirossia tenera": [
+      "temperate",
+      "mid",
+      304
+    ],
+    "Tubulanus polymorphus": [
+      "temperate",
+      "mid",
+      489
+    ],
+    "Zostera (Zosterella) noltei": [
+      "temperate",
+      "mid",
+      311
+    ],
+    "Favites abdita": [
+      "tropical",
+      "few",
+      259
+    ],
+    "Hermodice carunculata": [
+      "tropical",
+      "few",
+      172
+    ],
+    "Octopus joubini": [
+      "tropical",
+      "few",
+      114
+    ],
+    "Prunum apicinum": [
+      "tropical",
+      "few",
+      216
+    ],
+    "Symphyllia recta": [
+      "tropical",
+      "few",
+      203
+    ],
+    "Chlorurus sordidus": [
+      "tropical",
+      "many",
+      1092
+    ],
+    "Decapterus macarellus": [
+      "tropical",
+      "many",
+      1003
+    ],
+    "Monotaxis grandoculis": [
+      "tropical",
+      "many",
+      804
+    ],
+    "Auxis rochei rochei": [
+      "tropical",
+      "mid",
+      415
+    ],
+    "Bodianus diplotaenia": [
+      "tropical",
+      "mid",
+      433
+    ],
+    "Conger cinereus": [
+      "tropical",
+      "mid",
+      404
+    ],
+    "Euthynnus affinis": [
+      "tropical",
+      "mid",
+      527
+    ],
+    "Lethrinus nebulosus": [
+      "tropical",
+      "mid",
+      498
+    ],
+    "Ophiactis savignyi": [
+      "tropical",
+      "mid",
+      674
+    ],
+    "Pomacentrus coelestis": [
+      "tropical",
+      "mid",
+      708
+    ],
+    "Uraspis secunda": [
+      "tropical",
+      "mid",
+      418
+    ]
+  }
+}

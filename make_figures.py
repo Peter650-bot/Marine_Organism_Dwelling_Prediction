@@ -26,7 +26,10 @@ import numpy as np
 FIG_ROOT = "figures"
 SPECIES = [("Caretta caretta", "Mediterranean"),
            ("Cetorhinus maximus", "NE Atlantic"),
-           ("Balaenoptera musculus", "California Current")]
+           ("Balaenoptera musculus", "Northeast Pacific")]
+COMMON = {"Caretta caretta": "Loggerhead turtle",
+          "Cetorhinus maximus": "Basking shark",
+          "Balaenoptera musculus": "Blue whale"}
 def models(rf_key="rf_full"):
     return [("tabicl", "TabICLv2", "#2a78d6", "s"),
             (rf_key, "RF-full", "#eb6834", "o")]
@@ -89,8 +92,8 @@ def make(D, metric, label, fname, fig_root, dpi, rf_key="rf_full"):
     ax.set_ylim(lo - pad, hi + pad)
     ax.set_xticks(x)
     ax.set_xticklabels(
-        [f"$\\it{{{sp.split()[0]}}}$\n$\\it{{{sp.split()[1]}}}$\n{b}\n"
-         f"({len(D[sp]['folds'])} regions)" for sp, b in present], fontsize=9)
+        [f"{COMMON[sp]}\n{b}\n({len(D[sp]['folds'])} regions)"
+         for sp, b in present], fontsize=9)
     ax.tick_params(axis="both", colors=INK_2, labelsize=9, length=3)
     ax.set_xlim(-0.55, len(present) - 0.45)
     ax.set_ylabel(f"mean {label} over held-out regions", fontsize=10.5, color=INK_2)

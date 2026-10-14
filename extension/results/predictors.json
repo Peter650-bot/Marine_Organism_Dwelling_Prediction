@@ -1,0 +1,21 @@
+{
+  "predictors": [
+    "BO_sstmean",
+    "BO_salinity",
+    "MS_bathy_5m",
+    "MS_biogeo05_dist_shore_5m",
+    "BO_chlomean",
+    "BO_sstrange",
+    "BO_ph",
+    "BO_phosphate",
+    "BO_cloudmean",
+    "MS_biogeo06_bathy_slope_5m",
+    "MS_biogeo11_sss_range_5m",
+    "MS_biogeo07_concavity_5m",
+    "MS_biogeo03_plan_curvature_5m",
+    "MS_biogeo01_aspect_EW_5m",
+    "MS_biogeo02_aspect_NS_5m"
+  ],
+  "rule": "greedy |Spearman rho| < 0.7 on the 20,000 random background points, priority order",
+  "n_candidates": 68
+}

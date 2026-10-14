@@ -1,0 +1,140 @@
+{
+  "Caretta caretta": [
+    {
+      "fold": 0,
+      "n_test": 300,
+      "n_sightings_train": 181,
+      "n_sightings_heldout": 47,
+      "kde_sightings": 1.0,
+      "kde_classifier": 0.9900444444444445,
+      "auc_tabicl": 0.9927555555555556,
+      "auc_rf_tuned": 0.9572444444444443,
+      "auc_rf_full": 0.9604888888888888
+    },
+    {
+      "fold": 1,
+      "n_test": 300,
+      "n_sightings_train": 183,
+      "n_sightings_heldout": 45,
+      "kde_sightings": 0.9449333333333333,
+      "kde_classifier": 0.9151999999999999,
+      "auc_tabicl": 0.9608000000000001,
+      "auc_rf_tuned": 0.6945333333333333,
+      "auc_rf_full": 0.7244222222222223
+    },
+    {
+      "fold": 3,
+      "n_test": 300,
+      "n_sightings_train": 177,
+      "n_sightings_heldout": 51,
+      "kde_sightings": 0.5968444444444445,
+      "kde_classifier": 0.9935111111111111,
+      "auc_tabicl": 0.9992,
+      "auc_rf_tuned": 0.9554666666666667,
+      "auc_rf_full": 0.9704888888888888
+    },
+    {
+      "fold": 4,
+      "n_test": 300,
+      "n_sightings_train": 168,
+      "n_sightings_heldout": 60,
+      "kde_sightings": 0.9799111111111112,
+      "kde_classifier": 0.9924000000000001,
+      "auc_tabicl": 0.9983555555555556,
+      "auc_rf_tuned": 0.9897333333333334,
+      "auc_rf_full": 0.9802222222222222
+    }
+  ],
+  "Cetorhinus maximus": [
+    {
+      "fold": 0,
+      "n_test": 300,
+      "n_sightings_train": 136,
+      "n_sightings_heldout": 6,
+      "kde_sightings": 1.0,
+      "kde_classifier": 0.9989333333333333,
+      "auc_tabicl": 0.9995111111111111,
+      "auc_rf_tuned": 0.9992222222222222,
+      "auc_rf_full": 0.9966222222222223
+    },
+    {
+      "fold": 1,
+      "n_test": 66,
+      "n_sightings_train": 106,
+      "n_sightings_heldout": 36,
+      "kde_sightings": 1.0,
+      "kde_classifier": 1.0,
+      "auc_tabicl": 1.0,
+      "auc_rf_tuned": 1.0,
+      "auc_rf_full": 1.0
+    },
+    {
+      "fold": 2,
+      "n_test": 300,
+      "n_sightings_train": 107,
+      "n_sightings_heldout": 35,
+      "kde_sightings": 0.7785333333333333,
+      "kde_classifier": 0.8413333333333333,
+      "auc_tabicl": 0.9889333333333333,
+      "auc_rf_tuned": 0.8591555555555556,
+      "auc_rf_full": 0.9513777777777778
+    },
+    {
+      "fold": 3,
+      "n_test": 300,
+      "n_sightings_train": 115,
+      "n_sightings_heldout": 27,
+      "kde_sightings": 0.3529333333333333,
+      "kde_classifier": 0.31453333333333333,
+      "auc_tabicl": 0.3148888888888889,
+      "auc_rf_tuned": 0.3387777777777778,
+      "auc_rf_full": 0.3587777777777778
+    },
+    {
+      "fold": 4,
+      "n_test": 300,
+      "n_sightings_train": 104,
+      "n_sightings_heldout": 38,
+      "kde_sightings": 0.9478222222222222,
+      "kde_classifier": 0.9825333333333333,
+      "auc_tabicl": 0.9683111111111111,
+      "auc_rf_tuned": 0.9483333333333333,
+      "auc_rf_full": 0.9224888888888888
+    }
+  ],
+  "Balaenoptera musculus": [
+    {
+      "fold": 2,
+      "n_test": 300,
+      "n_sightings_train": 24,
+      "n_sightings_heldout": 17,
+      "kde_sightings": 0.7402222222222222,
+      "kde_classifier": 0.9008888888888889,
+      "auc_tabicl": 0.8868888888888888,
+      "auc_rf_tuned": 0.8911333333333333,
+      "auc_rf_full": 0.8720222222222221
+    },
+    {
+      "fold": 3,
+      "n_test": 300,
+      "n_sightings_train": 33,
+      "n_sightings_heldout": 8,
+      "kde_sightings": 0.9992,
+      "kde_classifier": 0.8882222222222222,
+      "auc_tabicl": 0.8848,
+      "auc_rf_tuned": 0.8508000000000001,
+      "auc_rf_full": 0.8543555555555556
+    },
+    {
+      "fold": 4,
+      "n_test": 300,
+      "n_sightings_train": 26,
+      "n_sightings_heldout": 15,
+      "kde_sightings": 0.9419555555555554,
+      "kde_classifier": 0.9966666666666667,
+      "auc_tabicl": 0.9890666666666666,
+      "auc_rf_tuned": 0.9642666666666667,
+      "auc_rf_full": 0.9628888888888889
+    }
+  ]
+}

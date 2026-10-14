@@ -1,0 +1,133 @@
+{
+  "species": "Caretta caretta",
+  "n_regions": 15,
+  "folds": [
+    {
+      "fold": 0,
+      "n_test": 234,
+      "n_pos_test": 117,
+      "auc_tabicl": 0.9986850756081526,
+      "f1_tabicl": 0.9512195121951219,
+      "auc_rf_tuned": 0.9864854993060121,
+      "f1_rf_tuned": 0.9176470588235294,
+      "rf_inner_folds": 9
+    },
+    {
+      "fold": 1,
+      "n_test": 72,
+      "n_pos_test": 36,
+      "auc_tabicl": 1.0,
+      "f1_tabicl": 0.9473684210526315,
+      "auc_rf_tuned": 0.9648919753086418,
+      "f1_rf_tuned": 0.4,
+      "rf_inner_folds": 9
+    },
+    {
+      "fold": 2,
+      "n_test": 300,
+      "n_pos_test": 150,
+      "auc_tabicl": 0.9998666666666667,
+      "f1_tabicl": 0.9547038327526133,
+      "auc_rf_tuned": 0.9835999999999999,
+      "f1_rf_tuned": 0.9010989010989011,
+      "rf_inner_folds": 9
+    },
+    {
+      "fold": 3,
+      "n_test": 300,
+      "n_pos_test": 150,
+      "auc_tabicl": 0.9917333333333334,
+      "f1_tabicl": 0.9287925696594427,
+      "auc_rf_tuned": 0.9854444444444445,
+      "f1_rf_tuned": 0.9297658862876255,
+      "rf_inner_folds": 9
+    },
+    {
+      "fold": 4,
+      "n_test": 300,
+      "n_pos_test": 150,
+      "auc_tabicl": 0.9816888888888888,
+      "f1_tabicl": 0.8595988538681948,
+      "auc_rf_tuned": 0.8557777777777777,
+      "f1_rf_tuned": 0.8571428571428571,
+      "rf_inner_folds": 9
+    },
+    {
+      "fold": 7,
+      "n_test": 48,
+      "n_pos_test": 24,
+      "auc_tabicl": 0.998263888888889,
+      "f1_tabicl": 0.9090909090909091,
+      "auc_rf_tuned": 0.9956597222222222,
+      "f1_rf_tuned": 0.9795918367346939,
+      "rf_inner_folds": 9
+    },
+    {
+      "fold": 8,
+      "n_test": 276,
+      "n_pos_test": 138,
+      "auc_tabicl": 0.9923860533501365,
+      "f1_tabicl": 0.9432624113475178,
+      "auc_rf_tuned": 0.9917034236504936,
+      "f1_rf_tuned": 0.6666666666666666,
+      "rf_inner_folds": 9
+    },
+    {
+      "fold": 10,
+      "n_test": 300,
+      "n_pos_test": 150,
+      "auc_tabicl": 0.998488888888889,
+      "f1_tabicl": 0.9900332225913622,
+      "auc_rf_tuned": 0.9964888888888889,
+      "f1_rf_tuned": 0.952076677316294,
+      "rf_inner_folds": 9
+    },
+    {
+      "fold": 11,
+      "n_test": 300,
+      "n_pos_test": 150,
+      "auc_tabicl": 0.9790666666666666,
+      "f1_tabicl": 0.8848920863309353,
+      "auc_rf_tuned": 0.9548444444444445,
+      "f1_rf_tuned": 0.7633587786259542,
+      "rf_inner_folds": 9
+    },
+    {
+      "fold": 12,
+      "n_test": 300,
+      "n_pos_test": 150,
+      "auc_tabicl": 0.9997777777777778,
+      "f1_tabicl": 0.9834983498349835,
+      "auc_rf_tuned": 0.9989555555555556,
+      "f1_rf_tuned": 0.9736842105263158,
+      "rf_inner_folds": 9
+    }
+  ],
+  "folds_unscoreable": [
+    {
+      "fold": 5,
+      "n_region_cells": 1037,
+      "n_pos_in_region": 0
+    },
+    {
+      "fold": 6,
+      "n_region_cells": 951,
+      "n_pos_in_region": 0
+    },
+    {
+      "fold": 9,
+      "n_region_cells": 236,
+      "n_pos_in_region": 0
+    },
+    {
+      "fold": 13,
+      "n_region_cells": 837,
+      "n_pos_in_region": 0
+    },
+    {
+      "fold": 14,
+      "n_region_cells": 184,
+      "n_pos_in_region": 0
+    }
+  ]
+}

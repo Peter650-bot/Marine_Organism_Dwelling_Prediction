@@ -33,7 +33,7 @@ import numpy as np
 FIG_ROOT = "figures"
 SPECIES = [("Caretta caretta", "Mediterranean"),
            ("Cetorhinus maximus", "NE Atlantic"),
-           ("Balaenoptera musculus", "California Current")]
+           ("Balaenoptera musculus", "Northeast Pacific")]
 KSHOT_ROWS = [("tabicl", "TabICLv2"), ("tabllm", "TabLLM (Qwen2.5-72B)"),
               ("rf", "Random Forest"), ("gbt", "GBT"), ("knn", "kNN"),
               ("logreg", "LogReg")]
@@ -259,7 +259,7 @@ def table6(D):
          r"KDE core-area contour.}", r"\label{tab:task-scale}",
          r"\begin{tabular}{lccc}", r"\toprule",
          r" & \emph{C. caretta} & \emph{C. maximus} & \emph{B. musculus} \\",
-         r" & Mediterranean & NE Atlantic & California Current \\", r"\midrule"]
+         r" & Mediterranean & NE Atlantic & Northeast Pacific \\", r"\midrule"]
 
     def row(label, fn):
         cells = [fn(D[sp]) if sp in D else NR for sp, _ in SPECIES]
