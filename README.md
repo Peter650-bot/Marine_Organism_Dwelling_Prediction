@@ -5,12 +5,14 @@ observed? This repository contains the code and results for a per-cell habitat
 classification study across three species and three ocean basins, comparing a
 tabular foundation model (**TabICLv2**), an in-context LLM (**TabLLM**), classical
 baselines, and a published species-distribution model (**AquaMaps**).
+[`extension/`](extension/README.md) repeats the TabICLv2 comparison against
+MaxEnt on the MarineSPEED benchmark (40 species, environment-only predictors).
 
 | species | basin | ocean cells | core-area prevalence |
 |---|---|---|---|
 | *Caretta caretta* (loggerhead turtle) | Mediterranean | 13,683 | 0.292 |
 | *Cetorhinus maximus* (basking shark) | NE Atlantic | 36,902 | 0.219 |
-| *Balaenoptera musculus* (blue whale) | California Current | 42,476 | 0.052 |
+| *Balaenoptera musculus* (blue whale) | Northeast Pacific (California Current) | 42,476 | 0.052 |
 
 All headline numbers are in **[`RESULTS.md`](RESULTS.md)**; the same
 numbers as copy-paste LaTeX are in **[`tables.tex`](tables.tex)**.
@@ -143,6 +145,39 @@ python compare_rf.py        # does the TabICLv2 advantage survive tuning?
 python paper_numbers.py     # means, sds, worst folds, CIs, k=32, importances
 ```
 
+The steps below are independent of each other and only read `results.json`
+(steps 1-4 must have run):
+
+```bash
+# pooled tests over all 12 scoreable regions (sign-flip + Wilcoxon, Bonferroni m=2)
+python pooled_tests.py
+
+# dependence-aware check: Bayesian hierarchical correlated t-test (needs pystan)
+#    -> figures/bayes_hierarchical.json    (SEED = 1; the paper averages seeds 1-3)
+python bayes_hierarchical.py
+
+# loggerhead with 15 regions instead of 5 (~95 min on 4 cores)
+#    -> figures/Caretta_caretta/results_k15.json
+python loro15_caretta.py
+
+# geography-only baseline: lon/lat KDE classifier on the same test cells
+#    -> figures/kde_baseline.json, figures/kde_baseline.png/.pdf
+python kde_baseline.py
+
+# loggerhead context-size sweep: time and AUC of TabICLv2 vs tuned/fixed RF
+#    -> context_sweep.jsonl (resumable), then the figures
+python bench_context_sweep.py
+python make_context_sweep_figure.py   # figures/context_sweep_{time,auc}.*
+python make_timing_figure.py          # figures/timing_context_vs_rf_tuned*.*
+
+# KDE core-area label maps -> figures/label_map_<Species>.*
+python make_label_maps.py
+```
+
+`time.csv` holds the earlier timing runs (2k-row and full context) that
+`make_timing_figure.py` reads; the script that wrote it is not in the
+repository.
+
 The first run simulates the Lagrangian ensemble, which takes several minutes per
 species. The field is cached to a hidden `.npy` under `figures/<species>/`, keyed
 by cube filename, grid shape and step count, so re-runs are fast.
@@ -226,6 +261,15 @@ so a silent divergence cannot slip through.
 | `paper_numbers.py` | every quantity the paper reports, with a self-check against the published untuned values |
 | `make_figures.py` | confidence-interval figures (`--rf-key rf_tuned` for the tuned baseline) |
 | `make_tables.py` | emits `tables.tex` and `RESULTS.md` |
+| `pooled_tests.py` | sign-flip and Wilcoxon tests pooled over the 12 scoreable regions |
+| `bayes_hierarchical.py` | Bayesian hierarchical correlated t-test (regions nested in species, fold correlation 1/5) |
+| `loro15_caretta.py` | loggerhead TabICLv2 vs tuned RF with 15 held-out regions |
+| `kde_baseline.py` | geography-only (lon/lat KDE) baselines on the pipeline's test cells |
+| `bench_context_sweep.py` | loggerhead timing/AUC benchmark as the context grows |
+| `make_context_sweep_figure.py`, `make_timing_figure.py` | context-sweep and timing figures |
+| `make_label_maps.py` | maps of the KDE core-area label |
+| `extension/` | TabICLv2 vs MaxEnt on MarineSPEED — see [`extension/README.md`](extension/README.md) |
+| `research_notes/`, `reports/` | notes on TabICL context (KV) caching and its speed |
 | `deploy/vllm_server.py` | Modal deployment of the vLLM server used for TabLLM |
 
 Reproducibility: all randomness is seeded (`SEED = 42`; ensemble runs use
@@ -249,6 +293,11 @@ figures/03_ci_f1.png               per-region F1 with confidence intervals
 figures/tuned/                     the same two figures against the tuned RF
 figures/<species>/results.json     every per-fold, per-draw number
 figures/tabllm_cache.sqlite        cached LLM responses (reproducibility anchor)
+figures/bayes_hierarchical.json    Bayesian hierarchical test (P better / equivalent / worse)
+figures/Caretta_caretta/results_k15.json   15-region loggerhead run
+figures/kde_baseline.*             geography-only baseline
+figures/context_sweep_*, figures/timing_context_vs_rf_tuned*   timing figures
+figures/label_map_*                KDE core-area label maps
 ```
 
 Each `results.json` carries both baselines side by side — `auc_rf_full` /
@@ -262,6 +311,27 @@ AUC in 9 of 12 held-out regions and on F1 in 8 of 12, but no per-species
 difference is separable from zero — every 95% confidence interval on the paired
 across-region difference spans zero except loggerhead F1, `[+0.012, +0.118]`.
 
+Pooled and dependence-aware checks:
+
+- **Pooled over the 12 regions** (`pooled_tests.py`): AUC +0.045, sign-flip
+  p = 0.017 (0.033 after Bonferroni for two metrics); F1 +0.048, p = 0.118.
+  These tests treat the regions as independent, which they are not.
+- **Bayesian hierarchical test** (`bayes_hierarchical.py`; ROPE ±0.01, fold
+  correlation 1/5): P(TabICLv2 better on a new species) ≈ 0.7 for AUC and
+  ≈ 0.8 for F1, P(tuned RF better) ≈ 0.21–0.26. Suggestive, not conclusive.
+- **15 regions, loggerhead** (`loro15_caretta.py`; 10 of 15 scoreable):
+  AUC +0.023 (TabICLv2 higher in 10/10, Wilcoxon p = 0.002), F1 +0.101 (8/10,
+  p = 0.049). Smaller regions sit closer to training data (median separation
+  0.95° vs 2.40°), so this is nearer interpolation than the 5-region split.
+- **Geography alone** (`kde_baseline.py`): a lon/lat-only KDE classifier scores
+  AUC 0.973 / 0.827 / 0.929 (loggerhead / shark / whale) against TabICLv2's
+  0.988 / 0.854 / 0.920 and the tuned RF's 0.899 / 0.829 / 0.902, so these
+  labels cannot separate habitat learning from spatial interpolation. The
+  MarineSPEED extension, which gives neither model coordinates, addresses that:
+  TabICLv2 beats untuned MaxEnt by +0.016 AUC across 40 species (Wilcoxon
+  p = 0.017, 95% bootstrap CI [+0.00006, +0.034]), mostly on species with few
+  records.
+
 Tuning matters, and not in the direction you would guess. It made RF's **AUC
 slightly worse** (the fixed depth-10 cap was not handicapping it, and configurations
 selected on the training regions did not transfer across a spatial gap), so the
@@ -272,7 +342,9 @@ artifact of `class_weight="balanced"` at 5.2% prevalence, not a ranking
 difference — `compare_rf.py` prints the before/after.
 
 The defensible claim is therefore about cost, not accuracy: TabICLv2 matches a
-tuned supervised baseline with no per-task tuning of its own. Neither
+tuned supervised baseline with no per-task tuning of its own. It is faster than
+*tuning and fitting* the RF by nested CV (13.4× at a 500-row context), but a
+single untuned RF fit is still 7–96× faster than TabICLv2. Neither
 prompt-only nor foundation-model in-context learning exceeds the supervised
 ceiling, and geography remains the dominant signal.
 

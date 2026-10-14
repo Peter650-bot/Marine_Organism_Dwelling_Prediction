@@ -17,3 +17,5 @@ tabicl
 # anthropic         # alternative TabLLM backend (paid Anthropic API)
 # modal             # deploy the vLLM server used for the TabLLM rows
 # copernicusmarine  # download the DUACS L4 geostrophic velocity cubes (see README)
+# pystan arviz      # bayes_hierarchical.py (arviz only for the R-hat check)
+# elapid==1.0.3     # MaxEnt for extension/ (install separately, see extension/README.md)

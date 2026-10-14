@@ -31,7 +31,7 @@ vllm.log
 tunnel.log
 cloudflared
 
-# NOTE: figures/fixed/tabllm_cache.sqlite is intentionally committed —
+# NOTE: figures/tabllm_cache.sqlite is intentionally committed —
 # it is the LLM-reproducibility anchor (LLM output is not byte-deterministic).
 
 # ---- paper manuscript source + its build artefacts (not needed to reproduce) ----
